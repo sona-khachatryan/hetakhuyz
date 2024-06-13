@@ -1,0 +1,68 @@
+.subsection_container{
+    padding: 90px 120px;
+}
+
+.subsection_container_bottom{
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    >h3{
+        font-family: "BraindYerevan";
+        font-size: 40px;
+        font-weight: 400;
+        line-height: 60px;
+        letter-spacing: 0.01em;
+        margin-bottom: 40px;
+        
+    }
+    >h3::after{
+        content: "";
+        display: block;
+        width: 42px;
+        border-radius: 10px;
+        border: 3px solid ;
+    }
+}
+.subsection_region::after{
+    color: #4A8FCE;
+}
+.subsection_armenia::after{
+    color: #5F8670;
+}
+
+@media screen and (max-width:920px) {
+    .subsection_container{
+        padding-inline: 60px;
+    }
+}
+@media screen and (max-width:768px) {
+    .subsection_container{
+        padding-top:32px;
+        padding-bottom:32px;
+        >h2{
+            font-size: 22px;
+        }
+    }
+    .arrow{
+        width: 43px;
+        height: 25px;
+        font-size: 20px;
+        line-height: 25px;
+    }
+    .round_effect{
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        font-size: 20px;
+        margin: 0 10px;
+    }
+    .flex_container {
+        margin-top: 50px
+    }
+}
+
+@media screen and (max-width:475px) {
+    .subsection_container{
+        padding-inline: 10px;
+    }  
+}

@@ -1,0 +1,18 @@
+header{
+    >hr{
+        margin-top: 14px;
+
+    }
+    hr {
+        border: 2px solid;
+        border-image-source: linear-gradient(270deg, rgba(179, 19, 18, 0) 0%, rgba(179, 19, 18, 0.8) 26.9%, #B31312 51.5%, rgba(179, 19, 18, 0.8) 70.4%, rgba(179, 19, 18, 0) 100%);
+        border-image-slice: 1;
+    }
+}
+
+
+@media screen and (max-width:768px) {
+    .header_exchange_rates{
+        display: none;
+    }
+}

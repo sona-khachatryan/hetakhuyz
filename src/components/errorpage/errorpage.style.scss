@@ -1,0 +1,77 @@
+.error_page_container{
+    width: 100%;
+    margin: 40px 0 47px;
+    >div{
+        position: relative;
+        width: fit-content;
+        margin: 0 auto;
+        text-align: center;
+        h2{
+            margin: 0 auto;
+            width: 130px;
+            font-family: "NotoSansArmenian";
+            font-size: 18px;
+            font-weight: 600;
+            color: #2B2A4C;
+            display: none;
+            line-height: 48px;
+            
+            span{
+                font-family: "DejavuSans";
+                font-size: 60px;
+                letter-spacing: 0.01em;
+
+            }
+            
+        }
+
+        img:first-of-type{
+            display: none;
+        }
+        img:nth-of-type(2){
+            width: 794px;
+        }
+        button{
+            position: absolute;
+            bottom: 11%;
+            left: 40%;
+            font-family: "BraindYerevan";
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 60px;
+            letter-spacing: 0.01em;
+            color: #D9D9D9;
+            background-color: #B31312;
+            padding: 0 20px;
+            border: none;
+            border-radius: 14px;
+        }
+        button:hover{
+            background-color: #981110;
+        }
+    }
+}
+
+@media screen and (max-width:900px) {
+    .error_page_container>div{
+        img:nth-of-type(2){
+            display: none;
+        }
+        img:first-of-type,h2{
+            display: block;
+        }
+        button{
+           position:static;
+           margin-top: 20px;
+           font-size: 20px;
+        }
+    }
+}
+
+@media screen and (max-width:360px) {
+    .error_page_container>div{
+        img{
+            max-width: 300px;
+        }
+    }
+}

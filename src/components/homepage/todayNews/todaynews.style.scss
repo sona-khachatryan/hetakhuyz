@@ -1,0 +1,45 @@
+.today_news_top{
+    display: flex;
+    justify-content: space-between;
+    margin: 42px 0 40px;
+    position: relative;
+
+    p{
+        font-family: "DejavuSansExtraLight";
+        font-size: 24px;
+    }
+}
+
+
+
+
+
+
+
+@media screen and (max-width:1280px) {
+    .today_news_container{
+        h2{
+            font-size: 26px;
+        }
+        p{
+            font-size: 20px;
+        }
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .today_news_container{
+        h2{
+            font-size: 24px;
+        }
+        p{
+            font-size: 16px;
+        }
+    }
+}
+
+@media screen and (max-width:768px) {
+    .today_news_top{
+        margin: 32px 0 24px;
+    }
+}

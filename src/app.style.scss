@@ -1,0 +1,46 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+.global{
+  background-color: #f0f5f9;
+}
+
+@font-face {
+  font-family: DejavuSansExtraLight;
+  src: url(/fonts/DejaVuSans-ExtraLight.ttf);
+}
+
+@font-face {
+  font-family: BraindYerevan;
+  src: url(/fonts/BraindYerevan.otf);
+}
+
+@font-face {
+  font-family: ArmHmksBebasNeue;
+  src: url(/fonts/ArmHmksBebasNeue.TTF);
+}
+
+@font-face {
+  font-family: DejavuSans;
+  src: url(/fonts/DejaVuSans-Bold.ttf);
+}
+
+@font-face {
+  font-family: DejavuSans400;
+  src: url(/fonts/DejaVuSans.ttf);
+}
+@font-face {
+  font-family: NotoSansArmenian;
+  src: url(/fonts/NotoSansArmenian.ttf);
+}
+
+@font-face {
+  font-family: NotoSansArmenian600;
+  src: url(/fonts/NotoSansArmenian.ttf);
+  font-weight: 600;
+}
+
+

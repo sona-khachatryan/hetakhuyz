@@ -1,0 +1,123 @@
+.very_readable_container{
+    margin-top: 90px;
+    background-color: #C9D6DF;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    height: max-content;
+}
+
+.very_readables{
+    padding: 30px 0 0 30px;
+  
+}
+
+.very_readable_left{
+    padding:10px 0 60px;
+}
+.very_readable_right{
+    vertical-align: top;
+}
+
+
+@media screen and (max-width:1420px) {
+    .very_readable_left{
+        .readable_news img{
+            width: 250px;
+            height: 150px;
+        }
+    }
+}
+
+@media screen and (max-width:1369px) {
+    .very_readable_container{
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .very_readable_container{
+        margin-top:40px;
+    }
+    .very_readables{
+        padding-left: 0;
+    }
+    .very_readable_left{
+        .readable_news {
+            img{
+                width: 200px;
+                height: 100px;
+                margin-right: 12px;
+            }
+            h3{
+                font-size: 20px;
+                height: 64px;
+            }
+        }
+    }
+}
+
+
+
+
+@media screen and (max-width:600px) {
+    .very_readables{
+        padding:14px 0 0 16px;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .very_readable_left{
+        .readable_news {
+            img{
+                width: 137px;
+                height: 87px;
+            
+            }
+        }
+    }
+}
+
+
+//     .very_readable_left{
+//         .readable_news{
+//             margin-top:24px;
+//             img{
+//                 width: 136px;
+//             }
+//         }
+        
+//         div{
+//             h3{
+//                 font-size: 20px;
+//                 height: 64px;
+//                 margin: 1px 0;
+//             }    
+//         }
+//     }
+//     .very_readable_right{
+//         img{
+//             width: 328px;
+//             height: 470px;
+//         }
+//         div{
+//             h3{
+//                 font-size: 22px;
+//             }
+//             p{
+//                 margin: 5px 0;
+//                 font-size: 16px;
+//             }
+//         }
+//     }
+// }
+
+// @media screen and (max-width:350px) {
+//     .very_readable_right{
+//         img{
+//             width: 300px;
+//             height: 450px;
+//         }
+// }
+// }

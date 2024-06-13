@@ -1,0 +1,30 @@
+.exchange_container{
+    text-align: center;
+    
+    >div{
+        display: inline-block;
+        background-color: rgba(179, 19, 18, 0.20);
+        border-radius: 14px;
+        width: 109px;
+        height: 40px;
+        margin:10px 20px;
+        font-size: 20px;
+        letter-spacing: 0.2px;
+        color: #2B2A4C;
+        span,img{
+            vertical-align: middle;
+        }
+        img{
+            margin-right: 10px;
+        }
+    }
+ 
+}
+
+@media screen and (max-width:768px) {
+    .exchang_container{
+        >hr{
+            display: none;
+        }
+    }
+}

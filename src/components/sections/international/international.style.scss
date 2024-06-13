@@ -1,0 +1,130 @@
+.international_container{
+    padding: 90px 120px;
+    >h2{
+        font-family: "DejavuSans";
+        font-size: 32px;
+        line-height: 60px;
+        letter-spacing: 0.01em;
+        color: #1E2022;
+    }
+    >hr{
+        border: 3px solid;
+        border-image-slice: 1;
+        margin-top: 10px;
+        border-image-source: linear-gradient(270deg, rgba(255, 152, 0, 0) 1%, #FF9800 56%, rgba(255, 152, 0, 0) 100%);
+    }
+}
+
+.international_container_bottom{
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    margin-top:90px ;
+    >h3{
+        font-family: "BraindYerevan";
+        font-size: 40px;
+        font-weight: 400;
+        line-height: 60px;
+        letter-spacing: 0.01em;
+        margin-bottom: 40px;
+        
+    }
+    >h3::after{
+        content: "";
+        display: block;
+        width: 42px;
+        border-radius: 10px;
+        border: 3px solid ;
+    }
+}
+
+.international_title::after{
+    color: #FF9800;
+}
+
+.flex_container {
+    margin-top: 100px;
+    display: flex;
+    justify-content: end;
+        >div {
+        padding-top:10px;
+        }
+  }
+  
+  .paginate_ctn{
+      display: flex;
+  }
+
+
+.arrow{
+    width: 70px;
+    height: 50px;
+    background-color: #9c9c9c;
+    text-align:center;
+    cursor: pointer;
+    line-height: 45px;
+    font-size: 32px;
+    color: #F0F5F9;
+    user-select: none;
+}
+.arrow_active{
+    background-color: #52616b;
+}
+
+.round_effect{
+    user-select: none;
+    color:#52616b;
+    cursor:pointer;
+    font-size:24px;
+    text-align:center;
+    line-height: 35px;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    margin:5px 20px 0;
+  }
+  
+  
+.paginate_active{
+    background:#52616b;
+    color:#f0f5f9;
+  }
+
+
+
+@media screen and (max-width:920px) {
+    .international_container{
+        padding-inline: 60px;
+    }
+}
+@media screen and (max-width:768px) {
+    .international_container{
+        padding-top:32px;
+        padding-bottom:32px;
+        >h2{
+            font-size: 22px;
+        }
+    }
+    .arrow{
+        width: 43px;
+        height: 25px;
+        font-size: 20px;
+        line-height: 25px;
+    }
+    .round_effect{
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        font-size: 20px;
+        margin: 0 10px;
+    }
+    .flex_container {
+        margin-top: 50px
+    }
+}
+
+@media screen and (max-width:475px) {
+    .international_container{
+        padding-inline: 10px;
+    }  
+}

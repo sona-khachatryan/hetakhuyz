@@ -1,0 +1,38 @@
+.watch_container{
+    margin-top: 90px;
+}
+
+.watch_clip{
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+@media screen and (max-width:1190px) {
+    .watch_container{
+        width: 500px;
+        margin-inline:auto;
+    }
+    .watch_clip{
+        gap: 24px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .watch_container{
+        margin-top: 40px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .watch_container{
+        width: 328px;
+    }
+}
+@media screen and (max-width:425px) {
+    .watch_container{
+        width: 300px;
+    }
+}

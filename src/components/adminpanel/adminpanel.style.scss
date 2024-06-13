@@ -1,0 +1,31 @@
+.admin_panel_logo{
+    img{
+        padding:13px 0 0 120px ;
+    }
+    hr{
+        margin-top: 14px;
+        border: 2px solid;
+        border-image-source: linear-gradient(270deg, rgba(179, 19, 18, 0) 0%, rgba(179, 19, 18, 0.8) 26.9%, #B31312 51.5%, rgba(179, 19, 18, 0.8) 70.4%, rgba(179, 19, 18, 0) 100%);
+        border-image-slice: 1;
+
+    }
+}
+
+
+@media screen and (max-width:1000px) {
+    .admin_panel_logo{
+        img{
+            padding-left: 60px;
+        }
+    }
+}
+
+@media screen and (max-width:425px) {
+    .admin_panel_logo{
+        img{
+            padding-left: 16px;
+            width: 123px;
+            height: 53px;
+        }
+    }
+}

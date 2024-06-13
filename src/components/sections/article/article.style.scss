@@ -1,0 +1,58 @@
+.aside_container{
+    display: flex;
+    justify-content:space-between;
+    margin-top: 90px;
+    flex-wrap: wrap;
+    margin-inline: auto;
+    h2{
+        font-family: "BraindYerevan";
+        font-size: 40px;
+        font-weight: 400;
+        line-height: 60px;
+        letter-spacing: 0.01em;
+        margin-bottom: 40px;
+        
+    }
+    h2::after{
+        content: "";
+        display: block;
+        width: 42px;
+        border-radius: 10px;
+        border: 3px solid;
+    }
+    
+}
+
+.aside_button{
+    text-align: center;
+    margin-top:20px;
+    button{
+        color: #B31312;
+        font-family: "BraindYerevan";
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 60px;
+        letter-spacing: 0.01em;
+        border: none;
+        background-color: inherit;
+        cursor: pointer;
+    }
+    button:hover{
+        color: #981110;
+    }
+}
+
+@media screen and (max-width:1400px) {
+    .aside_container>h2{
+        font-size: 32px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .aside_container{
+        margin-top: 40px;
+        >h2{
+            margin-bottom: 24px;
+        }
+    }
+}

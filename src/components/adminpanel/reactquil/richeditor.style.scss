@@ -1,0 +1,100 @@
+.quill{
+    margin-top: 32px;
+    background-color: #D9D9D9;
+    padding-top: 32px;
+    border-radius: 20px !important;
+}
+
+.quill_container{
+    position: relative;
+    >button{
+        position: absolute;
+        bottom: 25px;
+        left: 36%;
+        font-family: "BraindYerevan";
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 60px;
+        letter-spacing: 0.01em;
+        padding: 6px 20px;
+        color: #D9D9D9;
+        border-radius: 14px;
+        background-color: #B31312;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+.ql-editor{
+    height: 573px;
+    font-size: 20px;
+    padding-bottom: 115px !important;
+}
+
+.ql-container,.ql-snow {
+    border: none !important ;
+    
+}
+.ql-toolbar{
+    margin: 0 20px !important;
+    text-align: end;
+    border: none !important;
+    border-top: 0.5px solid #52616B !important;
+    border-bottom: 0.5px solid #52616B !important;
+
+}
+
+.ql-picker-label{
+    text-align: left;
+}
+
+
+
+@media screen and (max-width:1433px) {
+    .ql-editor{
+        height: 523px;
+    }
+}
+
+
+@media screen and (max-width:1104px) {
+    .ql-editor{
+        height: 473px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .quill_container{
+        >button{
+            left: 30%;
+            padding: 2.5px 20px;
+        }
+    }
+}
+@media screen and (max-width:580px) {
+    .quill_container{
+        >button{
+            left: 25%;
+        }
+    }
+}
+
+@media screen and (max-width:458px) {
+    .quill{
+        width: 328px !important;
+    }
+    .ql-editor{
+        height: 436px;
+    }
+    .quill_container{
+        >button{
+            left: 15%;
+        }
+    }
+}
+
+@media screen and (max-width:355px) {
+    .quill{
+        width: 285px !important;
+    }
+}

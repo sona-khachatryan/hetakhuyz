@@ -1,0 +1,106 @@
+.watch_clip_container{
+    width: 590px;
+    position: relative;
+    div{
+        position: absolute;
+        top: 22px;
+        left: 22px;
+        background-color: #2B2A4C;
+        padding: 10px 14px;
+        border-radius: 10px;
+        cursor: pointer;
+        z-index: 1;
+        p{
+            display: inline-block;
+            margin-left: 8px;
+            font-family: "DejavuSans";
+            font-size: 20px;
+            color: #C9D6DF;
+            letter-spacing: -0.6px;
+            text-transform: capitalize;
+        }
+        img{
+            vertical-align: middle;
+        }
+    }
+    >img{
+        width: inherit;
+        height: 378px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    >img:hover{
+        background-color: #2B2A4C66;
+        filter: brightness(40%)
+    }
+    h3{
+        margin-top: 20px;
+        color:#1E2022;
+        font-family: "ArmHmksBebasNeue";
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 131.25%;
+        letter-spacing: 0.32px;
+        text-transform: uppercase;
+        padding-inline: 1px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        cursor: pointer;
+    }
+}
+
+
+@media screen and (max-width:1430px) {
+    .watch_clip_container{
+        width: 550px;
+    }
+}
+
+
+@media screen and (max-width:1390px) {
+    .watch_clip_container{
+        width: 510px;
+    }
+}
+
+@media screen and (max-width:1390px) {
+    .watch_clip_container{
+        width: 510px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .watch_clip_container{
+        width: 328px;
+        >img{
+            height: 210px;
+        }
+        >div{
+            padding:5px 10px;
+            top:10px;
+            left: 10px;
+            img{
+                width: 24px;
+            }
+            p{
+                font-size: 16px;
+            }
+        }
+        h3{
+            font-size: 20px;
+        }
+    }
+}
+
+
+@media screen and (max-width:345px) {
+    .watch_clip_container{
+        width: 300px;
+        h3{
+            font-size: 16px;
+        }
+    }
+}
