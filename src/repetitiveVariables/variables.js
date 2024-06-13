@@ -1,4 +1,4 @@
-export const address = "https://hetakhuyz.am/service"
+export const address = "https://hetakhuyz.am/server"
 
 
 
