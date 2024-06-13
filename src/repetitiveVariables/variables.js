@@ -1,6 +1,21 @@
 export const address = "https://hetakhuyz.am/server"
 
-export const daysOfWeek = ['Երկ', 'Երք', 'Չրք', 'Հնգ', 'Ուրբ', 'Շթբ', 'Կիր'];
+export const daysOfWeek = ['Երկ', 'Երք', 'Չրք', 'Հնգ', 'Ուրբ', 'Շբթ', 'Կիր'];
+
+export const months = [
+    'Հնվ',
+    'Փտր',
+    'Մրտ',
+    'Ապր',
+    'Մայ',
+    'Հուն',
+    'Հուլ',
+    'Օգս',
+    'Սպտ',
+    'Հոկ',
+    'Նոյ',
+    'Դեկ',
+];
 
 export const dates = {
     '01': 'Հնվ',

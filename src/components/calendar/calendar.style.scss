@@ -5,7 +5,6 @@
   display: flex;
   top:0;
   left: 0;
-  background: #9c9c9cBB;
   z-index: 10000;
 }
 
@@ -64,7 +63,7 @@
   display: flex;
   position: relative;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .calendar-heading {
@@ -72,15 +71,28 @@
   font-weight: 700;
   font-size: 20px;
   color: #2B2A4C;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .prev-arrow, .next-arrow {
   width: 10px;
   height: 16px;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .next-arrow {
   transform: rotate(180deg);
+}
+
+.disabled-arrow {
+  filter: grayscale(100%) brightness(0) invert(1) sepia(1) saturate(50%) hue-rotate(90deg) brightness(60%);
+  cursor: auto;
 }
 
 .week-section {
@@ -113,8 +125,9 @@
   align-items: center;
   justify-content: center;
   margin-right: 13px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   width: 40px;
+  height: 35px;
   color: #2B2A4C;
   cursor: pointer;
 }
@@ -128,39 +141,63 @@
   border: 1px solid #B31312;
 }
 
-.emptyDate {
+.empty {
   cursor: auto;
 }
 
-.disabled-arrow {
-  filter: grayscale(100%) brightness(0) invert(1) sepia(1) saturate(10000%) hue-rotate(90deg) brightness(100%);
+@media (max-width: 1280px) {
+  .calendar-wrapper {
+    top: 17%;
+    right: 7%;
+  }
 }
 
-@media (min-width: 390px) {}
+@media (max-width: 1024px) {
+  .calendar-wrapper {
+    top: 14%;
+    right: 6%;
+  }
+}
 
-/* xs */
+@media (max-width: 768px) {
+  .calendar-wrapper {
+    right: 4%;
+  }
+}
 
-@media (min-width: 475px) {}
+@media (max-width: 640px) {
+  .calendar-wrapper {
+    right: 50%;
+    transform: translate(50%, 0);
+  }
+}
 
-/* sm */
+@media (max-width: 390px) {
+  .calendar-wrapper {
+    width: 350px;
+    height: 410px;
+    top: 19%;
+    right: 50%;
+    transform: translate(50%, 0);
+  }
 
-@media (min-width: 640px) {}
+  .week-section {
+    margin-top: 10px;
+  }
 
-/* md */
+  .weekday {
+    font-size: 14px;
+  }
 
-@media (min-width: 768px) {}
+  .days-section {
+    padding-left: 7px;
+  }
 
-/* lg */
-
-@media (min-width: 1024px) {}
-
-/* xl */
-
-@media (min-width: 1280px) {}
-
-/* 2xl */
-
-@media (min-width: 1440px) {}
-
-/* 3xl */
-@media (min-width: 1536px) {}
+  .date {
+    font-size: 16px;
+    margin-right: 9px;
+    margin-bottom: 10px;
+    width: 40px;
+    height: 35px;
+  }
+}
