@@ -1,6 +1,6 @@
 export const address = "https://hetakhuyz.am/server"
 
-
+export const daysOfWeek = ['Երկ', 'Երք', 'Չրք', 'Հնգ', 'Ուրբ', 'Շթբ', 'Կիր'];
 
 export const dates = {
     '01': 'Հնվ',
@@ -83,7 +83,7 @@ export function handleDate(createdAt){
     if(!createdAt)return
     const date = createdAt.split("-")
     return `${dates[date[1]]} ${date[2].slice(0,2)},${date[0]}`
-  }
+}
 
 export function scrollTop(){
     window.scrollTo({
