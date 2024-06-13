@@ -6,6 +6,7 @@ import { Link, Outlet, useParams } from "react-router-dom"
 import axios from "axios"
 import { categories, countriesfilter , address} from "../../../repetitiveVariables/variables"
 import LiveContent from "./livecontent/LiveContent"
+import {getSections, getSubsections} from "../../../api/fetchData.js";
 
 const chooseSection = [
     {label:"Հայաստան",value:"armenia"},
@@ -54,12 +55,40 @@ const EditContent = () => {
     const maxPages = Math.ceil(data.length/6)
     const {id} = useParams()
 
+    const [sections, setSections] = useState([]);
+    const [subsections, setSubsections] = useState([]);
+    const [sectionsFilter, setSectionsFilter] = useState();
+    const [subsectionsFilter, setSubsectionsFilter] = useState();
+
+    useEffect(() => {
+        getSubsections().then(res => setSubsections(res));
+        getSections().then(res => setSections(res));
+    }, []);
+
+    useEffect(() => {
+        if(sections.length) {
+            const sectionsF = sections.reduce((sf, section,) => {
+                sf[section.title] = section.id;
+                return sf;
+            }, {})
+            setSectionsFilter(sectionsF);
+        }
+
+        if(subsections.length) {
+            const subF = subsections.reduce((sf, sub,) => {
+                sf[sub.title] = sub.id;
+                return sf;
+            }, {})
+            setSubsectionsFilter(subF);
+        }
+    }, [sections, subsections]);
+
     function handleFilter(data){
-      if(contentType == "all"){
+      if(contentType == "Բոլորը"){
        return setData(data)
-      }else if(contentType == "text"){
+      }else if(contentType == "Տեքստային"){
        return setData(data.filter((data)=>data.newsContent?.file.isImage))
-      }else if (contentType == "video"){
+      }else if (contentType == "Տեսանյութ"){
        return setData(data.filter((data)=>data.newsContent && !data.newsContent.file.isImage))
       }else{
         return setData(data.filter((data)=>data.url))
@@ -71,27 +100,27 @@ const EditContent = () => {
         (async () => {
           const lives = await axios.get(`${address}/live/getAll`)
           try {
-            if(sectionValue == 'all' && subsectionValue == "all") {
+            if(sectionValue == 'Բոլորը' && subsectionValue == "Բոլորը") {
               const {data}= await axios.get(`${address}/news/getAll`)
               Array.isArray(data) && handleFilter(data.concat(lives.data))
               
-            }else if(sectionValue == 'international'){
+            }else if(sectionValue == 'Միջազգային'){
               const {data}= await axios.get(`${address}/news/filter?countryId=6`)
               Array.isArray(data) && handleFilter(data)
-            }else if(sectionValue == 'armenia' && subsectionValue == "all"){
+            }else if(sectionValue == 'Հայաստան' && subsectionValue == "Բոլորը"){
               const {data}= await axios.get(`${address}/news/filter?countryId=1`)
               Array.isArray(data) &&  handleFilter(data)
-            }else if(sectionValue == "region"){
-              if(subsectionValue == "all"){
+            }else if(sectionValue == "Տարածաշրջան"){
+              if(subsectionValue == "Բոլորը"){
                 const {data}= await axios.get(`${address}/news/getAll`)
                 const dataRegion = data.filter((data)=>data.countryId != 1 && data.countryId != 6)
                 Array.isArray(dataRegion) &&  handleFilter(dataRegion)
               }else{
-                const {data}= await axios.get(`${address}/news/filter?countryId=${countriesfilter[subsectionValue]}`)
+                const {data}= await axios.get(`${address}/news/filter?countryId=${sectionsFilter[subsectionValue]}`)
                 Array.isArray(data) &&  handleFilter(data)
               }
             }else{
-              const {data}= await axios.get(`${address}/news/filter?countryId=${countriesfilter[sectionValue]}&categoryId=${categories[subsectionValue]}`)
+              const {data}= await axios.get(`${address}/news/filter?countryId=${sectionsFilter[sectionValue]}&categoryId=${subsectionsFilter[subsectionValue]}`)
               Array.isArray(data) && handleFilter(data)
               
             }
@@ -133,7 +162,7 @@ const EditContent = () => {
     }
 
     function handleSectionValue(value){
-      if(value == "region" || value == "armenia"){
+      if(value == "Միջազգային" || value == "Հայաստան"){
         setSubsectionValue("all")
         setContentType("all")
       }      
@@ -146,8 +175,8 @@ const EditContent = () => {
     <>
       <div ref={containerRef} className="drop_down_container" >
         
-        <DropDownMenu render={handleSectionValue} chooseSection={chooseSection} edit={true} title ="Բոլորը"/>
-        {sectionValue == "region"?<DropDownMenu valueSelected={subsectionValue} render={setSubsectionValue} edit={true} chooseSection={chooseSubsectionRegion} title ="Բոլորը"/>:sectionValue == "international"?<DropDownMenu chooseSection={chooseSubsectionInternational} title ="Բոլորը"/>:<DropDownMenu valueSelected={subsectionValue} render={setSubsectionValue} chooseSection={chooseSubsection} edit={true} title ="Բոլորը"/>}
+        <DropDownMenu render={handleSectionValue} chooseSection={sections} edit={true} title ="Բոլորը"/>
+        {sectionValue == "Միջազգային"?<DropDownMenu valueSelected={subsectionValue} render={setSubsectionValue} edit={true} chooseSection={chooseSubsectionRegion} title ="Բոլորը"/>:sectionValue == "Միջազգային"?<DropDownMenu chooseSection={chooseSubsectionInternational} title ="Բոլորը"/>:<DropDownMenu valueSelected={subsectionValue} render={setSubsectionValue} chooseSection={subsections} edit={true} title ="Բոլորը"/>}
 
         <DropDownMenu valueSelected={contentType} render={setContentType} chooseSection={contentTypeData} edit={true} title ="Բոլորը"/>
 
