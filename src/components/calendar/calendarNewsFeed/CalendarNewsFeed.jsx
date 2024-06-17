@@ -9,6 +9,31 @@ function CalendarNewsFeed(props) {
     const now = dayjs();
     const [{formattedDate, dateInArm}, setCalendarDate] = useContext(CalendarDateContext);
     const [calendarFeed, setCalendarFeed] = useState()
+    const [screenSize, setScreenSize] = useState();
+    const [sliceAt, setSliceAt] = useState({});
+
+    useEffect(() => {
+        const handleResize = () => {
+            if(window.innerWidth >= 300 && window.innerWidth <= 768) {
+                setScreenSize('sm')
+                setSliceAt({title: 55, desc: 60})
+            } else if (window.innerWidth > 768 && window.innerWidth <= 1024) {
+                setScreenSize('md')
+                setSliceAt({title: 70, desc: 70})
+            }  else if (window.innerWidth > 1024) {
+                setScreenSize('lg')
+                setSliceAt({title: 100, desc: 110})
+            }
+        };
+
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const getNews = async () => {
         let feed;
@@ -45,18 +70,18 @@ function CalendarNewsFeed(props) {
                 {calendarFeed?.length
                     ?
                     <div className='calendar_feed__news'>
-                        {calendarFeed.map((news, index) => <div key={index} className='calendar_feed__news-card'>
-                            <img src={address + "/" + news.img} alt="Լրատվական նկար"/>
+                        {calendarFeed.slice().reverse().map((news, index) => <div key={index} className='calendar_feed__news-card'>
+                            {<img src={news?.img ? `${address}/${news?.img}` : '/img/Hetakhuzy LOGO.svg'} alt="Լրատվական նկար"/>}
                             <div className='calendar_feed__news-card__text'>
-                                <p className='calendar_feed__news-card__date'>
-                                    {handleDate(news.createdAt)}
-                                </p>
-                                <p className='calendar_feed__news-card__title'>
-                                    {news.title}
-                                </p>
-                                <p className='calendar_feed__news-card__description'>
-                                    {news.description}
-                                </p>
+                                {news?.createdAt ? <p className='calendar_feed__news-card__date'>
+                                    {handleDate(news?.createdAt)}
+                                </p> : ''}
+                                {news?.title ? <p className='calendar_feed__news-card__title'>
+                                    {news?.title.length > sliceAt.title ? `${news?.title?.slice(0, sliceAt.title)}...` : news.title}
+                                </p> : ''}
+                                {news?.description ? <p className='calendar_feed__news-card__description'>
+                                    {news?.description.length > sliceAt.desc ? `${news?.description?.slice(0, sliceAt.desc)}...` : news.description}
+                                </p> : ''}
                             </div>
                         </div>)}
                     </div>

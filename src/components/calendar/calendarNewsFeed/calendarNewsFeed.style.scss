@@ -24,7 +24,10 @@
     font-weight: 400;
     font-size: 20px;
     color: #2B2A4C;
+  }
 
+  span:last-child {
+    color: #52616B;
   }
 }
 
@@ -46,11 +49,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
 }
 
 .calendar_feed__news-card {
   min-height: 193px;
-  border: 1px solid hotpink;
+  //border: 1px solid hotpink;
   display: flex;
   gap: 10px;
 
@@ -66,7 +70,7 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  border: 1px solid purple;
+  gap: 5px;
 }
 
 .calendar_feed__news-card__date {
@@ -93,4 +97,63 @@
   color: #52616B;
   display: flex;
   flex-wrap: wrap;
+}
+
+@media (max-width: 1280px) {
+  .calendar_feed__news-card__title {
+    font-size: 26px;
+  }
+
+  .calendar_feed__news-card__description {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .calendar_feed__news-card__title {
+    font-size: 22px;
+  }
+
+  .calendar_feed__news-card__description {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 640px) {
+
+  .calendar_feed__top {
+
+    span {
+      font-size: 16px;
+      color: #2B2A4C;
+    }
+  }
+
+  .calendar_feed__news-card {
+    min-height: 193px;
+
+    img {
+      width: 144px;
+      height: 92px;
+    }
+  }
+  .calendar_feed__news-card__description {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 390px) {
+  .calendar_feed__top {
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+
+    span {
+      font-size: 14px;
+    }
+  }
 }
