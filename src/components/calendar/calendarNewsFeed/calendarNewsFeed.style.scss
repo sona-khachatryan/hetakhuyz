@@ -1,0 +1,96 @@
+.calendar_feed {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 40vh;
+
+}
+
+.calendar_feed__top {
+  margin-top: 54px;
+  padding-bottom: 30px;
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid;
+  border-image-source: linear-gradient(270deg, rgba(43, 42, 76, 0) 0%, rgba(43, 42, 76, 0.8) 26.9%, #2B2A4C 51.5%, rgba(43, 42, 76, 0.8) 70.4%, rgba(43, 42, 76, 0) 100%);
+  border-image-slice: 1;
+;
+
+  span {
+    font-family: NotoSansArmenian;
+    font-weight: 400;
+    font-size: 20px;
+    color: #2B2A4C;
+
+  }
+}
+
+.calendar_feed__main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 50px;
+  width: 75%;
+}
+
+.calendar_feed__no-result {
+  font-family: ArmHmksBebasNeue;
+  font-size: 32px;
+  color: #2B2A4C;
+}
+
+.calendar_feed__news {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.calendar_feed__news-card {
+  min-height: 193px;
+  border: 1px solid hotpink;
+  display: flex;
+  gap: 10px;
+
+  img {
+    width: 300px;
+    height: 193px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+}
+
+.calendar_feed__news-card__text {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  border: 1px solid purple;
+}
+
+.calendar_feed__news-card__date {
+  font-family: 'DejavuSans400';
+  font-size: 12px;
+  text-align: left;
+  color: #26262699;
+}
+
+.calendar_feed__news-card__title {
+  font-family: ArmHmksBebasNeue;
+  font-size: 32px;
+  font-weight: 400;
+  text-align: left;
+  color: #1E2022;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.calendar_feed__news-card__description {
+  font-family: DejavuSans400;
+  font-size: 20px;
+  text-align: left;
+  color: #52616B;
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -1,8 +1,10 @@
 import './calendar.style.scss';
-import {daysOfWeek, months} from "../../repetitiveVariables/variables.js";
+import {daysOfWeek, months, monthsFullName} from "../../repetitiveVariables/variables.js";
 import dayjs from "dayjs";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {getDateSpecificNews} from "../../api/fetchData.js";
+import {CalendarDateContext} from "../../App.jsx";
+import {Link} from "react-router-dom";
 // eslint-disable-next-line react/prop-types
 function Calendar({closeModal}) {
 
@@ -15,6 +17,7 @@ function Calendar({closeModal}) {
     const [nextMonthDisabled, setNextMonthDisabled] = useState(true);
     const [prevMonthDisabled, setPrevMonthDisabled] = useState(false);
     const [days, setDays] = useState([]);
+    const [calendarDate, setCalendarDate] = useContext(CalendarDateContext);
 
     const formatDate = (selectedYear, selectedMonth, selectedDate) => {
         return now.set('year', selectedYear).set('month', selectedMonth).set('date', selectedDate).format('YYYY-MM-DD');
@@ -104,7 +107,11 @@ function Calendar({closeModal}) {
     }
 
     const handleDateClick = async (e) => {
-        await getDateSpecificNews(formatDate(year, monthIndex, +e.target.innerText));
+        // const feed = await getDateSpecificNews(formatDate(year, monthIndex, +e.target.innerText));
+        const formattedDate = formatDate(year, monthIndex, +e.target.innerText);
+        const dateInArm = `${monthsFullName[monthIndex]}ի ${+e.target.innerText}, ${year}`;
+        // console.log(feed, 'feed')
+        setCalendarDate({formattedDate, dateInArm});
     }
 
     return (
@@ -127,7 +134,7 @@ function Calendar({closeModal}) {
                         {daysOfWeek.map(day => <div key={day} className='weekday'>{day}</div>)}
                     </div>
                     <div className='calendar-section days-section'>
-                        {days.map((day, index) => <div key={index} className={day.className} onClick={day.date ? handleDateClick : null}>{day.date}</div>)}
+                        {days.map((day, index) => <Link key={index} to={'/calendar'} className={day.className} onClick={day.date ? handleDateClick : null}>{day.date}</Link>)}
                     </div>
                 </div>
             </div>
