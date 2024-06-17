@@ -16,5 +16,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    "indent": ["error", 4],
+    "react/jsx-indent": ["error", 4],
   },
 }
