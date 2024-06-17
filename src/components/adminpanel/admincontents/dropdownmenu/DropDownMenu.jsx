@@ -10,10 +10,11 @@ const DropDownMenu = ({valueSelected,chooseSection,title="",render,edit=false}) 
        <select onChange={(e)=>render(e.target.value)}>
 
         {<option hidden>{title}</option>}
-        {chooseSection.map(({label,value},key)=>{ 
-          if(value == valueSelected) return <option selected key={key} value={value}>{label}</option>
-          if(edit) return <option key={key} value={value}>{label}</option>
-           return value == "all"?<option key={key} disabled value={value}>{label}</option>:<option key={key} value={value}>{label}</option>
+           {/* eslint-disable-next-line react/prop-types */}
+        {chooseSection.map(({title, id})=>{
+          if(title == valueSelected) return <option selected key={id} value={title}>{title}</option>
+          if(edit) return <option key={id} value={title}>{title}</option>
+           return title == "Բոլորը"?<option key={id} disabled value={title}>{title}</option>:<option key={id} value={title}>{title}</option>
             
         })}
 

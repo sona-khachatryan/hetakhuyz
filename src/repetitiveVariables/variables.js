@@ -104,10 +104,17 @@ export const categoriesfilter = {
 }
 
 export const contentTypefilter = {
-  "text":"Թեքստային",
-  "video":"Վիդեո",
+  "text":"Տեքստային",
+  "video":"Տեսանյութ",
   "live":"Ուղիղ եթեր"
 }
+
+export const contentTypeData = [
+    {title:"Տեքստային",id:1, value:"text"},
+    {title:"Տեսանյութ",id:2, value:"video"},
+    {title:"Ուղիղ եթեր",id:3, value:"live"},
+    {title:"Բոլորը", id:4, value:"all"}
+]
 
 export function handleDate(createdAt){
     if(!createdAt)return
