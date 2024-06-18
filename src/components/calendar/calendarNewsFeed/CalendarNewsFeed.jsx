@@ -1,9 +1,10 @@
-import {useContext, useEffect, useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 import {CalendarDateContext} from "../../../App.jsx";
 import './calendarNewsFeed.style.scss';
 import {getDateSpecificNews} from "../../../api/fetchData.js";
 import dayjs from "dayjs";
 import {address, handleDate, monthsFullName} from "../../../repetitiveVariables/variables.js";
+import Pagination from "../../pagination/Pagination.jsx";
 
 function CalendarNewsFeed(props) {
     const now = dayjs();
@@ -11,7 +12,9 @@ function CalendarNewsFeed(props) {
     const [calendarFeed, setCalendarFeed] = useState()
     const [screenSize, setScreenSize] = useState();
     const [sliceAt, setSliceAt] = useState({});
-
+    const [contentBeginning,setContentBegining] = useState(0);
+    const containerRef = useRef(null);
+    
     useEffect(() => {
         const handleResize = () => {
             if(window.innerWidth >= 300 && window.innerWidth <= 768) {
@@ -42,7 +45,8 @@ function CalendarNewsFeed(props) {
         } else {
             feed = await getDateSpecificNews(formattedDate);
         }
-        setCalendarFeed(feed);
+        setCalendarFeed(feed.slice().reverse());
+        setContentBegining(0);
     }
 
     useEffect(() => {
@@ -57,7 +61,7 @@ function CalendarNewsFeed(props) {
     }, [calendarFeed]);
 
     return (
-        <div className='calendar_feed container'>
+        <div ref={containerRef} className='calendar_feed container'>
             <div className='calendar_feed__top'>
                 <span className='calendar_feed__date'>
                     {dateInArm}
@@ -69,24 +73,25 @@ function CalendarNewsFeed(props) {
             <div className='calendar_feed__main'>
                 {calendarFeed?.length
                     ?
-                    <div className='calendar_feed__news'>
-                        {calendarFeed.slice().reverse().map((news, index) => <div key={index} className='calendar_feed__news-card'>
-                            {<img src={news?.img ? `${address}/${news?.img}` : '/img/Hetakhuzy LOGO.svg'} alt="Լրատվական նկար"/>}
-                            <div className='calendar_feed__news-card__text'>
-                                {news?.createdAt ? <p className='calendar_feed__news-card__date'>
-                                    {handleDate(news?.createdAt)}
-                                </p> : ''}
-                                {news?.title ? <p className='calendar_feed__news-card__title'>
-                                    {news?.title.length > sliceAt.title ? `${news?.title?.slice(0, sliceAt.title)}...` : news.title}
-                                </p> : ''}
-                                {news?.description ? <p className='calendar_feed__news-card__description'>
-                                    {news?.description.length > sliceAt.desc ? `${news?.description?.slice(0, sliceAt.desc)}...` : news.description}
-                                </p> : ''}
-                            </div>
-                        </div>)}
-                    </div>
+                        <div className='calendar_feed__news'>
+                            {calendarFeed.slice(contentBeginning, contentBeginning+6).map((news, index) => <div key={index} className='calendar_feed__news-card'>
+                                {<img src={news?.img ? `${address}/${news?.img}` : '/img/Hetakhuzy LOGO.svg'} alt="Լրատվական նկար"/>}
+                                <div className='calendar_feed__news-card__text'>
+                                    {news?.createdAt ? <p className='calendar_feed__news-card__date'>
+                                        {handleDate(news?.createdAt)}
+                                    </p> : ''}
+                                    {news?.title ? <p className='calendar_feed__news-card__title'>
+                                        {news?.title.length > sliceAt.title ? `${news?.title?.slice(0, sliceAt.title)}...` : news.title}
+                                    </p> : ''}
+                                    {news?.description ? <p className='calendar_feed__news-card__description'>
+                                        {news?.description.length > sliceAt.desc ? `${news?.description?.slice(0, sliceAt.desc)}...` : news.description}
+                                    </p> : ''}
+                                </div>
+                            </div>)}
+                            <Pagination totalElements={calendarFeed?.length} contentBeginning={contentBeginning} setContentBeginning={setContentBegining}/>
+                        </div>
                     :
-                    <p className='calendar_feed__no-result'>Արդյունք չի գտնվել</p>
+                        <p className='calendar_feed__no-result'>Արդյունք չի գտնվել</p>
                 }
             </div>
         </div>
