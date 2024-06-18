@@ -1,6 +1,36 @@
 export const address = "https://hetakhuyz.am/server"
 
+export const daysOfWeek = ['Երկ', 'Երք', 'Չրք', 'Հնգ', 'Ուրբ', 'Շբթ', 'Կիր'];
 
+export const months = [
+    'Հնվ',
+    'Փտր',
+    'Մրտ',
+    'Ապր',
+    'Մայ',
+    'Հուն',
+    'Հուլ',
+    'Օգս',
+    'Սպտ',
+    'Հոկ',
+    'Նոյ',
+    'Դեկ',
+];
+
+export const monthsFullName = [
+    'Հունվար',
+    'Փետրվար',
+    'Մարտ',
+    'Ապրիլ',
+    'Մայիս',
+    'Հունիս',
+    'Հուլիս',
+    'Օգոստոս',
+    'Սեպտեմբեր',
+    'Հոկտեմբեր',
+    'Նոյեմբեր',
+    'Դեկտեմբեր',
+];
 
 export const dates = {
     '01': 'Հնվ',
@@ -74,16 +104,23 @@ export const categoriesfilter = {
 }
 
 export const contentTypefilter = {
-  "text":"Թեքստային",
-  "video":"Վիդեո",
+  "text":"Տեքստային",
+  "video":"Տեսանյութ",
   "live":"Ուղիղ եթեր"
 }
+
+export const contentTypeData = [
+    {title:"Տեքստային",id:1, value:"text"},
+    {title:"Տեսանյութ",id:2, value:"video"},
+    {title:"Ուղիղ եթեր",id:3, value:"live"},
+    {title:"Բոլորը", id:4, value:"all"}
+]
 
 export function handleDate(createdAt){
     if(!createdAt)return
     const date = createdAt.split("-")
     return `${dates[date[1]]} ${date[2].slice(0,2)},${date[0]}`
-  }
+}
 
 export function scrollTop(){
     window.scrollTo({

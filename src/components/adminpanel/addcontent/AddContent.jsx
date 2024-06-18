@@ -2,22 +2,11 @@ import "./addcontent.style.scss"
 import {useRef, useState,useEffect} from 'react'
 import DropDownMenu from '../admincontents/dropdownmenu/DropDownMenu'
 import RichEditor from "../reactquil/RichEditor"
-import { categories, countriesfilter , address } from "../../../repetitiveVariables/variables"
+import { address, contentTypeData } from "../../../repetitiveVariables/variables"
 import axios from "../interceptor"
+import {getSections, getSubsections} from "../../../api/fetchData.js";
 
-const chooseSection = [
-    {label:"Հայաստան",value:"armenia"},
-    {label:"Տարածաշրջան",value:"region"},
-    {label:"Միջազգային",value:"international"},
-    {label:"Բոլորը", value:"all"}
-]
-const chooseSubsection = [
-    {label:"Քաղաքական",value:"politics"},
-    {label:"Իրավական",value:"legal"},
-    {label:"Ռազմական",value:"military"},
-    {label:"Հասարակություն",value:"society"},
-    {label:"Բոլորը", value:"all"}
-]
+
 const chooseSubsectionRegion = [
     {label:"Վրաստան",value:"georgia"},
     {label:"Թուրքիա",value:"turkey"},
@@ -28,12 +17,7 @@ const chooseSubsectionRegion = [
 const chooseSubsectionInternational = [
   {label:"Բոլորը", value:"all"}
 ]
-const contentTypeData = [
-    {label:"Թեքստային",value:"text"},
-    {label:"Վիդեո",value:"video"},
-    {label:"Ուղիղ եթեր",value:"live"},
-    {label:"Բոլորը", value:"all"}
-]
+
 
 
 const AddContent = () => {
@@ -53,17 +37,45 @@ const AddContent = () => {
     const pictureTitleRef = useRef(null)
     const pictureAuthorRef = useRef(null)
     const fileAuthorRef = useRef(null)
-    
+
+    const [sections, setSections] = useState([]);
+    const [subsections, setSubsections] = useState([]);
+    const [sectionsFilter, setSectionsFilter] = useState();
+    const [subsectionsFilter, setSubsectionsFilter] = useState();
+
+    useEffect(() => {
+        getSubsections().then(res => setSubsections(res));
+        getSections().then(res => setSections(res));
+    }, []);
+
+    useEffect(() => {
+        if(sections.length) {
+            const sectionsF = sections.reduce((sf, section,) => {
+                sf[section.title] = section.id;
+                return sf;
+            }, {})
+            setSectionsFilter(sectionsF);
+        }
+
+        if(subsections.length) {
+            const subF = subsections.reduce((sf, sub,) => {
+                sf[sub.title] = sub.id;
+                return sf;
+            }, {})
+            setSubsectionsFilter(subF);
+        }
+    }, [sections, subsections]);
+
     function handleAddContent (e){
       (async () => {
         const formData = new FormData()
-        if(contentType == "live"){
+        if(contentType == "Ուղիղ եթեր"){
           formData.append('url', liveStreamRef.current.value)
           formData.append('title', liveTitleRef.current.value)
           
           try {
-            const  data = await axios.post(`${address}/live/create`, formData)
-            
+            const {data} = await axios.post(`${address}/live/create`, formData)
+              console.log('created new live')
           } catch (error) {
             console.log(error)
           }
@@ -72,13 +84,13 @@ const AddContent = () => {
           formData.append('description', descriptionRef.current.value)
           formData.append('contentTitle', titleRef.current.value)
           formData.append('contentDescription', richEditorValue)
-          if(sectionValue == 'armenia'){
-            formData.append('countryId', countriesfilter[sectionValue])
-            formData.append('categoryId', categories[subsectionValue])
-          }else if(sectionValue == 'international'){
-            formData.append('countryId',countriesfilter[sectionValue])
+          if(sectionValue == 'Հայաստան'){
+            formData.append('countryId', sectionsFilter[sectionValue])
+            formData.append('categoryId', subsectionsFilter[subsectionValue])
+          }else if(sectionValue == 'Միջազգային'){
+            formData.append('countryId',sectionsFilter[sectionValue])
           }else{
-            formData.append('countryId',countriesfilter[subsectionValue])
+            formData.append('countryId',sectionsFilter[subsectionValue])
           }
           formData.append('author', pictureAuthorRef.current.value)
           if(pictureTitleRef.current){
@@ -126,14 +138,14 @@ const AddContent = () => {
     <div className="admin_add_contents_container">
     
             <div className="drop_down_container">
-            <DropDownMenu render={setSectionValue} chooseSection={chooseSection} title ="Choose section"/>
+            <DropDownMenu render={setSectionValue} chooseSection={sections} title ="Choose section"/>
           
-            {sectionValue == "region"?<DropDownMenu render={setSubsectionValue} chooseSection={chooseSubsectionRegion} title ="Choose subsection"/>:sectionValue == "international"?<DropDownMenu chooseSection={chooseSubsectionInternational} title ="Choose subsection"/>:<DropDownMenu render={setSubsectionValue} chooseSection={chooseSubsection} title ="Choose subsection"/>}
+            {sectionValue == "Տարածաշրջան"?<DropDownMenu render={setSubsectionValue} chooseSection={chooseSubsectionRegion} title ="Choose subsection"/>:sectionValue == "Միջազգային"?<DropDownMenu chooseSection={chooseSubsectionInternational} title ="Choose subsection"/>:<DropDownMenu render={setSubsectionValue} chooseSection={subsections} title ="Choose subsection"/>}
 
             <DropDownMenu render={setContentType} chooseSection={contentTypeData} title ="Content type"/>
             </div>
             <div className="admin_url_container">
-            {contentType == "live"?
+            {contentType == "Ուղիղ եթեր"?
             <>
             <input ref={liveStreamRef} className="add_live_stream_input" type="text" placeholder="Type the livestream link there"/>
             <input ref={liveTitleRef} className="add_live_stream_input" type="text" placeholder="Title"/>
@@ -141,7 +153,7 @@ const AddContent = () => {
             
             :null}
             
-            {contentType == "video"?
+            {contentType == "Տեսանյութ"?
             <>
             <input className="file"  type="file" accept="image/*,.pdf" onChange={handleChange}/>
             <p>For picture</p>
@@ -156,7 +168,7 @@ const AddContent = () => {
             
             :null}
 
-            {contentType == "text"?
+            {contentType == "Տեքստային"?
             <>
             <input className="file"  type="file" accept="image/*,.pdf" onChange={handleChange}/>
             <p>For picture</p>
@@ -167,7 +179,7 @@ const AddContent = () => {
             <input ref={fileAuthorRef}className="add_video_input" type="text" placeholder="Who is the author? "/>
             </>:null}
             </div>
-            {contentType == "live"?<button onClick={handleAddContent}>Add New Content</button>:
+            {contentType == "Ուղիղ եթեր"?<button onClick={handleAddContent}>Add New Content</button>:
              <RichEditor click={handleAddContent} value={richEditorValue} setValue={setRichEditorValue}/>
             }
         </div>
