@@ -18,23 +18,21 @@ const AdminPanel = () => {
       const accessToken = localStorage.getItem('accessToken')
       const refreshToken = localStorage.getItem('refreshToken')
       
-      if(accessToken != undefined || refreshToken != undefined ){
+      if(accessToken !== undefined || refreshToken !== undefined ){
         axios.get('/admin/authMe').then(({data}) => {
           localStorage.setItem('accessToken', data.accessToken)
           localStorage.setItem('refreshToken', data.refreshToken)
           setAdminPanel(true)
         })
-
       }
     }, [])
     
-    function handleClick (){
+    function handleClick (e){
+        e.preventDefault();
         axios.post('/admin/login',{
             email: data.login,
             password: data.password
-          },
-
-          )
+          })
           .then(({data}) => {
             localStorage.setItem('accessToken', data.accessToken)
             localStorage.setItem('refreshToken', data.refreshToken)
@@ -44,19 +42,21 @@ const AdminPanel = () => {
             console.log(error)
             setIsTrue(true)
           })
-        
     }
 
     return (
-    <div className='admin_panel_container'>
-        <div className='admin_panel_logo'>
-            <NavLink to="/"><img src="/img/Hetaxuyz LOGO.png" alt="Հետախույզ լրատվական լոգո" /></NavLink>
-            <hr/>
+        <div className='admin_panel_container'>
+            <div className='admin_panel_logo'>
+                <NavLink to="/"><img src="/img/Hetaxuyz%20LOGO.svg" alt="Հետախույզ լրատվական լոգո" /></NavLink>
+                <hr/>
+            </div>
+            {!adminPanel
+                ?
+                    <AdminLogin isTrue={isTrue} handleClick={handleClick} handleChange={handleChange} data={data}/>
+                :
+                    <AdminContents/>
+            }
         </div>
-        {!adminPanel?
-        <AdminLogin isTrue={isTrue} handleClick={handleClick} handleChange={handleChange} data={data}/>
-        :<AdminContents/>}
-    </div>
   )
 }
 

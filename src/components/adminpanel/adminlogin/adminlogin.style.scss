@@ -11,17 +11,21 @@
         color: #B31312;
     }
     p{
+        font-family: "NotoSansArmenian600";
         color: red;
-        font-size: 20px;
+        font-size: 18px;
         margin-top: 3px;
     }
 }
 
+.submitDisabled {
+    background-color: #4A8FCE;
+}
 
 .admin_panel_inputs{
     max-width: 488px;
     margin: 0 auto;
-    div{
+    div {
         margin-top: 40px;
     }
     input{
@@ -40,7 +44,8 @@
         letter-spacing: 0.01em;
 
     }
-    input[type=button]{
+    button {
+        width: 100%;
         margin-top: 40px;
         font-family: "NotoSansArmenian";
         font-size: 28px;
@@ -66,8 +71,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    div{
+        margin-top: 0;
+    }
     input{
-        width: 24px !important;
+        width: 24px;
         height: 24px;
         vertical-align: bottom;
     }
@@ -89,21 +97,29 @@
 }
 
 
-@media screen and (max-width:600px) {
-    .admin_panel_checkbox{
-        span{
-            font-size: 16px;
-        }
-        p{
-            font-size: 18px;
-        }
-    }
+@media screen and (max-width:640px) {
     .admin_panel_inputs{
         div{
             margin-top: 20px;
         }
         input[type=button]{
             font-size: 24px;
+        }
+    }
+    .admin_panel_checkbox{
+        div{
+            margin-top: 0;
+        }
+        input{
+            width: 18px;
+            height: 18px;
+
+        }
+        span{
+            font-size: 16px;
+        }
+        p{
+            font-size: 16px;
         }
     }
     .admin_panel_login{
