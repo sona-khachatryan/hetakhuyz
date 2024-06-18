@@ -5,6 +5,7 @@ import {getDateSpecificNews} from "../../../api/fetchData.js";
 import dayjs from "dayjs";
 import {address, handleDate, monthsFullName} from "../../../repetitiveVariables/variables.js";
 import Pagination from "../../pagination/Pagination.jsx";
+import {Link} from "react-router-dom";
 
 function CalendarNewsFeed(props) {
     const now = dayjs();
@@ -74,21 +75,27 @@ function CalendarNewsFeed(props) {
                 {calendarFeed?.length
                     ?
                         <div className='calendar_feed__news'>
-                            {calendarFeed.slice(contentBeginning, contentBeginning+6).map((news, index) => <div key={index} className='calendar_feed__news-card'>
-                                {<img src={news?.img ? `${address}/${news?.img}` : '/img/Hetakhuzy LOGO.svg'} alt="Լրատվական նկար"/>}
-                                <div className='calendar_feed__news-card__text'>
-                                    {news?.createdAt ? <p className='calendar_feed__news-card__date'>
-                                        {handleDate(news?.createdAt)}
-                                    </p> : ''}
-                                    {news?.title ? <p className='calendar_feed__news-card__title'>
-                                        {news?.title.length > sliceAt.title ? `${news?.title?.slice(0, sliceAt.title)}...` : news.title}
-                                    </p> : ''}
-                                    {news?.description ? <p className='calendar_feed__news-card__description'>
-                                        {news?.description.length > sliceAt.desc ? `${news?.description?.slice(0, sliceAt.desc)}...` : news.description}
-                                    </p> : ''}
-                                </div>
-                            </div>)}
-                            <Pagination totalElements={calendarFeed?.length} contentBeginning={contentBeginning} setContentBeginning={setContentBegining}/>
+                            {calendarFeed.slice(contentBeginning, contentBeginning+6).map((news, index) =>
+                                <Link to={`/news/${news?.id}`}>
+                                    <div key={index} className='calendar_feed__news-card'>
+                                        {<img src={news?.img ? `${address}/${news?.img}` : '/img/Hetakhuzy LOGO.svg'}
+                                          alt="Լրատվական նկար"/>}
+                                        <div className='calendar_feed__news-card__text'>
+                                            {news?.createdAt ? <p className='calendar_feed__news-card__date'>
+                                                {handleDate(news?.createdAt)}
+                                            </p> : ''}
+                                            {news?.title ? <p className='calendar_feed__news-card__title'>
+                                                {news?.title.length > sliceAt.title ? `${news?.title?.slice(0, sliceAt.title)}...` : news.title}
+                                            </p> : ''}
+                                            {news?.description ? <p className='calendar_feed__news-card__description'>
+                                                {news?.description.length > sliceAt.desc ? `${news?.description?.slice(0, sliceAt.desc)}...` : news.description}
+                                            </p> : ''}
+                                        </div>
+                                    </div>
+                                </Link>
+                            )}
+                            <Pagination totalElements={calendarFeed?.length} contentBeginning={contentBeginning}
+                                        setContentBeginning={setContentBegining}/>
                         </div>
                     :
                         <p className='calendar_feed__no-result'>Արդյունք չի գտնվել</p>
