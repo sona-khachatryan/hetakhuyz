@@ -22,3 +22,27 @@ export const getDateSpecificNews = async (dateString) => {
         return [];
     }
 }
+
+export const createSections = async (section) => {
+    try {
+        const {data} = await axios.post(`${address}/categories/create`, {title: section});
+        console.log(data, 'created new section')
+        // return data;
+    } catch (error) {
+        console.log(error)
+        // return [];
+    }
+}
+
+export const createSubsections = async () => {
+    try {
+        const {data} = await axios.post(`${address}/countries/create`);
+        console.log(data, 'created new sub')
+        // return data;
+    } catch (error) {
+        console.log(error)
+        // return [];
+    }
+}
+
+

@@ -1,0 +1,129 @@
+.adminSideContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+  min-height: 100vh;
+}
+
+.asc_long-heading {
+  display: none;
+}
+
+.asc_menu {
+  width: 327px;
+  height: 144px;
+  border-radius: 20px;
+  background: #C9D6DF;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  padding-left: 20px;
+
+  p {
+    font-family: NotoSansArmenian;
+    font-size: 24px;
+    font-weight: 500;
+    color: #2B2A4C;
+    cursor: pointer;
+  }
+
+  .asc_activeHeading {
+    font-family: NotoSansArmenian600;
+    color: #B31312;
+  }
+}
+
+@media (min-width: 390px) {}
+
+/* xs */
+
+@media (min-width: 475px) {}
+
+/* sm */
+
+@media (min-width: 640px) {}
+
+/* md */
+
+@media (min-width: 768px) {}
+
+/* lg */
+
+@media (min-width: 1024px) {
+  .adminSideContent {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 20px;
+  }
+
+  .asc-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .asc_long-heading {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 630px;
+    height: 84px;
+    border-radius: 20px;
+    background: #C9D6DF;
+    font-family: NotoSansArmenian600;
+    font-size: 26px;
+    font-weight: 600;
+    color: #B31312;
+    padding-left: 25px;
+ }
+
+  .asc_menu {
+    width: 220px;
+    height: 833px;
+    justify-content: flex-start;
+
+    p {
+      font-family: NotoSansArmenian600;
+      font-size: 24px;
+      font-weight: 600;
+      margin-top: 20px;
+    }
+  }
+}
+
+/* xl */
+
+@media (min-width: 1280px) {
+
+  .asc_long-heading {
+    width: 895px;
+  }
+
+}
+
+/* 2xl */
+
+@media (min-width: 1440px) {
+  .adminSideContent {
+    justify-content: space-between;
+    padding-left: 120px;
+    padding-right: 120px;
+  }
+
+  .asc_long-heading {
+    width: 895px;
+  }
+
+  .asc_menu {
+    width: 288px;
+  }
+}
+
+/* 3xl */
+
+@media (min-width: 1536px) {}

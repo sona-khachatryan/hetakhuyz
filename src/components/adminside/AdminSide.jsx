@@ -13,7 +13,7 @@ function AdminSide(props) {
         const accessToken = localStorage.getItem('accessToken');
         const refreshToken = localStorage.getItem('refreshToken');
 
-        if(!accessToken || !refreshToken){
+        if(accessToken !== undefined || refreshToken !== undefined){
             axios.get('/admin/authMe').then(({data}) => {
                 localStorage.setItem('accessToken', data.accessToken);
                 localStorage.setItem('refreshToken', data.refreshToken);
