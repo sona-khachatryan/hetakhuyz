@@ -40,20 +40,23 @@ function AdminSide(props) {
         <div className='adminSide container'>
             <header className='adminSide_header'>
                 <NavLink className='adminSide_logo'  to="/"><img className='adminSide_logo' src="/img/Hetaxuyz%20LOGO.svg" alt="Հետախույզ լրատվական լոգո"/></NavLink>
-                {/*TODO:hide if not auth-ed*/}
-                <div className='adminSide_logout-btn'>
-                    {isSmallScreen ?
-                        <img src='/img/Logout.svg' alt='Դուրս գալ'/>
-                        :
-                        'Դուրս գալ'
-                    }
-                </div>
+                {isAuthenticated ?
+                    <div className='adminSide_logout-btn'>
+                        {isSmallScreen ?
+                            <img src='/img/Logout.svg' alt='Դուրս գալ'/>
+                            :
+                            'Դուրս գալ'
+                        }
+                    </div>
+                    :
+                    ''
+                }
             </header>
             <main>
                 {isAuthenticated ?
                     <AdminSideContent/>
                     :
-                    <AdminSignIn/>
+                    <AdminSignIn setIsAuthenticated={setIsAuthenticated}/>
                 }
             </main>
         </div>
