@@ -3,7 +3,7 @@ import './adminSideDropdowns.style.scss';
 import {createSections, createSubsections} from "../../../api/fetchData.js";
 import AddNewSectionForm from "../addNewSectionForm/AddNewSectionForm.jsx";
 import {SelectedValueContext} from "../adminSideContent/AdminSideContent.jsx";
-function SingleDropdown({title, options, selectedValueState, updateDropDowns}) {
+function SingleDropdown({title, options, countries, selectedValueState, updateDropDowns}) {
 
     const [active, setActive] = useState(false);
     const [addNewSection, setAddNewSection] = useState(false);
@@ -45,6 +45,7 @@ function SingleDropdown({title, options, selectedValueState, updateDropDowns}) {
             setSelectedValue({title: e.target.innerText, id: e.target.id});
         }
         setActive(false);
+        // updateDropDowns(u => !u);
     }
 
     return (
