@@ -3,7 +3,7 @@ import 'react-quill/dist/quill.snow.css'
 import './richeditor.style.scss'
 
 
-const RichEditor = ({value,setValue,click,btnValue = "Add new content"}) => {
+const RichEditor = ({value,setValue,click,btnValue = "Ավելացնել"}) => {
   const modules = {
             toolbar:[
                 [{ 'header': [2, 3, false] }],
@@ -15,10 +15,10 @@ const RichEditor = ({value,setValue,click,btnValue = "Add new content"}) => {
             }
 
   return (
-    <div className='quill_container'>
-      <ReactQuill theme="snow" value={value} onChange={setValue}  modules={modules} placeholder='Type there....'/> 
-      <button onClick={(click)}>{btnValue}</button>
-    </div>
+      <div className='quill_container'>
+          <ReactQuill theme="snow" value={value} onChange={setValue}  modules={modules} placeholder='Գրել այստեղ...'/>
+          <button onClick={(click)}>{btnValue}</button>
+      </div>
   )
 }
 

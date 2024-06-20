@@ -7,10 +7,13 @@
 
 .quill_container{
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     >button{
         position: absolute;
         bottom: 25px;
-        left: 36%;
+        //left: 36%;
         font-family: "BraindYerevan";
         font-size: 28px;
         font-weight: 400;
@@ -26,7 +29,8 @@
 }
 
 .ql-editor{
-    height: 573px;
+    width: 894px;
+    height: 609px;
     font-size: 20px;
     padding-bottom: 115px !important;
 }
@@ -50,46 +54,19 @@
 
 
 
-@media screen and (max-width:1433px) {
+@media screen and (max-width:1280px) {
     .ql-editor{
-        height: 523px;
-    }
-}
-
-
-@media screen and (max-width:1104px) {
-    .ql-editor{
+        width: 630px;
         height: 473px;
     }
 }
 
 @media screen and (max-width:768px) {
-    .quill_container{
-        >button{
-            left: 30%;
-            padding: 2.5px 20px;
-        }
-    }
-}
-@media screen and (max-width:580px) {
-    .quill_container{
-        >button{
-            left: 25%;
-        }
-    }
-}
-
-@media screen and (max-width:458px) {
     .quill{
         width: 328px !important;
     }
     .ql-editor{
         height: 436px;
-    }
-    .quill_container{
-        >button{
-            left: 15%;
-        }
     }
 }
 

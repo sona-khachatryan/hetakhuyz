@@ -1,9 +1,14 @@
 import './adminSideContent.style.scss';
-import {useEffect, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 import {Link, useNavigate, useLocation, Outlet} from "react-router-dom";
 
+export const SelectedValueContext = createContext({});
 function AdminSideContent(props) {
     const [activeHeading, setActiveHeading] = useState();
+
+    const selectedSectionState = useState('');
+    const selectedSubsectionState = useState('');
+    const selectedNewsTypeState = useState('');
     
     const navigate = useNavigate();
     const {pathname} = useLocation();
@@ -22,31 +27,33 @@ function AdminSideContent(props) {
     
 
     return (
-        <div className='adminSideContent container'>
-            <div className='asc_menu'>
-                <Link to='/new-admin/edit'>
-                    <p className={activeHeading === 'edit' ? 'asc_activeHeading' : ''}>
-                        Խմբագրել
-                    </p>
-                </Link>
-                <Link to='/new-admin/add'>
-                    <p className={activeHeading === 'add' ? 'asc_activeHeading' : ''}>
-                        Ավելացնել
-                    </p>
-                </Link>
-            </div>
-            <div className='asc-content'>
-                <div className='asc_long-heading'>
-                    {pathname.includes('add')
-                        ?
-                        'Ավելացնել նոր նյութ'
-                        :
-                        'Խմբագրել նյութը'
-                    }
+        <SelectedValueContext.Provider value={{section: selectedSectionState, subsection: selectedSubsectionState, newsType: selectedNewsTypeState}}>
+            <div className='adminSideContent container'>
+                <div className='asc_menu'>
+                    <Link to='/new-admin/edit'>
+                        <p className={activeHeading === 'edit' ? 'asc_activeHeading' : ''}>
+                            Խմբագրել
+                        </p>
+                    </Link>
+                    <Link to='/new-admin/add'>
+                        <p className={activeHeading === 'add' ? 'asc_activeHeading' : ''}>
+                            Ավելացնել
+                        </p>
+                    </Link>
                 </div>
-                <Outlet/> 
+                <div className='asc-content'>
+                    <div className='asc_long-heading'>
+                        {pathname.includes('add')
+                            ?
+                            'Ավելացնել նոր նյութ'
+                            :
+                            'Խմբագրել նյութը'
+                        }
+                    </div>
+                    <Outlet/>
+                </div>
             </div>
-        </div>
+        </SelectedValueContext.Provider>
     );
 }
 
