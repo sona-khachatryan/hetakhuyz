@@ -9,17 +9,18 @@ function AdminSideDropdowns(props) {
 
     const [sections, setSections] = useState([]);
     const [subSections, setSubSections] = useState([]);
+    const [updateDropDowns, setUpdateDropDowns] = useState(false);
     const selectStates = useContext(SelectedValueContext);
 
     useEffect(() => {
         getSections().then(res => setSections(res));
         getSubsections().then(res => setSubSections(res));
-    }, []);
+    }, [updateDropDowns]);
   
     return (
         <div className='adminSideDropdowns container'>
-            <SingleDropdown title={'Ընտրել բաժինը'} options={sections} selectedValueState={selectStates.section}/>
-            <SingleDropdown title={'Ընտրել ենթաբաժինը'} options={subSections} selectedValueState={selectStates.subsection}/>
+            <SingleDropdown title={'Ընտրել բաժինը'} options={sections} selectedValueState={selectStates.section} updateDropDowns={setUpdateDropDowns}/>
+            <SingleDropdown title={'Ընտրել ենթաբաժինը'} options={subSections} selectedValueState={selectStates.subsection} updateDropDowns={setUpdateDropDowns}/>
             <SingleDropdown title={'Ընտրել տեսակը'} options={contentTypeData} selectedValueState={selectStates.newsType}/>
         </div>
     );

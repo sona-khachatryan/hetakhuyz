@@ -3,7 +3,7 @@ import './adminSideDropdowns.style.scss';
 import {createSections, createSubsections} from "../../../api/fetchData.js";
 import AddNewSectionForm from "../addNewSectionForm/AddNewSectionForm.jsx";
 import {SelectedValueContext} from "../adminSideContent/AdminSideContent.jsx";
-function SingleDropdown({title, options, selectedValueState}) {
+function SingleDropdown({title, options, selectedValueState, updateDropDowns}) {
 
     const [active, setActive] = useState(false);
     const [addNewSection, setAddNewSection] = useState(false);
@@ -14,9 +14,15 @@ function SingleDropdown({title, options, selectedValueState}) {
     }, [selectedValue]);
     const handleCreateNewSection = (section) => {
         if(title.includes('ենթ')) {
-            createSubsections(section);
+            createSubsections(section).then(res => {
+                setAddNewSection(false);
+                updateDropDowns(u => !u);
+            });
         } else {
-            createSections(section);
+            createSections(section).then(res => {
+                setAddNewSection(false);
+                updateDropDowns(u => !u);
+            });
         }
     }
 
@@ -33,7 +39,7 @@ function SingleDropdown({title, options, selectedValueState}) {
     }
 
     const handleOptionClick = (e) => {
-        setSelectedValue(e.target.innerText);
+        setSelectedValue({title: e.target.innerText, id: e.target.id});
         setActive(false);
     }
 
@@ -41,7 +47,7 @@ function SingleDropdown({title, options, selectedValueState}) {
         <div className="asd_custom-select-wrapper">
             <div className="asd_custom-select-box" onClick={() => setActive(!active)}>
                 <p>
-                    {selectedValue ? selectedValue : title}
+                    {selectedValue.title ? selectedValue.title : title}
                 </p>
                 <img src='/img/selectArrow.svg' className={active ? 'isActive' : ''}/>
             </div>

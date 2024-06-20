@@ -30,6 +30,10 @@
     cursor: pointer;
   }
 
+  .uploaded {
+    color: #2B2A4C;
+  }
+
   img {
     width: 22px;
     height: 22px;
@@ -42,6 +46,7 @@
     font-size: 16px;
   }
 }
+
 
 @media (min-width: 390px) {}
 

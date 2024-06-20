@@ -1,11 +1,15 @@
 import './contentForm.style.scss';
-import React, {useContext, useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {SelectedValueContext} from "../adminSideContent/AdminSideContent.jsx";
 import RichEditor from "../../adminpanel/reactquil/RichEditor.jsx";
+import axios from "../interceptor.js";
+import {address} from "../../../repetitiveVariables/variables.js";
 
 function ContentForm(props) {
-    const {newsType} = useContext(SelectedValueContext);
+    const {section, subsection, newsType} = useContext(SelectedValueContext);
     const [selectedNewsType] = newsType;
+    const [selectedSection] = section;
+    const [selectedSubsection] = subsection;
 
     const [titleInputValue, setTitleInputValue] = useState('');
     const [descriptionInputValue, setDescriptionInputValue] = useState('');
@@ -26,24 +30,47 @@ function ContentForm(props) {
             clearTimeout(timeoutId);
         };
     }, [error]);
-    const handleAddNews = () => {
-        console.log('clicked add news')
+    const handleAddNews = async () => {
+        const formData = new FormData();
+        formData.append('title', titleInputValue);
+        formData.append('description', descriptionInputValue);
+        formData.append('contentTitle', titleInputValue);
+        formData.append('contentDescription', newsTextValue);
+        formData.append('author', articleAuthorInputValue);
+        formData.append('fileAuthor', photoAuthorInputValue);
+        formData.append('img', photoInputValue);
+        formData.append('countryId', selectedSection.id);
+        formData.append('categoryId', selectedSubsection.id);
+
+        try {
+            const { data } = await axios.post(
+                `${address}/news/create`,
+                formData,
+                {headers: {
+                        Authorization: `bearer ${localStorage.getItem('accessToken')}`,
+                    }})
+            console.log('created')
+        } catch (error) {
+            console.log(error);
+            setError(true);
+        }
     }
 
     useEffect(() => {
-        console.log(selectedNewsType === 'Տեքստային', 'inside content form');
-    }, [selectedNewsType]);
+        console.log(selectedNewsType.title === 'Տեքստային', 'inside content form');
+    }, [selectedNewsType.title]);
+
     return (
         <div className='contentForm-container'>
-            {selectedNewsType === 'Տեքստային'
+            {selectedNewsType.title === 'Տեքստային'
                 ?
                     <>
                         <input type='text' placeholder='Տեղադրել վերնագիրը' required={true} title='Պարտադիր դաշտ. վերնագիր' value={titleInputValue} onChange={(e) => setTitleInputValue(e.target.value)}/>
                         <input type='text' placeholder='Տեղադրել նկարագրությունը' required={true} title='Պարտադիր դաշտ. նկարագրություն' value={descriptionInputValue} onChange={(e) => setDescriptionInputValue(e.target.value)}/>
                         <input type='text' placeholder='Ո՞վ է նյութի հեղինակը' required={true} title='Պարտադիր դաշտ. հեղինակ' value={articleAuthorInputValue} onChange={(e) => setArticleAuthorInputValue(e.target.value)}/>
-                        <label>
+                        <label className={photoInputValue ? 'uploaded' : ''}>
                             <img src='/img/upload.svg' alt='ներբեռնել'/>
-                            Ներբեռնել գլխավոր լուսանկար
+                            {photoInputValue ? 'Լուսանկարը բեռնված է' : 'Ներբեռնել գլխավոր լուսանկար'}
                             <input type='file' required={true} title='Պարտադիր դաշտ. լուսանկար' onChange={(e) => setPhotoInputValue(e.target.files[0])}/>
                         </label>
                         <input type='text' placeholder='Ո՞վ է լուսանկարի հեղինակը' value={photoAuthorInputValue} onChange={(e) => setPhotoAuthorInputValue(e.target.value)}/>
@@ -54,8 +81,8 @@ function ContentForm(props) {
                 ''
             }
 
-            { selectedNewsType === 'Տեսանյութ' ? <div>Տեսանյութ</div> : ''}
-            { selectedNewsType === 'Ուղիղ եթեր' ? <div>Ուղիղ եթեր</div> : ''}
+            { selectedNewsType.title === 'Տեսանյութ' ? <div>Տեսանյութ</div> : ''}
+            { selectedNewsType.title === 'Ուղիղ եթեր' ? <div>Ուղիղ եթեր</div> : ''}
         </div>
     );
 }

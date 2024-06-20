@@ -27,7 +27,13 @@ export const createSections = async (section) => {
     try {
         const formData = new FormData();
         formData.append('title', section);
-        const {data} = await axios.post(`${address}/categories/create`, formData);
+        const {data} = await axios.post(
+            `${address}/countries/create`,
+            formData,
+            {headers: {
+                    Authorization: `bearer ${localStorage.getItem('accessToken')}`,
+                }}
+            );
         console.log(data, 'created new section')
         // return data;
     } catch (error) {
@@ -36,9 +42,16 @@ export const createSections = async (section) => {
     }
 }
 
-export const createSubsections = async () => {
+export const createSubsections = async (section) => {
     try {
-        const {data} = await axios.post(`${address}/countries/create`);
+        const formData = new FormData();
+        formData.append('title', section);
+        const {data} = await axios.post(
+            `${address}/categories/create`,
+            formData,
+            {headers: {
+                    Authorization: `bearer ${localStorage.getItem('accessToken')}`,
+                }});
         console.log(data, 'created new sub')
         // return data;
     } catch (error) {
