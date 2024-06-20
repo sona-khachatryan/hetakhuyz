@@ -56,7 +56,6 @@ function AdminSignIn({setIsAuthenticated}) {
                         value={usernameInputValue}
                         onChange={(e) => setUsernameInputValue(e.target.value)}
                     />
-                    {/*<p>Սխալ մուտքանուն</p>*/}
                 </div>
                 <div className='adminSignIn_input-container'>
                     <label>Գաղտնաբառ</label>
@@ -74,7 +73,7 @@ function AdminSignIn({setIsAuthenticated}) {
                         <input type='checkbox'/>
                         <span>Հիշել ինձ</span>
                     </div>
-                    <p>Մոռացե՞լ եք գաղտնաբառը</p>
+                    {/*<p>Մոռացե՞լ եք գաղտնաբառը</p>*/}
                 </div>
                 <button
                     type='submit'

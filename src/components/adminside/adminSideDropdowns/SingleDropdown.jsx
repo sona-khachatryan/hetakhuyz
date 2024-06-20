@@ -39,7 +39,11 @@ function SingleDropdown({title, options, selectedValueState, updateDropDowns}) {
     }
 
     const handleOptionClick = (e) => {
-        setSelectedValue({title: e.target.innerText, id: e.target.id});
+        if(selectedValue.title === e.target.innerText) {
+            setSelectedValue({});
+        } else {
+            setSelectedValue({title: e.target.innerText, id: e.target.id});
+        }
         setActive(false);
     }
 
