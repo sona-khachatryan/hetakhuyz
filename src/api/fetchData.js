@@ -70,4 +70,88 @@ export const createSubsections = async (section) => {
     }
 }
 
+export const getAllNews = async () => {
+    try {
+        const {data}= await axios.get(`${address}/news/getAll`)
+        console.log(data.slice().reverse(), 'allNews')
+        return data.slice().reverse();
+    } catch (error) {
+        console.log(error)
+        return [];
+    }
+}
+
+
+export const getAllLives = async () => {
+    try {
+        const {data}= await axios.get(`${address}/live/getAll`)
+        console.log(data.slice().reverse(), 'allLives')
+        return data.slice().reverse();
+    } catch (error) {
+        console.log(error)
+        return [];
+    }
+}
+
+export const getNewsBySectionId = async (countryId, categoryId = '') => {
+    try {
+        const {data}= await axios.get(`${address}/news/filter`, {params: {countryId, categoryId}});
+        console.log(data.slice().reverse(), 'news by section id')
+        return data.slice().reverse();
+    } catch (error) {
+        console.log(error)
+        return [];
+    }
+}
+
+
+export const getDataToEdit = async (selectedSection, selectedSub, selectedNewsType) => {
+    // console.log(selectedSection, selectedSub, selectedNewsType)
+    if(selectedSection.title === 'Բոլորը' &&  selectedNewsType.title === 'Բոլորը') {
+       let allNews = await getAllNews();
+       let lives = await getAllLives();
+        return [...allNews, ...lives];
+    }
+
+    if(selectedNewsType.title === 'Ուղիղ եթեր') {
+        return await getAllLives();
+    }
+
+    if(selectedSection.title === 'Հայաստան' && selectedSub.title) {
+        if(selectedSub.title === 'Բոլորը') {
+            return await getNewsBySectionId(selectedSection.id);
+        } else {
+            return await getNewsBySectionId(selectedSection.id, selectedSub.id);
+        }
+    }
+
+    if(selectedSection.title === 'Տարածաշրջան' && selectedSub.title) {
+        if(selectedSub.title === 'Բոլորը') {
+             const regionAll =  await getSections()
+               .then(res => {
+                   return res.countries.reduce((data, country) => {
+                       getNewsBySectionId(country.id).then(res => data.push(...res));
+                       return data;
+                   }, [])
+               })
+            console.log(regionAll, regionAll.length)
+            // const data = [];
+            // const sections = await getSections();
+            // await sections.countries.forEach(async (country) => {
+            //    const region = await getNewsBySectionId(country.id);
+            //     console.log(...region)
+            //     data.push(...region);
+            // });
+            // console.log(data.length);
+            // return data;
+        } else {
+            return await getNewsBySectionId(selectedSub.id);
+        }
+    }
+
+    if(selectedSection.title === 'Միջազգային') {
+        return await getNewsBySectionId(selectedSection.id);
+    }
+}
+
 

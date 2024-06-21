@@ -8,13 +8,16 @@ import {useLocation} from "react-router-dom";
 
 function AdminSideDropdowns(props) {
 
+    const {pathname} = useLocation();
     const [sections, setSections] = useState([]);
     const [subSections, setSubSections] = useState([]);
     const [countries, setCountries] = useState([]);
     const [updateDropDowns, setUpdateDropDowns] = useState(false);
 
     const selectStates = useContext(SelectedValueContext);
-    const [selectedMainSection] = selectStates.section;
+    const [selectedMainSection, setSelectedMainSection] = selectStates.section;
+    const [selectedSubsection, setSelectedSubsection] = selectStates.subsection;
+    const [selectedNewsType, setSelectedNewsType] = selectStates.newsType;
 
     useEffect(() => {
         getSections().then(res => {
@@ -24,12 +27,29 @@ function AdminSideDropdowns(props) {
         });
         getSubsections().then(res => setSubSections(res));
     }, [updateDropDowns]);
+
+    useEffect(() => {
+       setSelectedSubsection({});
+    }, [selectedMainSection]);
+
+    useEffect(() => {
+        if(selectedNewsType.title === 'Ուղիղ եթեր' && pathname.includes('edit')) {
+            setSelectedMainSection({title: 'Բոլորը', id: ''});
+        }
+    }, [selectedNewsType]);
+
+    useEffect(() => {
+        setSelectedMainSection({});
+        setSelectedNewsType({});
+    }, [pathname]);
   
     return (
         <div className='adminSideDropdowns container'>
             <SingleDropdown title={'Ընտրել բաժինը'} options={sections} selectedValueState={selectStates.section} updateDropDowns={setUpdateDropDowns}/>
             <SingleDropdown title={'Ընտրել ենթաբաժինը'} options={selectedMainSection?.title === 'Հայաստան' ? subSections : selectedMainSection?.title === 'Տարածաշրջան' ? countries : ''} selectedValueState={selectStates.subsection} updateDropDowns={setUpdateDropDowns}/>
-            <SingleDropdown title={'Ընտրել տեսակը'} options={contentTypeData} selectedValueState={selectStates.newsType}/>
+            <SingleDropdown title={'Ընտրել տեսակը'}
+                            options={pathname.includes('edit') ? [{title:"Ուղիղ եթեր", id:'live', value:"live"}] : contentTypeData}
+                            selectedValueState={selectStates.newsType}/>
         </div>
     );
 }

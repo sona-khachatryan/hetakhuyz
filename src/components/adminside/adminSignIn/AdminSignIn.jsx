@@ -69,10 +69,10 @@ function AdminSignIn({setIsAuthenticated}) {
                     {error ? <p>Անվավեր տվյալներ</p> : <p></p>}
                 </div>
                 <div className='adminSignIn_bottom-section'>
-                    <div>
-                        <input type='checkbox'/>
-                        <span>Հիշել ինձ</span>
-                    </div>
+                    {/*<div>*/}
+                    {/*    <input type='checkbox'/>*/}
+                    {/*    <span>Հիշել ինձ</span>*/}
+                    {/*</div>*/}
                     {/*<p>Մոռացե՞լ եք գաղտնաբառը</p>*/}
                 </div>
                 <button

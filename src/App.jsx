@@ -25,6 +25,7 @@ import axios from 'axios'
 import CalendarNewsFeed from "./components/calendar/calendarNewsFeed/CalendarNewsFeed.jsx";
 import AdminSide from "./components/adminside/AdminSide.jsx";
 import AddNewContent from "./components/adminside/addNewContent/AddNewContent.jsx";
+import EditContentMain from "./components/adminside/editContent/EditContentMain.jsx";
 export const CalendarDateContext = createContext([]);
 
 
@@ -81,7 +82,7 @@ const App = () => {
 
                     <Route path='new-admin' element = {<AdminSide/>}>
                         <Route path='/new-admin/add' element = {<AddNewContent/>} />
-                        {/*<Route path='/new-admin/edit' element = {<EditContent/>}/>*/}
+                        <Route path='/new-admin/edit' element = {<EditContentMain/>}/>
                         {/*    <Route path='/admin/edit/live/:id' element = {<LiveEditContent/>}/>*/}
                         {/*    <Route path='/admin/edit/live/:id/editcontent' element = {<LiveEditId/>}/>*/}
                         {/*    <Route path='/admin/edit/:id' element = {<SingleEditContent/>}/>*/}

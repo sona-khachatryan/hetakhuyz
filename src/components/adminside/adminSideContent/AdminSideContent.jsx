@@ -6,16 +6,16 @@ export const SelectedValueContext = createContext({});
 function AdminSideContent(props) {
     const [activeHeading, setActiveHeading] = useState();
 
-    const selectedSectionState = useState('');
-    const selectedSubsectionState = useState('');
-    const selectedNewsTypeState = useState('');
+    const selectedSectionState = useState({});
+    const selectedSubsectionState = useState({});
+    const selectedNewsTypeState = useState({});
     const {pathname} = useLocation();
 
-    const navigate = useNavigate();
-
-    useEffect(()=> {
-        navigate('/new-admin/add');
-    },[])
+    // const navigate = useNavigate();
+    //
+    // useEffect(()=> {
+    //     navigate('/new-admin/add');
+    // },[])
 
     useEffect(() => {
         if(pathname.includes('add')) {

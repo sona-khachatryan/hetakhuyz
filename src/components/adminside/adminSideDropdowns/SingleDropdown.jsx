@@ -9,6 +9,8 @@ function SingleDropdown({title, options, countries, selectedValueState, updateDr
     const [active, setActive] = useState(false);
     const [addNewSection, setAddNewSection] = useState(false);
     const [selectedValue, setSelectedValue] = selectedValueState;
+    const selectStates = useContext(SelectedValueContext);
+    const [selectedMainSection, setSelectedMainSection] = selectStates.section;
 
     const {pathname} = useLocation();
 
@@ -68,7 +70,7 @@ function SingleDropdown({title, options, countries, selectedValueState, updateDr
                     :
                     ''
                 }
-                {pathname.includes('edit') ? <p onClick={handleOptionClick}>Բոլորը</p> : ''}
+                {pathname.includes('edit') && !(selectedMainSection.title === 'Տարածաշրջան' && title.includes('ենթ')) ? <p onClick={handleOptionClick}>Բոլորը</p> : ''}
                 {title.includes('տեսակ') ? '' : <p className='asd_add-new-section' onClick={openAddNewSection}>+ Ավելացնել</p>}
             </div>
             {addNewSection ? <AddNewSectionForm onClose={closeAddNewSection} onSubmit={handleCreateNewSection} title={title.includes('ենթ') ? 'ենթաբաժին' : 'բաժին'}/>: ''}

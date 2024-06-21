@@ -30,8 +30,7 @@ function SingleNewsCard({news, index}) {
     return (
         <Link to={`/news/${news?.id}`}>
             <div key={index} className='single_news-card'>
-                {<img src={news?.img ? `${address}/${news?.img}` : '/img/Hetakhuzy LOGO.svg'}
-                      alt="Լրատվական նկար"/>}
+                {<img src={news?.img ? `${address}/${news?.img}` : '/img/Hetaxuyz%20LOGO.svg'} className={news?.img ? '' : 'logo-as-img'} alt="Լրատվական նկար"/>}
                 <div className='single_news-card__text'>
                     {news?.createdAt ? <p className='single_news-card__date'>
                         {handleDate(news?.createdAt)}

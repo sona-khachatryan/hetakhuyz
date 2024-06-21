@@ -52,7 +52,7 @@ function CalendarNewsFeed(props) {
                     ?
                         <div className='calendar_feed__news'>
                             {calendarFeed.slice(contentBeginning, contentBeginning+6).map((news, index) =>
-                                <SingleNewsCard news={news} index={index}/>
+                                <SingleNewsCard key={index} news={news} index={index}/>
                             )}
                             <Pagination totalElements={calendarFeed?.length} contentBeginning={contentBeginning}
                                         setContentBeginning={setContentBegining}/>

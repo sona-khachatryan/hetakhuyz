@@ -10,6 +10,10 @@
     border-radius: 6px;
     object-fit: cover;
   }
+
+  .logo-as-img {
+    object-fit: contain;
+  }
 }
 
 .single_news-card__text {
