@@ -6,38 +6,14 @@ import dayjs from "dayjs";
 import {address, handleDate, monthsFullName} from "../../../repetitiveVariables/variables.js";
 import Pagination from "../../pagination/Pagination.jsx";
 import {Link} from "react-router-dom";
+import SingleNewsCard from "../../singleNewsCard/SingleNewsCard.jsx";
 
 function CalendarNewsFeed(props) {
     const now = dayjs();
     const [{formattedDate, dateInArm}, setCalendarDate] = useContext(CalendarDateContext);
-    const [calendarFeed, setCalendarFeed] = useState()
-    const [screenSize, setScreenSize] = useState();
-    const [sliceAt, setSliceAt] = useState({});
+    const [calendarFeed, setCalendarFeed] = useState();
     const [contentBeginning,setContentBegining] = useState(0);
     const containerRef = useRef(null);
-    
-    useEffect(() => {
-        const handleResize = () => {
-            if(window.innerWidth >= 300 && window.innerWidth <= 768) {
-                setScreenSize('sm')
-                setSliceAt({title: 55, desc: 60})
-            } else if (window.innerWidth > 768 && window.innerWidth <= 1024) {
-                setScreenSize('md')
-                setSliceAt({title: 70, desc: 70})
-            }  else if (window.innerWidth > 1024) {
-                setScreenSize('lg')
-                setSliceAt({title: 100, desc: 110})
-            }
-        };
-
-        handleResize();
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
 
     const getNews = async () => {
         let feed;
@@ -76,23 +52,7 @@ function CalendarNewsFeed(props) {
                     ?
                         <div className='calendar_feed__news'>
                             {calendarFeed.slice(contentBeginning, contentBeginning+6).map((news, index) =>
-                                <Link to={`/news/${news?.id}`}>
-                                    <div key={index} className='calendar_feed__news-card'>
-                                        {<img src={news?.img ? `${address}/${news?.img}` : '/img/Hetakhuzy LOGO.svg'}
-                                          alt="Լրատվական նկար"/>}
-                                        <div className='calendar_feed__news-card__text'>
-                                            {news?.createdAt ? <p className='calendar_feed__news-card__date'>
-                                                {handleDate(news?.createdAt)}
-                                            </p> : ''}
-                                            {news?.title ? <p className='calendar_feed__news-card__title'>
-                                                {news?.title.length > sliceAt.title ? `${news?.title?.slice(0, sliceAt.title)}...` : news.title}
-                                            </p> : ''}
-                                            {news?.description ? <p className='calendar_feed__news-card__description'>
-                                                {news?.description.length > sliceAt.desc ? `${news?.description?.slice(0, sliceAt.desc)}...` : news.description}
-                                            </p> : ''}
-                                        </div>
-                                    </div>
-                                </Link>
+                                <SingleNewsCard news={news} index={index}/>
                             )}
                             <Pagination totalElements={calendarFeed?.length} contentBeginning={contentBeginning}
                                         setContentBeginning={setContentBegining}/>
