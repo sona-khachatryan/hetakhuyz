@@ -9,10 +9,10 @@ function AdminSideContent(props) {
     const selectedSectionState = useState('');
     const selectedSubsectionState = useState('');
     const selectedNewsTypeState = useState('');
-    
-    const navigate = useNavigate();
     const {pathname} = useLocation();
-    
+
+    const navigate = useNavigate();
+
     useEffect(()=> {
         navigate('/new-admin/add');
     },[])
@@ -42,14 +42,16 @@ function AdminSideContent(props) {
                     </Link>
                 </div>
                 <div className='asc-content'>
-                    <div className='asc_long-heading'>
-                        {pathname.includes('add')
+                    {pathname.includes('add') || pathname.includes('edit') ? 
+                        <div className='asc_long-heading'>
+                            {pathname.includes('add')
                             ?
                             'Ավելացնել նոր նյութ'
                             :
                             'Խմբագրել նյութը'
                         }
-                    </div>
+                        </div> 
+                        : ''}
                     <Outlet/>
                 </div>
             </div>

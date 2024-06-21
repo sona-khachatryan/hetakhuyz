@@ -69,7 +69,9 @@ function ContentForm(props) {
                 formData.append('countryId', selectedSubsection.id);
             } else {
                 formData.append('countryId', selectedSection.id);
-                formData.append('categoryId', selectedSubsection.id);
+               if(selectedSubsection.id) {
+                   formData.append('categoryId', selectedSubsection.id);
+               }
             }
 
             if(selectedNewsType.title === 'Տեքստային') {
