@@ -1,5 +1,5 @@
 import axios from "axios";
-import {address} from "../repetitiveVariables/variables.js";
+import {address, possibleMainSections} from "../repetitiveVariables/variables.js";
 
 export const getSubsections = async () => {
     const {data} = await axios.get(`${address}/categories/getAll`);
@@ -10,7 +10,17 @@ export const getSubsections = async () => {
 export const getSections = async () => {
     const {data} = await axios.get(`${address}/countries/getAll`);
     console.log(data, 'sections')
-    return data;
+    const mainSections = [];
+    const countries = [];
+    data.forEach(option => {
+        if(possibleMainSections.includes(option.title)) {
+            mainSections.push(option);
+        } else {
+            countries.push(option);
+        }
+    });
+
+    return {mainSections, countries};
 }
   
 export const getDateSpecificNews = async (dateString) => {

@@ -3,7 +3,7 @@ import './adminSideDropdowns.style.scss';
 import SingleDropdown from "./SingleDropdown.jsx";
 import {getSections, getSubsections} from "../../../api/fetchData.js";
 import {SelectedValueContext} from "../adminSideContent/AdminSideContent.jsx";
-import {contentTypeData} from "../../../repetitiveVariables/variables.js";
+import {contentTypeData, possibleMainSections} from "../../../repetitiveVariables/variables.js";
 
 function AdminSideDropdowns(props) {
 
@@ -14,22 +14,21 @@ function AdminSideDropdowns(props) {
     const selectStates = useContext(SelectedValueContext);
     const [selectedMainSection] = selectStates.section;
 
-    const possibleMainSections = ['Հայաստան', 'Տարածաշրջան', 'Միջազգային'];
 
     useEffect(() => {
         getSections().then(res => {
-            const mainSections = [];
-            const countries = [];
-            res.forEach(option => {
-                if(possibleMainSections.includes(option.title)) {
-                    mainSections.push(option);
-                } else {
-                    countries.push(option);
-                }
-            });
-            console.log(res, mainSections, 'main', countries, 'count')
-            setSections(mainSections);
-            setCountries(countries);
+            // const mainSections = [];
+            // const countries = [];
+            // res.forEach(option => {
+            //     if(possibleMainSections.includes(option.title)) {
+            //         mainSections.push(option);
+            //     } else {
+            //         countries.push(option);
+            //     }
+            // });
+            console.log(res)
+            setSections(res.mainSections);
+            setCountries(res.countries);
         });
         getSubsections().then(res => setSubSections(res));
     }, [updateDropDowns]);

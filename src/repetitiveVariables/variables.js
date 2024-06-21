@@ -32,6 +32,8 @@ export const monthsFullName = [
     'Դեկտեմբեր',
 ];
 
+export const possibleMainSections = ['Հայաստան', 'Տարածաշրջան', 'Միջազգային'];
+
 export const dates = {
     '01': 'Հնվ',
     '02': 'Փտր',

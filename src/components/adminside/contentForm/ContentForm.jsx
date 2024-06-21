@@ -1,7 +1,7 @@
 import './contentForm.style.scss';
 import {useContext, useEffect, useState} from "react";
 import {SelectedValueContext} from "../adminSideContent/AdminSideContent.jsx";
-import RichEditor from "../../adminpanel/reactquil/RichEditor.jsx";
+import RichEditor from "../reactquil/RichEditor.jsx";
 import axios from "../interceptor.js";
 import {address} from "../../../repetitiveVariables/variables.js";
 
@@ -58,8 +58,13 @@ function ContentForm(props) {
             formData.append('contentDescription', newsTextValue);
             formData.append('author', articleAuthorInputValue);
             formData.append('fileAuthor', photoAuthorInputValue);
-            formData.append('countryId', selectedSection.id);
-            formData.append('categoryId', selectedSubsection.id);
+
+            if(selectedSection.title === 'Տարածաշրջան') {
+                formData.append('countryId', selectedSubsection.id);
+            } else {
+                formData.append('countryId', selectedSection.id);
+                formData.append('categoryId', selectedSubsection.id);
+            }
 
             if(selectedNewsType.title === 'Տեքստային') {
                 formData.append('img', photoInputValue);
