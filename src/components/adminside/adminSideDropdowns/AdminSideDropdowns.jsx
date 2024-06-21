@@ -4,6 +4,7 @@ import SingleDropdown from "./SingleDropdown.jsx";
 import {getSections, getSubsections} from "../../../api/fetchData.js";
 import {SelectedValueContext} from "../adminSideContent/AdminSideContent.jsx";
 import {contentTypeData, possibleMainSections} from "../../../repetitiveVariables/variables.js";
+import {useLocation} from "react-router-dom";
 
 function AdminSideDropdowns(props) {
 
@@ -11,21 +12,12 @@ function AdminSideDropdowns(props) {
     const [subSections, setSubSections] = useState([]);
     const [countries, setCountries] = useState([]);
     const [updateDropDowns, setUpdateDropDowns] = useState(false);
+
     const selectStates = useContext(SelectedValueContext);
     const [selectedMainSection] = selectStates.section;
 
-
     useEffect(() => {
         getSections().then(res => {
-            // const mainSections = [];
-            // const countries = [];
-            // res.forEach(option => {
-            //     if(possibleMainSections.includes(option.title)) {
-            //         mainSections.push(option);
-            //     } else {
-            //         countries.push(option);
-            //     }
-            // });
             console.log(res)
             setSections(res.mainSections);
             setCountries(res.countries);

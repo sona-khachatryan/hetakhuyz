@@ -3,15 +3,20 @@ import './adminSideDropdowns.style.scss';
 import {createSections, createSubsections} from "../../../api/fetchData.js";
 import AddNewSectionForm from "../addNewSectionForm/AddNewSectionForm.jsx";
 import {SelectedValueContext} from "../adminSideContent/AdminSideContent.jsx";
+import {useLocation} from "react-router-dom";
 function SingleDropdown({title, options, countries, selectedValueState, updateDropDowns}) {
 
     const [active, setActive] = useState(false);
     const [addNewSection, setAddNewSection] = useState(false);
     const [selectedValue, setSelectedValue] = selectedValueState;
 
+    const {pathname} = useLocation();
+
     useEffect(() => {
         console.log(selectedValue, 'selected for', title)
     }, [selectedValue]);
+
+
     const handleCreateNewSection = (section) => {
         if(title.includes('ենթ')) {
             createSubsections(section).then(res => {
@@ -63,6 +68,7 @@ function SingleDropdown({title, options, countries, selectedValueState, updateDr
                     :
                     ''
                 }
+                {pathname.includes('edit') ? <p onClick={handleOptionClick}>Բոլորը</p> : ''}
                 {title.includes('տեսակ') ? '' : <p className='asd_add-new-section' onClick={openAddNewSection}>+ Ավելացնել</p>}
             </div>
             {addNewSection ? <AddNewSectionForm onClose={closeAddNewSection} onSubmit={handleCreateNewSection} title={title.includes('ենթ') ? 'ենթաբաժին' : 'բաժին'}/>: ''}

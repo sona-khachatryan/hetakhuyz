@@ -16,6 +16,7 @@ function ContentForm(props) {
     const [articleAuthorInputValue, setArticleAuthorInputValue] = useState('');
     const [photoAuthorInputValue, setPhotoAuthorInputValue] = useState('');
     const [photoInputValue, setPhotoInputValue] = useState(null);
+    const [videoInputValue, setVideoInputValue] = useState(null);
     const [newsTextValue, setNewsTextValue] = useState('');
     const [videoLinkInputValue, setVideoLinkInputValue] = useState('');
     const [liveLinkInputValue, setLiveLinkInputValue] = useState('');
@@ -32,6 +33,10 @@ function ContentForm(props) {
             clearTimeout(timeoutId);
         };
     }, [error]);
+
+    useEffect(() => {
+        console.log(photoInputValue)
+    }, [photoInputValue]);
     const handleAddNews = async () => {
         const formData = new FormData();
         if(selectedNewsType.title === 'Ուղիղ եթեր') {
@@ -56,8 +61,9 @@ function ContentForm(props) {
             formData.append('description', descriptionInputValue);
             formData.append('contentTitle', titleInputValue);
             formData.append('contentDescription', newsTextValue);
-            formData.append('author', articleAuthorInputValue);
-            formData.append('fileAuthor', photoAuthorInputValue);
+            formData.append('author', photoAuthorInputValue);
+            formData.append('fileAuthor', articleAuthorInputValue);
+            formData.append('img', photoInputValue);
 
             if(selectedSection.title === 'Տարածաշրջան') {
                 formData.append('countryId', selectedSubsection.id);
@@ -67,9 +73,12 @@ function ContentForm(props) {
             }
 
             if(selectedNewsType.title === 'Տեքստային') {
-                formData.append('img', photoInputValue);
+                formData.append('fileContent', photoInputValue);
+                formData.append('middleImage', photoInputValue);
             } else if (selectedNewsType.title === 'Տեսանյութ') {
                 formData.append('url', videoLinkInputValue);
+                formData.append('fileContent', videoInputValue);
+                formData.append('middleImage', photoInputValue);
             }
 
             try {
@@ -78,8 +87,8 @@ function ContentForm(props) {
                     formData,
                     {headers: {
                             Authorization: `bearer ${localStorage.getItem('accessToken')}`,
-                        }})
-                console.log('created')
+                        }});
+                console.log('created');
             } catch (error) {
                 console.log(error);
                 setError(true);
@@ -106,34 +115,41 @@ function ContentForm(props) {
                         <input type='text' placeholder='Ո՞վ է նյութի հեղինակը' required={true}
                            title='Պարտադիր դաշտ. հեղինակ' value={articleAuthorInputValue}
                            onChange={(e) => setArticleAuthorInputValue(e.target.value)}/>
-                        {selectedNewsType.title === 'Տեքստային' ?
-                            <label className={photoInputValue ? 'uploaded' : ''}>
-                                <img src='/img/upload.svg' alt='ներբեռնել'/>
-                                {photoInputValue ? 'Լուսանկարը բեռնված է' : 'Ներբեռնել գլխավոր լուսանկար'}
-                                <input type='file' required={true} title='Պարտադիր դաշտ. լուսանկար'
+                        <label className={photoInputValue ? 'uploaded' : ''}>
+                            <img src='/img/upload.svg' alt='ներբեռնել լուսանկար'/>
+                            {photoInputValue ? photoInputValue.name: 'Ներբեռնել գլխավոր լուսանկար'}
+                            <input type='file' required={true} title='Պարտադիր դաշտ. լուսանկար'
                                    onChange={(e) => setPhotoInputValue(e.target.files[0])}/>
-                            </label>
-                        : ''
-                    }
+                        </label>
+                      
                         {selectedNewsType.title === 'Տեսանյութ' ?
-                            <input type='text' placeholder='Տեղադրել տեսանյութի հղումը' required={true}
-                               title='Պարտադիր դաշտ. տեսանյութի հղում' value={videoLinkInputValue}
-                               onChange={(e) => setVideoLinkInputValue(e.target.value)}/>
+                            <div>
+                                <label className={videoInputValue ? 'uploaded' : ''}>
+                                    <img src='/img/upload.svg' alt='ներբեռնել տեսանյութ'/>
+                                    {videoInputValue ? videoInputValue.name : 'Ներբեռնել տեսանյութ'}
+                                    <input type='file' title='Պարտադիր դաշտ. տեսանյութ'
+                                           onChange={(e) => setVideoInputValue(e.target.files[0])}/>
+                                </label>
+                                <p className='black-paragraph'>Կամ</p>
+                                <input type='text' placeholder='Տեղադրել տեսանյութի հղումը' required={true}
+                                       title='Պարտադիր դաշտ. տեսանյութի հղում' value={videoLinkInputValue}
+                                       onChange={(e) => setVideoLinkInputValue(e.target.value)}/>
 
-                        : ''
-                    }
+                            </div>
+                            : ''
+                        }
                         <input type='text'
-                           placeholder={selectedNewsType.title === 'Տեքստային' ? 'Ո՞վ է լուսանկարի հեղինակը' : 'Ո՞վ է տեսանյութի հեղինակը'}
-                           value={photoAuthorInputValue}
-                           onChange={(e) => setPhotoAuthorInputValue(e.target.value)}/>
+                               placeholder={selectedNewsType.title === 'Տեքստային' ? 'Ո՞վ է լուսանկարի հեղինակը' : 'Ո՞վ է տեսանյութի հեղինակը'}
+                               value={photoAuthorInputValue}
+                               onChange={(e) => setPhotoAuthorInputValue(e.target.value)}/>
                         {error ? <p>Ձախողում. անբավարար տվյալներ</p> : <p></p>}
                         <RichEditor value={newsTextValue} setValue={setNewsTextValue} click={handleAddNews}/>
                     </>
                 :
-                    <>
-                        {selectedNewsType.title === 'Ուղիղ եթեր'
+                <>
+                    {selectedNewsType.title === 'Ուղիղ եթեր'
                         ?
-                            <>
+                        <>
                                 <input type='text' placeholder='Տեղադրել վերնագիրը' required={true}
                                    title='Պարտադիր դաշտ. վերնագիր'
                                    value={titleInputValue} onChange={(e) => setTitleInputValue(e.target.value)}/>

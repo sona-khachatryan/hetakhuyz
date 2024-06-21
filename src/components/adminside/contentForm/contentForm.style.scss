@@ -24,10 +24,12 @@
 
   label {
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 5px;
     color: rgb(122,117,130);
     cursor: pointer;
+    overflow: clip;
   }
 
   .uploaded {
@@ -44,6 +46,12 @@
     font-family: "NotoSansArmenian600";
     color: #B31312;
     font-size: 16px;
+  }
+
+  .black-paragraph {
+    color: #1E2022;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 
   button{
