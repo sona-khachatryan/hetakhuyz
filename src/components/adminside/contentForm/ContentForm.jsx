@@ -7,9 +7,9 @@ import {address} from "../../../repetitiveVariables/variables.js";
 
 function ContentForm(props) {
     const {section, subsection, newsType} = useContext(SelectedValueContext);
-    const [selectedNewsType] = newsType;
-    const [selectedSection] = section;
-    const [selectedSubsection] = subsection;
+    const [selectedNewsType, setSelectedNewsType] = newsType;
+    const [selectedSection, setSelectedSection] = section;
+    const [selectedSubsection, setSelectedSubsection] = subsection;
 
     const [titleInputValue, setTitleInputValue] = useState('');
     const [descriptionInputValue, setDescriptionInputValue] = useState('');
@@ -50,7 +50,12 @@ function ContentForm(props) {
                     {headers: {
                         Authorization: `bearer ${localStorage.getItem('accessToken')}`,
                     }});
-                console.log('created new live')
+                console.log('created new live');
+                setSelectedSubsection({});
+                setSelectedSection({});
+                setSelectedNewsType({});
+                setTitleInputValue('');
+                setLiveLinkInputValue('');
             } catch (error) {
                 console.log(error)
                 setError(true);
@@ -91,6 +96,18 @@ function ContentForm(props) {
                             Authorization: `bearer ${localStorage.getItem('accessToken')}`,
                         }});
                 console.log('created');
+                setSelectedSubsection({});
+                setSelectedSection({});
+                setSelectedNewsType({});
+                setTitleInputValue('');
+                setDescriptionInputValue('');
+                setArticleAuthorInputValue('');
+                setPhotoAuthorInputValue('');
+                setPhotoInputValue('');
+                setVideoInputValue('');
+                setNewsTextValue('');
+                setVideoLinkInputValue('');
+
             } catch (error) {
                 console.log(error);
                 setError(true);
@@ -144,7 +161,7 @@ function ContentForm(props) {
                                placeholder={selectedNewsType.title === 'Տեքստային' ? 'Ո՞վ է լուսանկարի հեղինակը' : 'Ո՞վ է տեսանյութի հեղինակը'}
                                value={photoAuthorInputValue}
                                onChange={(e) => setPhotoAuthorInputValue(e.target.value)}/>
-                        {error ? <p>Ձախողում. անբավարար տվյալներ</p> : <p></p>}
+                        {error ? <p>Ձախողում. անվավեր կամ անբավարար տվյալներ</p> : <p></p>}
                         <RichEditor value={newsTextValue} setValue={setNewsTextValue} click={handleAddNews}/>
                     </>
                 :
