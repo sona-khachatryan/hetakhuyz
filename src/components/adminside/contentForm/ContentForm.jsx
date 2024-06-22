@@ -35,8 +35,8 @@ function ContentForm(props) {
     }, [error]);
 
     useEffect(() => {
-        console.log(photoInputValue)
-    }, [photoInputValue]);
+        console.log(newsTextValue)
+    }, [newsTextValue]);
     const handleAddNews = async () => {
         const formData = new FormData();
         if(selectedNewsType.title === 'Ուղիղ եթեր') {
@@ -66,8 +66,8 @@ function ContentForm(props) {
             formData.append('description', descriptionInputValue);
             formData.append('contentTitle', titleInputValue);
             formData.append('contentDescription', newsTextValue);
-            formData.append('author', photoAuthorInputValue);
-            formData.append('fileAuthor', articleAuthorInputValue);
+            formData.append('author', articleAuthorInputValue);
+            formData.append('fileAuthor', photoAuthorInputValue);
             formData.append('img', photoInputValue);
 
             if(selectedSection.title === 'Տարածաշրջան') {
@@ -165,10 +165,10 @@ function ContentForm(props) {
                         <RichEditor value={newsTextValue} setValue={setNewsTextValue} click={handleAddNews}/>
                     </>
                 :
-                <>
-                    {selectedNewsType.title === 'Ուղիղ եթեր'
+                    <>
+                        {selectedNewsType.title === 'Ուղիղ եթեր'
                         ?
-                        <>
+                            <>
                                 <input type='text' placeholder='Տեղադրել վերնագիրը' required={true}
                                    title='Պարտադիր դաշտ. վերնագիր'
                                    value={titleInputValue} onChange={(e) => setTitleInputValue(e.target.value)}/>

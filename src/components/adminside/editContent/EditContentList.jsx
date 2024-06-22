@@ -22,15 +22,15 @@ function EditContentList({newsList}) {
             <div className='calendar_feed__main'>
                 {newsList?.length
                     ?
-                    <div className='calendar_feed__news'>
-                        {newsList.slice(contentBeginning, contentBeginning + 6).map((news, index) =>
-                            <SingleNewsCard key={index} news={news} index={index}/>
+                        <div className='calendar_feed__news'>
+                            {newsList.slice(contentBeginning, contentBeginning + 6).map((news, index) =>
+                                <SingleNewsCard key={index} news={news} index={index} path={`/new-admin/edit/${news.id}`}/>
                         )}
-                        <Pagination totalElements={newsList?.length} contentBeginning={contentBeginning}
+                            <Pagination totalElements={newsList?.length} contentBeginning={contentBeginning}
                                     setContentBeginning={setContentBegining}/>
-                    </div>
+                        </div>
                     :
-                    <p className='calendar_feed__no-result'>Արդյունք չի գտնվել</p>
+                        <p className='calendar_feed__no-result'>Արդյունք չի գտնվել</p>
                 }
             </div>
         </div>

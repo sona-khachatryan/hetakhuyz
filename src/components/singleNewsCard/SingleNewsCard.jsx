@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {address, handleDate} from "../../repetitiveVariables/variables.js";
 
-function SingleNewsCard({news, index}) {
+function SingleNewsCard({news, index, path}) {
     const [sliceAt, setSliceAt] = useState({});
 
     useEffect(() => {
@@ -28,7 +28,7 @@ function SingleNewsCard({news, index}) {
 
 
     return (
-        <Link to={`/news/${news?.id}`}>
+        <Link to={path}>
             <div key={index} className='single_news-card'>
                 {<img src={news?.img ? `${address}/${news?.img}` : '/img/Hetaxuyz%20LOGO.svg'} className={news?.img ? '' : 'logo-as-img'} alt="Լրատվական նկար"/>}
                 <div className='single_news-card__text'>
