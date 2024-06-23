@@ -49,7 +49,8 @@ function AdminSideDropdowns(props) {
             <SingleDropdown title={'Ընտրել բաժինը'} options={sections} selectedValueState={selectStates.section} updateDropDowns={setUpdateDropDowns}/>
             <SingleDropdown title={'Ընտրել ենթաբաժինը'} options={selectedMainSection?.title === 'Հայաստան' ? subSections : selectedMainSection?.title === 'Տարածաշրջան' ? countries : ''} selectedValueState={selectStates.subsection} updateDropDowns={setUpdateDropDowns}/>
             <SingleDropdown title={'Ընտրել տեսակը'}
-                            options={pathname.endsWith('edit') ? [{title:"Ուղիղ եթեր", id:'live', value:"live"}] : contentTypeData}
+                            // options={pathname.endsWith('edit') ? [{title:"Ուղիղ եթեր", id:'live', value:"live"}] : contentTypeData}
+                            options={contentTypeData}
                             selectedValueState={selectStates.newsType}/>
         </div>
     );

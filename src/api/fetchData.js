@@ -107,50 +107,64 @@ export const getNewsBySectionId = async (countryId, categoryId = '') => {
 
 export const getDataToEdit = async (selectedSection, selectedSub, selectedNewsType) => {
     // console.log(selectedSection, selectedSub, selectedNewsType)
-    if(selectedSection.title === 'Բոլորը' &&  selectedNewsType.title === 'Բոլորը') {
-       let allNews = await getAllNews();
-       let lives = await getAllLives();
-        return [...allNews, ...lives];
+
+    // if(selectedSection.title === 'Բոլորը' &&  selectedNewsType.title === 'Բոլորը') {
+    //    let allNews = await getAllNews();
+    //    let lives = await getAllLives();
+    //     return [...allNews, ...lives];
+    // }
+    let news;
+
+    if(selectedSection.title === 'Բոլորը') {
+         news = await getAllNews();
     }
 
+    // if(selectedNewsType.title === 'Ուղիղ եթեր') {
+    //     return await getAllLives();
+    // }
+
     if(selectedNewsType.title === 'Ուղիղ եթեր') {
-        return await getAllLives();
+         return await getAllLives();
     }
+
+    // if(selectedSection.title === 'Հայաստան' && selectedSub.title) {
+    //     if(selectedSub.title === 'Բոլորը') {
+    //         return await getNewsBySectionId(selectedSection.id);
+    //     } else {
+    //         return await getNewsBySectionId(selectedSection.id, selectedSub.id);
+    //     }
+    // }
 
     if(selectedSection.title === 'Հայաստան' && selectedSub.title) {
         if(selectedSub.title === 'Բոլորը') {
-            return await getNewsBySectionId(selectedSection.id);
+             news = await getNewsBySectionId(selectedSection.id);
         } else {
-            return await getNewsBySectionId(selectedSection.id, selectedSub.id);
+             news = await getNewsBySectionId(selectedSection.id, selectedSub.id);
         }
     }
 
+    // if(selectedSection.title === 'Տարածաշրջան' && selectedSub.title) {
+    //         return await getNewsBySectionId(selectedSub.id);
+    // }
+    //
+    // if(selectedSection.title === 'Միջազգային') {
+    //     return await getNewsBySectionId(selectedSection.id);
+    // }
+
     if(selectedSection.title === 'Տարածաշրջան' && selectedSub.title) {
-        if(selectedSub.title === 'Բոլորը') {
-             const regionAll =  await getSections()
-               .then(res => {
-                   return res.countries.reduce((data, country) => {
-                       getNewsBySectionId(country.id).then(res => data.push(...res));
-                       return data;
-                   }, [])
-               })
-            console.log(regionAll, regionAll.length)
-            // const data = [];
-            // const sections = await getSections();
-            // await sections.countries.forEach(async (country) => {
-            //    const region = await getNewsBySectionId(country.id);
-            //     console.log(...region)
-            //     data.push(...region);
-            // });
-            // console.log(data.length);
-            // return data;
-        } else {
-            return await getNewsBySectionId(selectedSub.id);
-        }
+        news = await getNewsBySectionId(selectedSub.id);
     }
 
     if(selectedSection.title === 'Միջազգային') {
-        return await getNewsBySectionId(selectedSection.id);
+        news = await getNewsBySectionId(selectedSection.id);
+    }
+
+    if(selectedNewsType.title === 'Բոլորը') {
+        return news;
+    } else if (selectedNewsType.title === 'Տեքստային') {
+       return news.filter(news => news?.newsContent?.file?.isImage === true)
+    } else if (selectedNewsType.title === 'Տեսանյութ') {
+      return news.filter(news => news?.newsContent?.file?.isImage === false)
     }
 }
 
