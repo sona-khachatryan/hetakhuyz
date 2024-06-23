@@ -162,9 +162,9 @@ export const getDataToEdit = async (selectedSection, selectedSub, selectedNewsTy
     if(selectedNewsType.title === 'Բոլորը') {
         return news;
     } else if (selectedNewsType.title === 'Տեքստային') {
-       return news.filter(news => news?.newsContent?.file?.isImage === true)
+       return news?.filter(news => news?.newsContent?.file?.isImage === true)
     } else if (selectedNewsType.title === 'Տեսանյութ') {
-      return news.filter(news => news?.newsContent?.file?.isImage === false)
+      return news?.filter(news => news?.newsContent?.file?.isImage === false)
     }
 }
 

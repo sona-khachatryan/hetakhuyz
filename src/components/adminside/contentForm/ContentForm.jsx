@@ -128,8 +128,13 @@ function ContentForm({currentNews}) {
                 formData.append('middleImage', photoInputValue);
             } else if (selectedNewsType.title === 'Տեսանյութ') {
                 formData.append('url', videoLinkInputValue);
-                formData.append('fileContent', videoInputValue);
-                formData.append('middleImage', videoInputValue);
+                if(videoInputValue) {
+                    formData.append('fileContent', videoInputValue);
+                    formData.append('middleImage', videoInputValue);
+                } else {
+                    formData.append('fileContent', photoInputValue);
+                    formData.append('middleImage', photoInputValue);
+                }
             }
 
             try {
@@ -142,6 +147,7 @@ function ContentForm({currentNews}) {
                            }});
                    console.log('created');
                } else {
+                   console.log(formData)
                    await axios.put(
                        `${address}/news/editNews/${currentNews?.id}`,
                        formData,

@@ -13,9 +13,6 @@ const EditLive = () => {
     const selectedStates = useContext(SelectedValueContext);
     const [selectedNewsType] = selectedStates.newsType
 
-    useEffect(() => {
-        console.log(selectedNewsType)
-    }, []);
 
   useEffect(()=>{
     (async () => {
@@ -49,7 +46,10 @@ const EditLive = () => {
           {/*<NavLink to={`/new-admin/edit/${id}/edit-content`}>*/}
           <button onClick={handleEdit}>Խմբագրել</button>
           {/*</NavLink> */}
-          <iframe src={dataId && dataId.url}></iframe>
+          <iframe src={dataId?.url}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+
           <h2>{dataId && dataId.title}</h2>
           <button onClick={handleDelete}>Ջնջել եթերը</button>
       </div>
