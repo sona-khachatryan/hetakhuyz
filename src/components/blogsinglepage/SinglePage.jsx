@@ -35,7 +35,7 @@ const SinglePage = () => {
             <div className={dataId && dataId.countryId == 1?"":"region_title"}>
                 <div></div>
             </div>
-            <h3>{dataId && dataId.countryId == 1?dataId && dataId.category.title:dataId && dataId.country.title}</h3>
+            <h3>{dataId && dataId.countryId == 1?dataId && dataId?.category?.title:dataId && dataId?.country?.title}</h3>
             </>}
         </div>
 

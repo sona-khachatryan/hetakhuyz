@@ -1,5 +1,8 @@
-import { NavLink, useParams } from 'react-router-dom'
+import {NavLink, useNavigate, useParams} from 'react-router-dom'
 import './singleNewsInEditMode.stle.scss';
+import 'react-quill/dist/quill.core.css';
+import 'react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.bubble.css'
 import { useState , useEffect } from 'react'
 import {address, handleDate } from '../../../../repetitiveVariables/variables'
 import axios from '../../interceptor.js'
@@ -8,6 +11,7 @@ import axios from '../../interceptor.js'
 const SingleNewsInEditMode = () => {
     const [dataId,setDataId] = useState()
     const {id} = useParams()
+    const navigate = useNavigate();
 
     useEffect(()=>{
         (async () => {
@@ -28,7 +32,8 @@ const SingleNewsInEditMode = () => {
         (async () => {
             try {
                 const {data} = await axios.delete(`${address}/news/delete/${id}`);
-                console.log('deleted')
+                console.log('deleted');
+                navigate('/new-admin/edit')
             } catch (error) {
                 console.log(error);
             }
@@ -39,7 +44,7 @@ const SingleNewsInEditMode = () => {
     return (
         <main className="edit_single_container">
             <div className="edit_single_section">
-                <NavLink to={`/admin/edit/${id}/editcontent`}>
+                <NavLink to={`/new-admin/edit/${id}/edit-content`}>
                     <button>Խմբագրել</button>
                 </NavLink>
                 

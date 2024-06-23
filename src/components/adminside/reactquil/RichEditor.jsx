@@ -3,7 +3,7 @@ import 'react-quill/dist/quill.snow.css'
 import './richeditor.style.scss'
 
 
-const RichEditor = ({value,setValue,click,btnValue = "Ավելացնել"}) => {
+const RichEditor = ({value,setValue,click,btnValue}) => {
   const modules = {
             toolbar:[
                 [{ 'header': [2, 3, false] }],

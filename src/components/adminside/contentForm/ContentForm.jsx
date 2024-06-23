@@ -4,8 +4,12 @@ import {SelectedValueContext} from "../adminSideContent/AdminSideContent.jsx";
 import RichEditor from "../reactquil/RichEditor.jsx";
 import axios from "../interceptor.js";
 import {address} from "../../../repetitiveVariables/variables.js";
+import {useLocation, useNavigate} from "react-router-dom";
 
-function ContentForm(props) {
+function ContentForm({currentNews}) {
+    const {pathname} = useLocation();
+    const navigate = useNavigate();
+
     const {section, subsection, newsType} = useContext(SelectedValueContext);
     const [selectedNewsType, setSelectedNewsType] = newsType;
     const [selectedSection, setSelectedSection] = section;
@@ -23,6 +27,18 @@ function ContentForm(props) {
 
     const [error, setError] = useState(false);
 
+    const resetInputs = () => {
+        setTitleInputValue('');
+        setDescriptionInputValue('');
+        setArticleAuthorInputValue('');
+        setPhotoAuthorInputValue('');
+        setPhotoInputValue('');
+        setVideoInputValue('');
+        setNewsTextValue('');
+        setVideoLinkInputValue('');
+        setLiveLinkInputValue('');
+    }
+
     useEffect(() => {
         let timeoutId;
         if(error) {
@@ -37,6 +53,26 @@ function ContentForm(props) {
     useEffect(() => {
         console.log(newsTextValue)
     }, [newsTextValue]);
+
+    useEffect(() => {
+        console.log(photoInputValue)
+    }, [photoInputValue]);
+
+    useEffect(() => {
+        if(pathname.includes('edit') && currentNews) {
+            setTitleInputValue(currentNews?.title || '');
+            setDescriptionInputValue(currentNews?.description || '');
+            setArticleAuthorInputValue(currentNews?.newsContent?.author || '');
+            setPhotoAuthorInputValue(currentNews?.newsContent?.file?.author || '');
+            setPhotoInputValue('');
+            setVideoInputValue('');
+            setNewsTextValue(currentNews?.newsContent?.description || '');
+            setVideoLinkInputValue(!currentNews?.newsContent?.file?.isImage ? currentNews?.newsContent?.file?.url : '');
+            // setLiveLinkInputValue('');
+        } else {
+            resetInputs();
+        }
+    }, [pathname, currentNews]);
     const handleAddNews = async () => {
         const formData = new FormData();
         if(selectedNewsType.title === 'Ուղիղ եթեր') {
@@ -85,36 +121,38 @@ function ContentForm(props) {
             } else if (selectedNewsType.title === 'Տեսանյութ') {
                 formData.append('url', videoLinkInputValue);
                 formData.append('fileContent', videoInputValue);
-                formData.append('middleImage', photoInputValue);
+                formData.append('middleImage', videoInputValue);
             }
 
             try {
-                const { data } = await axios.post(
-                    `${address}/news/create`,
-                    formData,
-                    {headers: {
-                            Authorization: `bearer ${localStorage.getItem('accessToken')}`,
-                        }});
-                console.log('created');
+               if(pathname.includes('add')) {
+                   const { data } = await axios.post(
+                       `${address}/news/create`,
+                       formData,
+                       {headers: {
+                               Authorization: `bearer ${localStorage.getItem('accessToken')}`,
+                           }});
+                   console.log('created');
+               } else {
+                   await axios.put(
+                       `${address}/news/editNews/${currentNews?.id}`,
+                       formData,
+                       {headers: {
+                               Authorization: `bearer ${localStorage.getItem('accessToken')}`,
+                           }});
+                   console.log('edited');
+                   navigate(`/new-admin/edit/${currentNews.id}`)
+               }
                 setSelectedSubsection({});
                 setSelectedSection({});
                 setSelectedNewsType({});
-                setTitleInputValue('');
-                setDescriptionInputValue('');
-                setArticleAuthorInputValue('');
-                setPhotoAuthorInputValue('');
-                setPhotoInputValue('');
-                setVideoInputValue('');
-                setNewsTextValue('');
-                setVideoLinkInputValue('');
+                resetInputs();
 
             } catch (error) {
                 console.log(error);
                 setError(true);
             }
         }
-
-
     }
 
     useEffect(() => {
@@ -162,7 +200,7 @@ function ContentForm(props) {
                                value={photoAuthorInputValue}
                                onChange={(e) => setPhotoAuthorInputValue(e.target.value)}/>
                         {error ? <p>Ձախողում. անվավեր կամ անբավարար տվյալներ</p> : <p></p>}
-                        <RichEditor value={newsTextValue} setValue={setNewsTextValue} click={handleAddNews}/>
+                        <RichEditor value={newsTextValue} setValue={setNewsTextValue} click={handleAddNews} btnValue={pathname.includes('edit') ? 'Խմբագրել' : 'Ավելացնել'}/>
                     </>
                 :
                     <>
@@ -178,7 +216,7 @@ function ContentForm(props) {
                                    title='Պարտադիր դաշտ. ուղիղ միացման հղում'
                                    value={liveLinkInputValue}
                                    onChange={(e) => setLiveLinkInputValue(e.target.value)}/>
-                                <button onClick={handleAddNews}>Ավելացնել</button>
+                                <button onClick={handleAddNews}>{pathname.includes('edit') ? 'Խմբագրել' : 'Ավելացնել'}</button>
                             </>
                         : ''}
                     </>

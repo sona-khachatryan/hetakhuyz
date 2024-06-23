@@ -16,8 +16,8 @@ function EditContentMain(props) {
     const {pathname} = useLocation();
 
     useEffect(() => {
-        console.log(newsToEdit, 'news to edit')
-    }, [newsToEdit]);
+        setNewsToEdit([]);
+    }, [pathname]);
 
     useEffect( () => {
        getDataToEdit(selectedSection, selectedSubsection, selectedNewsType).then(res => setNewsToEdit(res));

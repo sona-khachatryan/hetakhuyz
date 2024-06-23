@@ -154,4 +154,31 @@ export const getDataToEdit = async (selectedSection, selectedSub, selectedNewsTy
     }
 }
 
+export const getSingleNewsToEdit = async (setCurrentNews, setSection, setSub, setNewsType, id) => {
+    try {
+        const {data} = await axios.get(`${address}/news/getOne/${id}`);
+        console.log(data, 'editContents')
+        setCurrentNews(data);
+
+        if(possibleMainSections.includes(data?.country?.title)) {
+            setSection({title: data?.country?.title, id: data?.country?.id});
+        } else {
+            setSection({title: 'Տարածաշրջան', id: ''});
+            setSub({title: data?.country?.title, id: data?.country?.id});
+        }
+
+        if(data?.category?.title) {
+            setSub({title: data?.category?.title, id: data?.category?.id})
+        }
+
+        if(data?.newsContent?.file?.isImage) {
+            setNewsType({title:'Տեքստային', id:'text'})
+        } else {
+            setNewsType({title:"Տեսանյութ", id:'video'})
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 

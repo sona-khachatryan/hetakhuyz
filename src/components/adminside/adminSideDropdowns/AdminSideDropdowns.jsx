@@ -28,9 +28,9 @@ function AdminSideDropdowns(props) {
         getSubsections().then(res => setSubSections(res));
     }, [updateDropDowns]);
 
-    useEffect(() => {
-       setSelectedSubsection({});
-    }, [selectedMainSection]);
+    // useEffect(() => {
+    //    setSelectedSubsection({});
+    // }, [selectedMainSection]);
 
     useEffect(() => {
         if(selectedNewsType.title === 'Ուղիղ եթեր' && pathname.includes('edit')) {
@@ -40,6 +40,7 @@ function AdminSideDropdowns(props) {
 
     useEffect(() => {
         setSelectedMainSection({});
+        setSelectedSubsection({});
         setSelectedNewsType({});
     }, [pathname]);
   
@@ -48,7 +49,7 @@ function AdminSideDropdowns(props) {
             <SingleDropdown title={'Ընտրել բաժինը'} options={sections} selectedValueState={selectStates.section} updateDropDowns={setUpdateDropDowns}/>
             <SingleDropdown title={'Ընտրել ենթաբաժինը'} options={selectedMainSection?.title === 'Հայաստան' ? subSections : selectedMainSection?.title === 'Տարածաշրջան' ? countries : ''} selectedValueState={selectStates.subsection} updateDropDowns={setUpdateDropDowns}/>
             <SingleDropdown title={'Ընտրել տեսակը'}
-                            options={pathname.includes('edit') ? [{title:"Ուղիղ եթեր", id:'live', value:"live"}] : contentTypeData}
+                            options={pathname.endsWith('edit') ? [{title:"Ուղիղ եթեր", id:'live', value:"live"}] : contentTypeData}
                             selectedValueState={selectStates.newsType}/>
         </div>
     );
