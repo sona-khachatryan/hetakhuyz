@@ -30,6 +30,7 @@ import SingleNewsPage from "./components/singleNewsPage/SingleNewsPage.jsx";
 import SingleNewsInEditMode from "./components/adminside/editContent/singleNewsInEditMode/SingleNewsInEditMode.jsx";
 import EditSingleNewsContents
     from "./components/adminside/editContent/editSingleNewsContents/EditSingleNewsContents.jsx";
+import EditLive from "./components/adminside/editContent/liveeditcontent/EditLive.jsx";
 export const CalendarDateContext = createContext([]);
 
 
@@ -87,7 +88,7 @@ const App = () => {
                     <Route path='new-admin' element = {<AdminSide/>}>
                         <Route path='/new-admin/add' element = {<AddNewContent/>} />
                         <Route path='/new-admin/edit' element = {<EditContentMain/>}>
-                            <Route path='/new-admin/edit/live/:id' element = {<LiveEditContent/>}/>
+                            <Route path='/new-admin/edit/live/:id' element = {<EditLive/>}/>
                             <Route path='/new-admin/edit/:id/edit-content' element = {<EditSingleNewsContents/>}/>
                             <Route path='/new-admin/edit/:id' element = {<SingleNewsInEditMode/>}/>
                         </Route>
