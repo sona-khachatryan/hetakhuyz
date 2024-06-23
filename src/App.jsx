@@ -87,10 +87,9 @@ const App = () => {
                     <Route path='new-admin' element = {<AdminSide/>}>
                         <Route path='/new-admin/add' element = {<AddNewContent/>} />
                         <Route path='/new-admin/edit' element = {<EditContentMain/>}>
-                        {/*    <Route path='/admin/edit/live/:id' element = {<LiveEditContent/>}/>*/}
+                            <Route path='/new-admin/edit/live/:id' element = {<LiveEditContent/>}/>
                             <Route path='/new-admin/edit/:id/edit-content' element = {<EditSingleNewsContents/>}/>
                             <Route path='/new-admin/edit/:id' element = {<SingleNewsInEditMode/>}/>
-                        {/*    <Route path='/admin/edit/:id/editcontent' element = {<EditContentFromId/>} />*/}
                         </Route>
                     </Route>
 

@@ -1,15 +1,19 @@
 import './editContent.style.scss';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import SingleNewsCard from "../../singleNewsCard/SingleNewsCard.jsx";
 import Pagination from "../../pagination/Pagination.jsx";
 import '../../calendar/calendarNewsFeed/calendarNewsFeed.style.scss';
+import {SelectedValueContext} from "../adminSideContent/AdminSideContent.jsx";
 
 function EditContentList({newsList}) {
 
     const [contentBeginning,setContentBegining] = useState(0);
+    const selectedStates = useContext(SelectedValueContext);
+    const [selectedNewsType] = selectedStates.newsType;
 
     useEffect(() => {
         setContentBegining(0);
+        console.log(selectedNewsType)
     }, [newsList]);
 
     return (
@@ -24,7 +28,7 @@ function EditContentList({newsList}) {
                     ?
                         <div className='calendar_feed__news'>
                             {newsList.slice(contentBeginning, contentBeginning + 6).map((news, index) =>
-                                <SingleNewsCard key={index} news={news} index={index} path={`/new-admin/edit/${news.id}`}/>
+                                <SingleNewsCard key={index} news={news} index={index} path={selectedNewsType.title==='Ուղիղ եթեր' ? `/new-admin/edit/live/${news.id}` : `/new-admin/edit/${news.id}`}/>
                         )}
                             <Pagination totalElements={newsList?.length} contentBeginning={contentBeginning}
                                     setContentBeginning={setContentBegining}/>

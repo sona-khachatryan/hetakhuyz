@@ -51,24 +51,23 @@ function ContentForm({currentNews}) {
     }, [error]);
 
     useEffect(() => {
-        console.log(newsTextValue)
-    }, [newsTextValue]);
-
-    useEffect(() => {
-        console.log(photoInputValue)
-    }, [photoInputValue]);
+        console.log(currentNews, 'currentnews')
+    }, [currentNews]);
 
     useEffect(() => {
         if(pathname.includes('edit') && currentNews) {
             setTitleInputValue(currentNews?.title || '');
-            setDescriptionInputValue(currentNews?.description || '');
-            setArticleAuthorInputValue(currentNews?.newsContent?.author || '');
-            setPhotoAuthorInputValue(currentNews?.newsContent?.file?.author || '');
-            setPhotoInputValue('');
-            setVideoInputValue('');
-            setNewsTextValue(currentNews?.newsContent?.description || '');
-            setVideoLinkInputValue(!currentNews?.newsContent?.file?.isImage ? currentNews?.newsContent?.file?.url : '');
-            // setLiveLinkInputValue('');
+            if(selectedNewsType.title === 'Ուղիղ եթեր') {
+                setLiveLinkInputValue(currentNews?.url || '');
+            } else {
+                setDescriptionInputValue(currentNews?.description || '');
+                setArticleAuthorInputValue(currentNews?.newsContent?.author || '');
+                setPhotoAuthorInputValue(currentNews?.newsContent?.file?.author || '');
+                setPhotoInputValue('');
+                setVideoInputValue('');
+                setNewsTextValue(currentNews?.newsContent?.description || '');
+                setVideoLinkInputValue(!currentNews?.newsContent?.file?.isImage ? currentNews?.newsContent?.file?.url : '');
+            }
         } else {
             resetInputs();
         }
@@ -80,13 +79,22 @@ function ContentForm({currentNews}) {
             formData.append('url', liveLinkInputValue);
 
             try {
-                const {data} = await axios.post(
-                    `${address}/live/create`,
-                    formData,
-                    {headers: {
-                        Authorization: `bearer ${localStorage.getItem('accessToken')}`,
-                    }});
-                console.log('created new live');
+              if(pathname.includes('add')) {
+                  await axios.post(
+                      `${address}/live/create`,
+                      formData,
+                      {headers: {
+                              Authorization: `bearer ${localStorage.getItem('accessToken')}`,
+                          }});
+                  console.log('created new live');
+              } else {
+                 await axios.put(`${address}/live/edit/${currentNews.id}`,
+                      formData,
+                      {headers: {
+                              Authorization: `bearer ${localStorage.getItem('accessToken')}`,
+                          }});
+                  navigate(`/new-admin/edit/live/${currentNews.id}`)
+              }
                 setSelectedSubsection({});
                 setSelectedSection({});
                 setSelectedNewsType({});

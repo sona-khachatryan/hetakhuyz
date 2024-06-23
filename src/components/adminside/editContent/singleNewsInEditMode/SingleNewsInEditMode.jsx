@@ -33,7 +33,7 @@ const SingleNewsInEditMode = () => {
             try {
                 const {data} = await axios.delete(`${address}/news/delete/${id}`);
                 console.log('deleted');
-                navigate('/new-admin/edit')
+                navigate('/new-admin/edit');
             } catch (error) {
                 console.log(error);
             }
@@ -93,7 +93,7 @@ const SingleNewsInEditMode = () => {
             <div className="edit_page_bottom">
                 <h4>Հեղ․՝ {dataId && dataId.newsContent.author}</h4>
 
-                <NavLink to='/admin/edit'><button onClick={handleDelete}>Ջնջել այս նյութը</button></NavLink>
+                <button onClick={handleDelete}>Ջնջել այս նյութը</button>
             </div>
         </main>
     )
