@@ -13,20 +13,12 @@ import SinglePage from './components/blogsinglepage/SinglePage'
 import Search from './components/search/Search'
 import LiveStream from './components/livestream/LiveStream'
 import SinglePageVideo from './components/blogsinglepage/singlepagevideo/SinglePageVideo'
-import AdminPanel from './components/adminpanel/AdminPanel'
-import EditContent from './components/adminpanel/editcontent/EditContent'
-import AddContent from './components/adminpanel/addcontent/AddContent'
 import International from './components/sections/international/International'
-import SingleEditContent from './components/adminpanel/editcontent/singleeditcontent/SingleEditContent'
-import EditContentFromId from './components/adminpanel/editcontentfromid/EditContentFromId'
-import LiveEditContent from './components/adminpanel/editcontent/livecontent/liveeditcontent/LiveEditContent'
-import LiveEditId from './components/adminpanel/editcontent/livecontent/liveeditcontentfromid/LiveEditId'
 import axios from 'axios'
 import CalendarNewsFeed from "./components/calendar/calendarNewsFeed/CalendarNewsFeed.jsx";
 import AdminSide from "./components/adminside/AdminSide.jsx";
 import AddNewContent from "./components/adminside/addNewContent/AddNewContent.jsx";
 import EditContentMain from "./components/adminside/editContent/EditContentMain.jsx";
-import SingleNewsPage from "./components/singleNewsPage/SingleNewsPage.jsx";
 import SingleNewsInEditMode from "./components/adminside/editContent/singleNewsInEditMode/SingleNewsInEditMode.jsx";
 import EditSingleNewsContents
     from "./components/adminside/editContent/editSingleNewsContents/EditSingleNewsContents.jsx";
@@ -73,27 +65,14 @@ const App = () => {
                     <Route path='search' element = {<Search/>}/>
                     <Route path='calendar' element = {<CalendarNewsFeed/>}/>
 
-
-
-                    <Route path='admin' element = {<AdminPanel/>}>
-                        <Route path='/admin/add' element = {<AddContent/>} />
-                        <Route path='/admin/edit' element = {<EditContent/>}>
-                            <Route path='/admin/edit/live/:id' element = {<LiveEditContent/>}/>
-                            <Route path='/admin/edit/live/:id/editcontent' element = {<LiveEditId/>}/>
-                            <Route path='/admin/edit/:id' element = {<SingleEditContent/>}/>
-                            <Route path='/admin/edit/:id/editcontent' element = {<EditContentFromId/>} />
+                    <Route path='admin' element = {<AdminSide/>}>
+                        <Route path='/admin/add' element = {<AddNewContent/>} />
+                        <Route path='/admin/edit' element = {<EditContentMain/>}>
+                            <Route path='/admin/edit/live/:id' element = {<EditLive/>}/>
+                            <Route path='/admin/edit/:id/edit-content' element = {<EditSingleNewsContents/>}/>
+                            <Route path='/admin/edit/:id' element = {<SingleNewsInEditMode/>}/>
                         </Route>
                     </Route>
-
-                    <Route path='new-admin' element = {<AdminSide/>}>
-                        <Route path='/new-admin/add' element = {<AddNewContent/>} />
-                        <Route path='/new-admin/edit' element = {<EditContentMain/>}>
-                            <Route path='/new-admin/edit/live/:id' element = {<EditLive/>}/>
-                            <Route path='/new-admin/edit/:id/edit-content' element = {<EditSingleNewsContents/>}/>
-                            <Route path='/new-admin/edit/:id' element = {<SingleNewsInEditMode/>}/>
-                        </Route>
-                    </Route>
-
 
                     <Route path='*' element = {<ErrorPage/>}/>
                 </Routes>

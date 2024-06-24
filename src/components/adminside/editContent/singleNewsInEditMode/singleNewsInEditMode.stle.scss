@@ -204,6 +204,11 @@
       display: block;
     }
   }
+  .edit_single_title {
+    iframe {
+      height: 340px;
+    }
+  }
 }
 
 @media screen and (max-width:768px) {
@@ -221,7 +226,7 @@
       font-size: 24px;
     }
     iframe{
-      height: 280px;
+      height: 320px;
     }
   }
 
@@ -242,7 +247,7 @@
   }
   .edit_single_title{
     iframe{
-      height: 190px;
+      height: 250px;
     }
   }
   .edit_single_about{
@@ -272,10 +277,20 @@
   .edit_single_container {
     width: 390px;
   }
+  .edit_single_title {
+    iframe {
+      height: 200px;
+    }
+  }
 }
 
 @media screen and (max-width:390px) {
   .edit_single_container {
     width: 350px;
+  }
+  .edit_single_title {
+    iframe {
+      height: 180px;
+    }
   }
 }

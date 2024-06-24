@@ -30,7 +30,7 @@ const EditLive = () => {
       try {
         const {data} = await axios.delete(`${address}/live/delete/${id}`);
           console.log('deleted live');
-          navigate('/new-admin/edit');
+          navigate('/admin/edit');
       } catch (error) {
         console.log(error)
       }
@@ -38,12 +38,12 @@ const EditLive = () => {
   }
 
   const handleEdit = () => {
-      navigate(`/new-admin/edit/${id}/edit-content`, {state: {title: 'Ուղիղ եթեր', id: 'live'}})
+      navigate(`/admin/edit/${id}/edit-content`, {state: {title: 'Ուղիղ եթեր', id: 'live'}})
   }
 
   return (
       <div className='live_edit_content_container'>
-          {/*<NavLink to={`/new-admin/edit/${id}/edit-content`}>*/}
+          {/*<NavLink to={`/admin/edit/${id}/edit-content`}>*/}
           <button onClick={handleEdit}>Խմբագրել</button>
           {/*</NavLink> */}
           <iframe src={dataId?.url}

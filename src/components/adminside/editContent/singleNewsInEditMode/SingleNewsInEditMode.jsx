@@ -33,7 +33,7 @@ const SingleNewsInEditMode = () => {
             try {
                 const {data} = await axios.delete(`${address}/news/delete/${id}`);
                 console.log('deleted');
-                navigate('/new-admin/edit');
+                navigate('/admin/edit');
             } catch (error) {
                 console.log(error);
             }
@@ -44,7 +44,7 @@ const SingleNewsInEditMode = () => {
     return (
         <main className="edit_single_container">
             <div className="edit_single_section">
-                <NavLink to={`/new-admin/edit/${id}/edit-content`}>
+                <NavLink to={`/admin/edit/${id}/edit-content`}>
                     <button>Խմբագրել</button>
                 </NavLink>
                 
