@@ -51,7 +51,7 @@ function AdminSide(props) {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
         setIsAuthenticated(false);
-        navigate('/new-admin');
+        navigate('/admin');
         console.log('logged out')
     };
 

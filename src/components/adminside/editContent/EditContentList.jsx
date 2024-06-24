@@ -29,7 +29,7 @@ function EditContentList({newsList}) {
                     ?
                         <div className='edit_content_list__news'>
                             {newsList.slice(contentBeginning, contentBeginning + 6).map((news, index) =>
-                                <SingleNewsCard key={index} news={news} index={index} path={selectedNewsType.title==='Ուղիղ եթեր' ? `/new-admin/edit/live/${news.id}` : `/new-admin/edit/${news.id}`}/>
+                                <SingleNewsCard key={index} news={news} index={index} path={selectedNewsType.title==='Ուղիղ եթեր' ? `/admin/edit/live/${news.id}` : `/admin/edit/${news.id}`}/>
                         )}
                             <Pagination totalElements={newsList?.length} contentBeginning={contentBeginning}
                                     setContentBeginning={setContentBegining}/>

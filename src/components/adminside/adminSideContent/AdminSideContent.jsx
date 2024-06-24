@@ -14,7 +14,7 @@ function AdminSideContent(props) {
     // const navigate = useNavigate();
     //
     // useEffect(()=> {
-    //     navigate('/new-admin/add');
+    //     navigate('/admin/add');
     // },[])
 
     useEffect(() => {
@@ -30,12 +30,12 @@ function AdminSideContent(props) {
         <SelectedValueContext.Provider value={{section: selectedSectionState, subsection: selectedSubsectionState, newsType: selectedNewsTypeState}}>
             <div className='adminSideContent container'>
                 <div className='asc_menu'>
-                    <Link to='/new-admin/edit'>
+                    <Link to='/admin/edit'>
                         <p className={activeHeading === 'edit' ? 'asc_activeHeading' : ''}>
                             Խմբագրել
                         </p>
                     </Link>
-                    <Link to='/new-admin/add'>
+                    <Link to='/admin/add'>
                         <p className={activeHeading === 'add' ? 'asc_activeHeading' : ''}>
                             Ավելացնել
                         </p>

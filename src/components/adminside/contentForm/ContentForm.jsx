@@ -93,7 +93,7 @@ function ContentForm({currentNews}) {
                       {headers: {
                               Authorization: `bearer ${localStorage.getItem('accessToken')}`,
                           }});
-                  navigate(`/new-admin/edit/live/${currentNews.id}`)
+                  navigate(`/admin/edit/live/${currentNews.id}`)
               }
                 setSelectedSubsection({});
                 setSelectedSection({});
@@ -155,7 +155,7 @@ function ContentForm({currentNews}) {
                                Authorization: `bearer ${localStorage.getItem('accessToken')}`,
                            }});
                    console.log('edited');
-                   navigate(`/new-admin/edit/${currentNews.id}`)
+                   navigate(`/admin/edit/${currentNews.id}`)
                }
                 setSelectedSubsection({});
                 setSelectedSection({});
