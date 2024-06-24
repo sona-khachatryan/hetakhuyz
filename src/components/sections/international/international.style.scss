@@ -53,6 +53,7 @@
   
   .paginate_ctn{
       display: flex;
+      margin-top: 30px;
   }
 
 
@@ -97,7 +98,7 @@
         padding-inline: 60px;
     }
 }
-@media screen and (max-width:768px) {
+@media screen and (max-width:786px) {
     .international_container{
         padding-top:32px;
         padding-bottom:32px;

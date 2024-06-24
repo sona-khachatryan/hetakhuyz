@@ -1,0 +1,99 @@
+.live_edit_content_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    width: 895px;
+    iframe{
+        width: 80%;
+        min-height: 400px;
+        max-height: 500px;
+        margin:20px 0;
+        object-fit: contain;
+    }
+    button{
+        font-family: "BraindYerevan";
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 60px;
+        letter-spacing: 0.01em;
+        color: #B31312;
+        border: 1px solid #B31312;
+        border-radius: 6px;
+        padding-inline:8px;
+        cursor: pointer;
+    }
+    h2{
+        text-align: center;
+        font-family: "ArmHmksBebasNeue";
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 48px;
+        letter-spacing: 0.01em;
+        color: #2B2A4C;
+        padding-inline: 10px;
+        word-break: break-all;
+        margin-bottom: 24px;
+    }
+}
+
+@media screen and (max-width:1280px) {
+    .live_edit_content_container {
+        width: 670px;
+
+        iframe {
+            min-height: 300px;
+            max-height: 400px;
+        }
+    }
+}
+
+@media screen and (max-width:768px) {
+    .live_edit_content_container {
+        width: 640px;
+        iframe {
+            min-height: 290px;
+            max-height: 300px;
+        }
+    }
+}
+
+@media screen and (max-width:640px) {
+    .live_edit_content_container{
+        width: 475px;
+        overflow: clip;
+        button{
+            font-size: 24px
+        }
+        h2{
+            font-size: 24px;
+            line-height: 32px;
+        }
+        iframe {
+            min-height: 220px;
+            max-height: 260px;
+        }
+    }
+}
+
+@media screen and (max-width:475px) {
+    .live_edit_content_container {
+        width: 390px;
+
+        iframe {
+            min-height: 190px;
+            max-height: 200px;
+        }
+    }
+}
+
+@media screen and (max-width:390px) {
+    .live_edit_content_container {
+        width: 350px;
+
+        iframe {
+            min-height: 160px;
+            max-height: 200px;
+        }
+    }
+}

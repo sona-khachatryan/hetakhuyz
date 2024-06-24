@@ -1,0 +1,97 @@
+.adminSide {
+
+}
+.adminSide_header {
+  height: 67px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1.5px solid;
+  //border: 2px solid;
+  border-image-source: linear-gradient(270deg, rgba(179, 19, 18, 0) 0%, rgba(179, 19, 18, 0.8) 26.9%, #B31312 51.5%, rgba(179, 19, 18, 0.8) 70.4%, rgba(179, 19, 18, 0) 100%);
+  border-image-slice: 1;
+
+}
+
+.adminSide_logo {
+    width: 123px;
+    height: 53px;
+  //border: 1px solid hotpink;
+}
+
+.adminSide_logout-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  //border: 1px solid hotpink;
+  img {
+    width: 24px;
+    height: 21px;
+  }
+}
+
+@media (min-width: 390px) {}
+
+/* xs */
+
+@media (min-width: 475px) {}
+
+/* sm */
+
+@media (min-width: 640px) {}
+
+/* md */
+
+@media (min-width: 768px) {
+  .adminSide_logout-btn {
+    width: 104px;
+    height: 53px;
+    font-family: BraindYerevan;
+    //padding-top: 6px;
+    font-size: 26px;
+    font-weight: 400;
+    color: #B31312;
+  }
+}
+
+/* lg */
+
+@media (min-width: 1024px) {
+  .adminSide_header {
+    margin-top: 18px;
+    padding-left: 80px;
+    padding-right: 80px;
+    height: 114px;
+  }
+
+  .adminSide_logout-btn {
+    height: 72px;
+    font-size: 28px;
+    padding-bottom: 20px;
+  }
+
+  .adminSide_logo {
+    width: 232px;
+    height: 99.91px;
+  }
+}
+
+/* xl */
+
+@media (min-width: 1280px) {
+  .adminSide_header {
+    padding-left: 120px;
+    padding-right: 120px;
+  }
+}
+
+/* 2xl */
+
+@media (min-width: 1440px) {}
