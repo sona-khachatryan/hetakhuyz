@@ -32,6 +32,8 @@ export const monthsFullName = [
     'Դեկտեմբեր',
 ];
 
+export const possibleMainSections = ['Հայաստան', 'Տարածաշրջան', 'Միջազգային'];
+
 export const dates = {
     '01': 'Հնվ',
     '02': 'Փտր',
@@ -110,10 +112,10 @@ export const contentTypefilter = {
 }
 
 export const contentTypeData = [
-    {title:"Տեքստային",id:1, value:"text"},
-    {title:"Տեսանյութ",id:2, value:"video"},
-    {title:"Ուղիղ եթեր",id:3, value:"live"},
-    {title:"Բոլորը", id:4, value:"all"}
+    {title:"Տեքստային", id:'text', value:"text"},
+    {title:"Տեսանյութ", id:'video', value:"video"},
+    {title:"Ուղիղ եթեր", id:'live', value:"live"},
+    // {title:"Բոլորը", id:4, value:"all"}
 ]
 
 export function handleDate(createdAt){

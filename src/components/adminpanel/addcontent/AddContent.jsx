@@ -45,7 +45,7 @@ const AddContent = () => {
 
     useEffect(() => {
         getSubsections().then(res => setSubsections(res));
-        getSections().then(res => setSections(res));
+        getSections().then(res => setSections(res.mainSections));
     }, []);
 
     useEffect(() => {

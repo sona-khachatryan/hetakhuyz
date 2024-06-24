@@ -5,10 +5,10 @@ import { Link, Outlet, useNavigate} from "react-router-dom"
 const AdminContents = () => {
     const [active,setActive] = useState("Add new content")
     
-    const navigate = useNavigate()
-    useEffect(()=>{
-        navigate("/admin/add")
-    },[])
+    // const navigate = useNavigate()
+    // useEffect(()=>{
+    //     navigate("/admin/add")
+    // },[])
 
     function handleClick({target:{outerText}}){
         setActive(outerText)

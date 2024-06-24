@@ -11,7 +11,7 @@ const DropDownMenu = ({valueSelected,chooseSection,title="",render,edit=false}) 
 
         {<option hidden>{title}</option>}
            {/* eslint-disable-next-line react/prop-types */}
-        {chooseSection.map(({title, id})=>{
+        {chooseSection?.map(({title, id})=>{
           if(title == valueSelected) return <option selected key={id} value={title}>{title}</option>
           if(edit) return <option key={id} value={title}>{title}</option>
            return title == "Բոլորը"?<option key={id} disabled value={title}>{title}</option>:<option key={id} value={title}>{title}</option>

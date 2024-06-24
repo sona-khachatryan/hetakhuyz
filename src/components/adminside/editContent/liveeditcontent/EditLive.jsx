@@ -1,11 +1,11 @@
 import {useState, useEffect, useContext} from 'react'
 import './liveeditcontent.style.scss'
 import {NavLink, useNavigate, useParams} from 'react-router-dom'
-import { address } from '../../../../../repetitiveVariables/variables'
-import axios from '../../../interceptor'
-import {SelectedValueContext} from "../../../../adminside/adminSideContent/AdminSideContent.jsx";
+import { address } from '../../../../repetitiveVariables/variables'
+import axios from '../../interceptor'
+import {SelectedValueContext} from "../../adminSideContent/AdminSideContent.jsx";
 
-const LiveEditContent = () => {
+const EditLive = () => {
     const [dataId,setDataId] = useState([]);
     const {id} = useParams();
     const navigate = useNavigate();
@@ -13,9 +13,6 @@ const LiveEditContent = () => {
     const selectedStates = useContext(SelectedValueContext);
     const [selectedNewsType] = selectedStates.newsType
 
-    useEffect(() => {
-        console.log(selectedNewsType)
-    }, []);
 
   useEffect(()=>{
     (async () => {
@@ -49,11 +46,14 @@ const LiveEditContent = () => {
           {/*<NavLink to={`/new-admin/edit/${id}/edit-content`}>*/}
           <button onClick={handleEdit}>Խմբագրել</button>
           {/*</NavLink> */}
-          <iframe src={dataId && dataId.url}></iframe>
+          <iframe src={dataId?.url}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+
           <h2>{dataId && dataId.title}</h2>
           <button onClick={handleDelete}>Ջնջել եթերը</button>
       </div>
   )
 }
 
-export default LiveEditContent
+export default EditLive
