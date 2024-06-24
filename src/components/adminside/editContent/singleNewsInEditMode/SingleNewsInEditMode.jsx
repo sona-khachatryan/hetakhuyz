@@ -77,20 +77,20 @@ const SingleNewsInEditMode = () => {
             </div>
             <div className="edit_single_title">
                 <h2>{dataId?.title}</h2>
-                {dataId && !dataId.newsContent.file?.isImage
+                {dataId && !dataId?.newsContent?.file?.isImage
                     ?
-                  (dataId.newsContent.file.url.includes('youtube')
+                  (dataId?.newsContent?.file?.url?.includes('youtube')
                         ?
-                            <iframe src={dataId.newsContent.file.url} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin"></iframe>
+                            <iframe src={dataId?.newsContent?.file?.url} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin"></iframe>
                         :
-                            <iframe src={address + "/" + dataId.newsContent.file.url}></iframe>)
+                            <iframe src={address + "/" + dataId?.newsContent?.file?.url}></iframe>)
                     :
                     dataId && <img src={`${address}/${dataId?.img}`} alt="Լրատվական Նկար"/>}
-                <h3>Նկարի հեղինակ {dataId && dataId.newsContent.file?.author}</h3>
+                {dataId?.newsContent?.file?.author ? <h3>{dataId?.newsContent?.file?.isImage ? 'Նկարի' : 'Տեսանյութի'} հեղինակ՝ {dataId?.newsContent?.file?.author}</h3> : ''}
             </div>
 
             <div className="edit_single_about">
-                <hr />
+                <hr/>
                 <div>
                     {dataId && <h3>{handleDate(dataId.createdAt)}</h3>}
                     {/*<div></div>*/}

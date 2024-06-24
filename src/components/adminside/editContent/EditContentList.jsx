@@ -2,7 +2,8 @@ import './editContent.style.scss';
 import React, {useContext, useEffect, useState} from 'react';
 import SingleNewsCard from "../../singleNewsCard/SingleNewsCard.jsx";
 import Pagination from "../../pagination/Pagination.jsx";
-import '../../calendar/calendarNewsFeed/calendarNewsFeed.style.scss';
+// import '../../calendar/calendarNewsFeed/calendarNewsFeed.style.scss';
+import './editContent.style.scss';
 import {SelectedValueContext} from "../adminSideContent/AdminSideContent.jsx";
 
 function EditContentList({newsList}) {
@@ -17,16 +18,16 @@ function EditContentList({newsList}) {
     }, [newsList]);
 
     return (
-        <div className='calendar_feed container'>
-            <div className='calendar_feed__top'>
-                <span className='calendar_feed__result'>
+        <div className='edit_content_list'>
+            <div className='edit_content_list__top'>
+                <span className='edit_content_list__result'>
                     {newsList?.length ? `${newsList?.length} արդյունք` : '0 արդյունք'}
                 </span>
             </div>
-            <div className='calendar_feed__main'>
+            <div className='edit_content_list__main'>
                 {newsList?.length
                     ?
-                        <div className='calendar_feed__news'>
+                        <div className='edit_content_list__news'>
                             {newsList.slice(contentBeginning, contentBeginning + 6).map((news, index) =>
                                 <SingleNewsCard key={index} news={news} index={index} path={selectedNewsType.title==='Ուղիղ եթեր' ? `/new-admin/edit/live/${news.id}` : `/new-admin/edit/${news.id}`}/>
                         )}
@@ -34,7 +35,7 @@ function EditContentList({newsList}) {
                                     setContentBeginning={setContentBegining}/>
                         </div>
                     :
-                        <p className='calendar_feed__no-result'>Արդյունք չի գտնվել</p>
+                        <p className='edit_content_list__no-result'>Արդյունք չի գտնվել</p>
                 }
             </div>
         </div>

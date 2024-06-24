@@ -106,34 +106,15 @@ export const getNewsBySectionId = async (countryId, categoryId = '') => {
 
 
 export const getDataToEdit = async (selectedSection, selectedSub, selectedNewsType) => {
-    // console.log(selectedSection, selectedSub, selectedNewsType)
-
-    // if(selectedSection.title === 'Բոլորը' &&  selectedNewsType.title === 'Բոլորը') {
-    //    let allNews = await getAllNews();
-    //    let lives = await getAllLives();
-    //     return [...allNews, ...lives];
-    // }
     let news;
 
     if(selectedSection.title === 'Բոլորը') {
          news = await getAllNews();
     }
 
-    // if(selectedNewsType.title === 'Ուղիղ եթեր') {
-    //     return await getAllLives();
-    // }
-
     if(selectedNewsType.title === 'Ուղիղ եթեր') {
          return await getAllLives();
     }
-
-    // if(selectedSection.title === 'Հայաստան' && selectedSub.title) {
-    //     if(selectedSub.title === 'Բոլորը') {
-    //         return await getNewsBySectionId(selectedSection.id);
-    //     } else {
-    //         return await getNewsBySectionId(selectedSection.id, selectedSub.id);
-    //     }
-    // }
 
     if(selectedSection.title === 'Հայաստան' && selectedSub.title) {
         if(selectedSub.title === 'Բոլորը') {
@@ -142,14 +123,6 @@ export const getDataToEdit = async (selectedSection, selectedSub, selectedNewsTy
              news = await getNewsBySectionId(selectedSection.id, selectedSub.id);
         }
     }
-
-    // if(selectedSection.title === 'Տարածաշրջան' && selectedSub.title) {
-    //         return await getNewsBySectionId(selectedSub.id);
-    // }
-    //
-    // if(selectedSection.title === 'Միջազգային') {
-    //     return await getNewsBySectionId(selectedSection.id);
-    // }
 
     if(selectedSection.title === 'Տարածաշրջան' && selectedSub.title) {
         news = await getNewsBySectionId(selectedSub.id);
@@ -160,7 +133,7 @@ export const getDataToEdit = async (selectedSection, selectedSub, selectedNewsTy
     }
 
     if(selectedNewsType.title === 'Բոլորը') {
-        return news;
+        return news
     } else if (selectedNewsType.title === 'Տեքստային') {
        return news?.filter(news => news?.newsContent?.file?.isImage === true)
     } else if (selectedNewsType.title === 'Տեսանյութ') {

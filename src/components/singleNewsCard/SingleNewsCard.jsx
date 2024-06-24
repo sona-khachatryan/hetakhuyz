@@ -8,12 +8,16 @@ function SingleNewsCard({news, index, path}) {
 
     useEffect(() => {
         const handleResize = () => {
-            if(window.innerWidth >= 300 && window.innerWidth <= 768) {
+            if(window.innerWidth >= 300 && window.innerWidth <= 440) {
+                setSliceAt({title: 30, desc: 40})
+            } else if (window.innerWidth > 440 && window.innerWidth <= 768) {
                 setSliceAt({title: 55, desc: 60})
             } else if (window.innerWidth > 768 && window.innerWidth <= 1024) {
                 setSliceAt({title: 70, desc: 70})
-            }  else if (window.innerWidth > 1024) {
-                setSliceAt({title: 100, desc: 110})
+            }  else if (window.innerWidth > 1024 && window.innerWidth <= 1440) {
+                setSliceAt({title: 80, desc: 90})
+            } else if (window.innerWidth > 1440) {
+                setSliceAt({title: 100, desc: 100})
             }
         };
 
