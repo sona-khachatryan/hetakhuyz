@@ -51,8 +51,8 @@ function ContentForm({currentNews}) {
     }, [error]);
 
     useEffect(() => {
-        console.log(currentNews, 'currentnews')
-    }, [currentNews]);
+        console.log(photoInputValue, 'currentnews')
+    }, [photoInputValue]);
 
     useEffect(() => {
         if(pathname.includes('edit') && currentNews) {
@@ -63,8 +63,8 @@ function ContentForm({currentNews}) {
                 setDescriptionInputValue(currentNews?.description || '');
                 setArticleAuthorInputValue(currentNews?.newsContent?.author || '');
                 setPhotoAuthorInputValue(currentNews?.newsContent?.file?.author || '');
-                setPhotoInputValue('');
-                setVideoInputValue('');
+                setPhotoInputValue(currentNews?.img || '');
+                setVideoInputValue(currentNews?.newsContent?.file?.url.includes('yout') ? '' : currentNews?.newsContent?.file?.url);
                 setNewsTextValue(currentNews?.newsContent?.description || '');
                 setVideoLinkInputValue(!currentNews?.newsContent?.file?.isImage ? currentNews?.newsContent?.file?.url : '');
             }
@@ -112,7 +112,11 @@ function ContentForm({currentNews}) {
             formData.append('contentDescription', newsTextValue);
             formData.append('author', articleAuthorInputValue);
             formData.append('fileAuthor', photoAuthorInputValue);
-            formData.append('img', photoInputValue);
+            if(currentNews?.img && typeof photoInputValue === 'string' && photoInputValue === currentNews?.img) {
+                formData.append('sameImg', photoInputValue);
+            } else {
+                formData.append('img', photoInputValue);
+            }
 
             if(selectedSection.title === 'Տարածաշրջան') {
                 formData.append('countryId', selectedSubsection.id);
@@ -124,14 +128,16 @@ function ContentForm({currentNews}) {
             }
 
             if(selectedNewsType.title === 'Տեքստային') {
-                formData.append('fileContent', photoInputValue);
-                formData.append('middleImage', photoInputValue);
+                if(typeof photoInputValue !== 'string') {
+                    formData.append('fileContent', photoInputValue);
+                    formData.append('middleImage', photoInputValue);
+                }
             } else if (selectedNewsType.title === 'Տեսանյութ') {
                 formData.append('url', videoLinkInputValue);
-                if(videoInputValue) {
+                if(videoInputValue && typeof videoInputValue !== 'string') {
                     formData.append('fileContent', videoInputValue);
                     formData.append('middleImage', videoInputValue);
-                } else {
+                } else if (typeof photoInputValue !== 'string') {
                     formData.append('fileContent', photoInputValue);
                     formData.append('middleImage', photoInputValue);
                 }
@@ -188,16 +194,16 @@ function ContentForm({currentNews}) {
                            onChange={(e) => setArticleAuthorInputValue(e.target.value)}/>
                         <label className={photoInputValue ? 'uploaded' : ''}>
                             <img src='/img/upload.svg' alt='ներբեռնել լուսանկար'/>
-                            {photoInputValue ? photoInputValue.name: 'Ներբեռնել գլխավոր լուսանկար'}
+                            {photoInputValue ? ((typeof photoInputValue === 'string') ? photoInputValue : photoInputValue.name) : 'Ներբեռնել գլխավոր լուսանկար'}
                             <input type='file' required={true} title='Պարտադիր դաշտ. լուսանկար'
                                    onChange={(e) => setPhotoInputValue(e.target.files[0])}/>
                         </label>
                       
                         {selectedNewsType.title === 'Տեսանյութ' ?
-                            <div>
+                            <>
                                 <label className={videoInputValue ? 'uploaded' : ''}>
                                     <img src='/img/upload.svg' alt='ներբեռնել տեսանյութ'/>
-                                    {videoInputValue ? videoInputValue.name : 'Ներբեռնել տեսանյութ'}
+                                    {videoInputValue ? ((typeof videoInputValue === 'string') ? videoInputValue : videoInputValue.name) : 'Ներբեռնել տեսանյութ'}
                                     <input type='file' title='Պարտադիր դաշտ. տեսանյութ'
                                            onChange={(e) => setVideoInputValue(e.target.files[0])}/>
                                 </label>
@@ -206,7 +212,7 @@ function ContentForm({currentNews}) {
                                        title='Պարտադիր դաշտ. տեսանյութի հղում' value={videoLinkInputValue}
                                        onChange={(e) => setVideoLinkInputValue(e.target.value)}/>
 
-                            </div>
+                            </>
                             : ''
                         }
                         <input type='text'
