@@ -84,8 +84,8 @@ export const getAllNews = async () => {
 export const getAllLives = async () => {
     try {
         const {data}= await axios.get(`${address}/live/getAll`)
-        console.log(data.slice().reverse(), 'allLives')
-        return data.slice().reverse();
+        console.log(data, 'allLives')
+        return data;
     } catch (error) {
         console.log(error)
         return [];
@@ -95,8 +95,8 @@ export const getAllLives = async () => {
 export const getNewsBySectionId = async (countryId, categoryId = '') => {
     try {
         const {data}= await axios.get(`${address}/news/filter`, {params: {countryId, categoryId}});
-        console.log(data.slice().reverse(), 'news by section id')
-        return data.slice().reverse();
+        console.log(data, 'news by section id');
+        return data;
     } catch (error) {
         console.log(error)
         return [];
