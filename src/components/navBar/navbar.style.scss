@@ -10,9 +10,6 @@ nav{
         list-style-type: none;
         margin-bottom: 12px;
         padding: 0;
-        border: 1ps solid green;
-        //background: #B31312;
-        //width: 300px;
         >li{
             font-family: "DejavuSans";
             color:#1E2022;
@@ -27,6 +24,10 @@ nav{
     }
 }
 
+.logo {
+    width: 190px;
+    height: auto;
+}
 
 .burger_menu{
     width: 36px;
@@ -37,6 +38,10 @@ nav{
     cursor: pointer;
 }
 
+.search_icon_active {
+    filter: grayscale(100%) brightness(3.6) invert(1) contrast(1.2) sepia(1) saturate(10000%) hue-rotate(360deg) brightness(75%);
+}
+
 a{
     color: inherit;
     text-decoration-line:none ;
@@ -44,50 +49,10 @@ a{
 
 .dropdown_menu{
     padding-top:31px;
-    width: max-content;
-    position: absolute;
+    width: inherit;
+    position: relative;
     z-index: 3;
-    >div{
-        border: 2px solid;
-        border-radius: 10px;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(100deg, rgba(221,199,203,1) 30%, rgba(234,240,246,1) 100%);
-        border-image: radial-gradient(80.69% 208.78% at 108.28% 112.58%, #B31312 0%, rgba(179, 19, 18, 0) 100%);
-        border-image-slice: 1;
-        clip-path: inset(0 round 10px);
-    }
-    >div::after{
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border:2px solid;
-        top: -2px;
-        left: -2px;
-        border-image:radial-gradient(80.38% 222.5% at -13.75% -12.36%, #B31312 0%, rgba(255, 255, 255, 0) 100%);
-        border-image-slice: 1;
-        clip-path: inset(0 round 10px);
-    }
-
-    ul{
-        list-style-type: none;
-        position:relative;
-        z-index: 4;
-        li{
-            color:rgba(43, 42, 76);
-            font-family: "DejavuSans";
-            line-height: 60px;
-            margin-inline:10px 40px;
-        }
-        li:hover{
-            color: rgb(179, 19, 18);
-        }
-    }
 }
-
-
 
 .burger_menu_open{
     width: 100%;
@@ -128,11 +93,13 @@ a{
     transition: visibility 500ms ease;
 }
 
-
-
-@media screen and (max-width:1280px) {
+@media screen and (max-width:1480px) {
     nav{
-        margin-inline: 80px;
+        .logo{
+            width: 147px;
+            height: 63px;
+        }
+
         ul{
             margin-bottom:6px;
             li{
@@ -143,14 +110,15 @@ a{
             }
         }
     }
-    
-    .logo{
-        width: 200px;
-    }
-    
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width:1280px) {
+    nav{
+        margin-inline: 80px;
+    }
+}
+
+@media screen and (max-width:1200px) {
     nav{
         margin-inline: 60px;
         >ul{
@@ -166,21 +134,12 @@ a{
     }
 
     .logo{
-        width: 140px;
-        height: 63px;
+        width: 123px;
+        height: 53px;
     }
-    
 }
 
-@media screen and (max-width:900px) {
-    nav{
-        margin-inline: 30px;
-    }   
-}
-
-
-
-@media screen and (max-width:768px) {
+@media screen and (max-width:1024px) {
     .burger_menu,.burger_menu_open{
         display: block;
     }
@@ -191,10 +150,10 @@ a{
 
     nav{
         ul{
-            li:not(li:nth-last-child(1),li:nth-last-child(2)){
+            li:not(li:nth-last-child(1),li:nth-last-child(2), li:nth-last-child(3)){
                 display: none;
             }
-            li:nth-last-child(1){
+            li:nth-last-child(2){
                     border-left: 1px solid #B31312;
             }
             li{
