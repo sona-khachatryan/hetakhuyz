@@ -1,8 +1,6 @@
 import './editSingleNewsContents.style.scss';
-import React, {useContext, useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import AdminSideDropdowns from "../../adminSideDropdowns/AdminSideDropdowns.jsx";
-import axios from "../../interceptor.js";
-import {address} from "../../../../repetitiveVariables/variables.js";
 import {useLocation, useParams} from "react-router-dom";
 import {SelectedValueContext} from "../../adminSideContent/AdminSideContent.jsx";
 import {getSingleNewsToEdit} from "../../../../api/fetchData.js";

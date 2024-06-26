@@ -1,23 +1,19 @@
-import React, {useContext, useEffect, useState} from 'react';
+import {useContext, useState} from 'react';
 import './adminSideDropdowns.style.scss';
 import {createSections, createSubsections} from "../../../api/fetchData.js";
 import AddNewSectionForm from "../addNewSectionForm/AddNewSectionForm.jsx";
 import {SelectedValueContext} from "../adminSideContent/AdminSideContent.jsx";
 import {useLocation} from "react-router-dom";
-function SingleDropdown({title, options, countries, selectedValueState, updateDropDowns}) {
+function SingleDropdown({title, options, selectedValueState, updateDropDowns}) {
 
     const [active, setActive] = useState(false);
     const [addNewSection, setAddNewSection] = useState(false);
     const [selectedValue, setSelectedValue] = selectedValueState;
+
     const selectStates = useContext(SelectedValueContext);
     const [selectedMainSection, setSelectedMainSection] = selectStates.section;
 
     const {pathname} = useLocation();
-
-    useEffect(() => {
-        console.log(selectedValue, 'selected for', title)
-    }, [selectedValue]);
-
 
     const handleCreateNewSection = (section) => {
         if(title.includes('ենթ')) {
