@@ -1,7 +1,7 @@
 import './editContent.style.scss';
-import React, {useContext, useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import AdminSideDropdowns from "../adminSideDropdowns/AdminSideDropdowns.jsx";
-import {getAllLives, getAllNews, getDataToEdit} from "../../../api/fetchData.js";
+import {getDataToEdit} from "../../../api/fetchData.js";
 import {SelectedValueContext} from "../adminSideContent/AdminSideContent.jsx";
 import EditContentList from "./EditContentList.jsx";
 import {Outlet, useLocation} from "react-router-dom";
@@ -22,8 +22,6 @@ function EditContentMain(props) {
     useEffect( () => {
        getDataToEdit(selectedSection, selectedSubsection, selectedNewsType).then(res => setNewsToEdit(res));
     }, [selectedSection.title, selectedSubsection.title, selectedNewsType.title]);
-
-
 
     return (
         <div>

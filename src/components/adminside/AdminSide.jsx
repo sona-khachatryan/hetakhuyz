@@ -1,7 +1,7 @@
 import './adminSide.style.scss';
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import axios from "../adminside/interceptor.js";
-import {NavLink, useLocation, useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import AdminSignIn from "./adminSignIn/AdminSignIn.jsx";
 import AdminSideContent from "./adminSideContent/AdminSideContent.jsx";
 import LogOutModal from "./logOutModal/LogOutModal.jsx";

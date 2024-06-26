@@ -51,10 +51,6 @@ function ContentForm({currentNews}) {
     }, [error]);
 
     useEffect(() => {
-        console.log(photoInputValue, 'currentnews')
-    }, [photoInputValue]);
-
-    useEffect(() => {
         if(pathname.includes('edit') && currentNews) {
             setTitleInputValue(currentNews?.title || '');
             if(selectedNewsType.title === 'Ուղիղ եթեր') {
@@ -153,7 +149,6 @@ function ContentForm({currentNews}) {
                            }});
                    console.log('created');
                } else {
-                   console.log(formData)
                    await axios.put(
                        `${address}/news/editNews/${currentNews?.id}`,
                        formData,
@@ -174,10 +169,6 @@ function ContentForm({currentNews}) {
             }
         }
     }
-
-    useEffect(() => {
-        console.log(selectedNewsType.title === 'Տեքստային', 'inside content form');
-    }, [selectedNewsType.title]);
 
     return (
         <div className='contentForm-container'>

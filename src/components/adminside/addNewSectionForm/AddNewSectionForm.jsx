@@ -1,5 +1,5 @@
 import './addNewSectionForm.style.scss';
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 function AddNewSectionForm({onClose, onSubmit, title}) {
 

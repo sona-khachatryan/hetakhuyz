@@ -1,18 +1,13 @@
-import {useState, useEffect, useContext} from 'react'
+import {useState, useEffect} from 'react'
 import './liveeditcontent.style.scss'
-import {NavLink, useNavigate, useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import { address } from '../../../../repetitiveVariables/variables'
 import axios from '../../interceptor'
-import {SelectedValueContext} from "../../adminSideContent/AdminSideContent.jsx";
 
 const EditLive = () => {
     const [dataId,setDataId] = useState([]);
     const {id} = useParams();
     const navigate = useNavigate();
-
-    const selectedStates = useContext(SelectedValueContext);
-    const [selectedNewsType] = selectedStates.newsType
-
 
   useEffect(()=>{
     (async () => {
@@ -43,9 +38,7 @@ const EditLive = () => {
 
   return (
       <div className='live_edit_content_container'>
-          {/*<NavLink to={`/admin/edit/${id}/edit-content`}>*/}
           <button onClick={handleEdit}>Խմբագրել</button>
-          {/*</NavLink> */}
           <iframe src={dataId?.url}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>

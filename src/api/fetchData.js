@@ -9,7 +9,6 @@ export const getSubsections = async () => {
 
 export const getSections = async () => {
     const {data} = await axios.get(`${address}/countries/getAll`);
-    console.log(data, 'sections')
     const mainSections = [];
     const countries = [];
     data.forEach(option => {
@@ -44,7 +43,7 @@ export const createSections = async (section) => {
                     Authorization: `bearer ${localStorage.getItem('accessToken')}`,
                 }}
             );
-        console.log(data, 'created new section')
+        console.log(data, 'created new section or country')
         // return data;
     } catch (error) {
         console.log(error)
@@ -73,8 +72,8 @@ export const createSubsections = async (section) => {
 export const getAllNews = async () => {
     try {
         const {data}= await axios.get(`${address}/news/getAll`)
-        console.log(data.slice().reverse(), 'allNews')
-        return data.slice().reverse();
+        console.log(data, 'allNews')
+        return data;
     } catch (error) {
         console.log(error)
         return [];
