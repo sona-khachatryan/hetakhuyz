@@ -1,6 +1,6 @@
 import './adminSideContent.style.scss';
 import {createContext, useEffect, useState} from "react";
-import {Link, useNavigate, useLocation, Outlet} from "react-router-dom";
+import {Link, useLocation, Outlet} from "react-router-dom";
 
 export const SelectedValueContext = createContext({});
 function AdminSideContent(props) {
@@ -10,12 +10,6 @@ function AdminSideContent(props) {
     const selectedSubsectionState = useState({});
     const selectedNewsTypeState = useState({});
     const {pathname} = useLocation();
-
-    // const navigate = useNavigate();
-    //
-    // useEffect(()=> {
-    //     navigate('/admin/add');
-    // },[])
 
     useEffect(() => {
         if(pathname.includes('add')) {

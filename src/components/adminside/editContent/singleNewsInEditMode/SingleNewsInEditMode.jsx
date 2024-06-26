@@ -24,10 +24,6 @@ const SingleNewsInEditMode = () => {
         })()
     },[])
 
-    useEffect(() => {
-        console.log(dataId)
-    }, [dataId]);
-
     function handleDelete(){
         (async () => {
             try {

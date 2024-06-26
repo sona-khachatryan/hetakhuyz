@@ -14,7 +14,6 @@ function EditContentList({newsList}) {
 
     useEffect(() => {
         setContentBegining(0);
-        console.log(selectedNewsType)
     }, [newsList]);
 
     return (
