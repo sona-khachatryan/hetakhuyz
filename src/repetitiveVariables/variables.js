@@ -94,21 +94,16 @@ export const categories = {
 
 }
 
-export const categoriesfilter = {
-  1:"politics",
-  2:"legal",
-  3:"military",
-  4:"society",
-  "politics":"Քաղաքական",
-  "legal":"Իրավական",
-  "military":"Ռազմական",
-  "society":"Հասարակություն",
-}
-
-export const contentTypefilter = {
-  "text":"Տեքստային",
-  "video":"Տեսանյութ",
-  "live":"Ուղիղ եթեր"
+export const categoriesHashMatcher = {
+    "Քաղաքական": "politics",
+    "Իրավական": "legal",
+    "Ռազմական": "military",
+    "Հասարակություն": "society",
+    "Հայաստան": "armenia",
+    "Թուրքիա": "turkey",
+    "Վրաստան": "georgia",
+    "Իրան": "iran",
+    "Ադրբեջան": "azerbaijan"
 }
 
 export const contentTypeData = [
