@@ -20,19 +20,19 @@ const AllNews = ({title = "",data=[]}) => {
     }
 
   return (
-    <section className="all_news_container">
-        <h2 className={handleChangeColor()}>{title}</h2>
-        <div>
-            {Array.isArray(data) && data.map((data,key)=>{
+      <section className="all_news_container">
+          <h2 className={handleChangeColor()}>{title}</h2>
+          <div>
+              {Array.isArray(data) && data.map((data,key)=>{
                 if(quantity<key) return
                 return <Link key={key} to={"/news/"+data.id}><NewsContainer data={data && data}/></Link>
             })}
-        </div>
+          </div>
         
-        <div className="see_more">
-          <button  onClick={()=>{setQuantity(quantity+3)}}>Տեսնել ավելին</button>    
-        </div>    
-    </section>
+          <div className="see_more">
+              <button  onClick={()=>{setQuantity(quantity+3)}}>Տեսնել ավելին</button>    
+          </div>    
+      </section>
   )
 }
 
