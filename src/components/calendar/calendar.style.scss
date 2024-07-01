@@ -13,9 +13,8 @@
   width: 387px;
   height: 413px;
   background: radial-gradient(180.16% 143.01% at 20.32% 1.04%, rgb(218, 201, 201) 0%, rgb(200, 211, 217) 77.08%, rgb(184, 194, 199) 100%);
-  //margin-top: 132px;
-  top: 19%;
-  right: 8%;
+  top: 113px;
+  right: 120px;
   border-radius: 10px;
   overflow: hidden;
   z-index: 11111;
@@ -145,27 +144,25 @@
   cursor: auto;
 }
 
+@media (max-width: 1480px) {
+  .calendar-wrapper {
+    top: 96px;
+  }
+}
+
 @media (max-width: 1280px) {
   .calendar-wrapper {
-    top: 17%;
-    right: 7%;
+    right: 80px;
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .calendar-wrapper {
-    top: 14%;
-    right: 6%;
+    right: 60px;
   }
 }
 
-@media (max-width: 768px) {
-  .calendar-wrapper {
-    right: 4%;
-  }
-}
-
-@media (max-width: 640px) {
+@media (max-width: 480px) {
   .calendar-wrapper {
     right: 50%;
     transform: translate(50%, 0);

@@ -19,21 +19,20 @@ const ArticleSubsection = ({title,data,to=""}) => {
   }
 
   return (
-    <div id={to} ref={advisRef} className="aside_container">
-        <h2 className={handleAfterColor()}>{title}</h2>
-        <div>
-        {Array.isArray(data) && data.map((data,key)=>{
-          if(key>2)return
-            return <Link key={key} to={"/news/"+data.id}>
-            <AsideSlice  data={data} />
-            </Link>
-        })}
-        <div className="aside_button">
-          <button><NavLink to={to}>Տեսնել բոլորը</NavLink></button>
-        </div>
-        </div>
-        
-    </div>
+      <div id={to} ref={advisRef} className="aside_container">
+          <h2 className={handleAfterColor()}>{title}</h2>
+          <div className="aside_newscards_container">
+              {Array.isArray(data) && data.map((data, key) => {
+                  if (key > 2) return
+                  return <Link key={key} to={"/news/" + data.id}>
+                      <AsideSlice data={data}/>
+                  </Link>
+              })}
+              {data.length ? <div className="aside_button">
+                  <button><NavLink to={to}>Տեսնել բոլորը</NavLink></button>
+              </div> : ''}
+          </div>
+      </div>
   )
 }
 

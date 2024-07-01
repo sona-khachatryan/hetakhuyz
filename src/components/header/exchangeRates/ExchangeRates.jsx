@@ -17,25 +17,24 @@ const ExchangeRates = () => {
       },[])
 
   return (
-    <div className='exchange_container'>
-        <div>
-            <img src="/img/fa_usd.png" alt="USD" />   
-            <span>{exchangeDate && exchangeDate.USD.slice(0,3)}</span>
-        </div>
-        <div className='exchange_rub'>
-            <img src="/img/bx_ruble.png" alt="RUB" />   
-            <span>{exchangeDate && exchangeDate.RUB.slice(0,4)}</span>
-        </div>
-        {/* <div>
+      <div className='exchange_container'>
+          <div>
+              <img src="/img/usd.svg" alt="USD" />
+              <span>{exchangeDate && exchangeDate.USD.slice(0,3)}</span>
+          </div>
+          <div className='exchange_rub'>
+              <img src="/img/rub.svg" alt="RUB" />
+              <span>{exchangeDate && exchangeDate.RUB.slice(0,4)}</span>
+          </div>
+          {/* <div>
             <img src="/img/tabler_currency-dram.png" alt="Dram" />   
             <span>510</span>
         </div> */}
-        <div>
-            <img src="/img/ic_outline-euro.png" alt="EUR" />   
-            <span>{exchangeDate && exchangeDate.EUR.slice(0,3)}</span>
-        </div>   
-        <hr/>
-    </div>
+          <div>
+              <img src="/img/eur.svg" alt="EUR" />
+              <span>{exchangeDate && exchangeDate.EUR.slice(0,3)}</span>
+          </div>
+      </div>
   )
 }
 

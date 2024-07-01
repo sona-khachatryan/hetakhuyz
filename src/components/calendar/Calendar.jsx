@@ -2,7 +2,6 @@ import './calendar.style.scss';
 import {daysOfWeek, months, monthsFullName} from "../../repetitiveVariables/variables.js";
 import dayjs from "dayjs";
 import {useContext, useEffect, useState} from "react";
-import {getDateSpecificNews} from "../../api/fetchData.js";
 import {CalendarDateContext} from "../../App.jsx";
 import {Link} from "react-router-dom";
 // eslint-disable-next-line react/prop-types
@@ -22,10 +21,6 @@ function Calendar({closeModal}) {
     const formatDate = (selectedYear, selectedMonth, selectedDate) => {
         return now.set('year', selectedYear).set('month', selectedMonth).set('date', selectedDate).format('YYYY-MM-DD');
     }
-
-    useEffect(() => {
-
-    }, []);
 
     useEffect(() => {
         setMonth(months[monthIndex]);
@@ -107,11 +102,10 @@ function Calendar({closeModal}) {
     }
 
     const handleDateClick = async (e) => {
-        // const feed = await getDateSpecificNews(formatDate(year, monthIndex, +e.target.innerText));
         const formattedDate = formatDate(year, monthIndex, +e.target.innerText);
         const dateInArm = `${monthsFullName[monthIndex]}ի ${+e.target.innerText}, ${year}`;
-        // console.log(feed, 'feed')
         setCalendarDate({formattedDate, dateInArm});
+        closeModal();
     }
 
     return (
@@ -138,7 +132,6 @@ function Calendar({closeModal}) {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }

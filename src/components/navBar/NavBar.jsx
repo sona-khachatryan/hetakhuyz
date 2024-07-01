@@ -1,8 +1,10 @@
 import {useEffect, useState} from 'react'
-import "./navbar.style.scss"
-import { Link, NavLink,useLocation} from 'react-router-dom'
+import { NavLink, useLocation} from 'react-router-dom'
 import ExchangeRates from '../header/exchangeRates/ExchangeRates'
 import Calendar from "../calendar/Calendar.jsx";
+import NavBarDropdowns from "./navBarDropdowns/NavBarDropdowns.jsx";
+import {getSections, getSubsections} from "../../api/fetchData.js";
+import "./navbar.style.scss"
 
 const NavBar = () => {
   
@@ -11,16 +13,24 @@ const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [calendarIsOpen, setCalendarIsOpen] = useState(false);
     const {pathname} = useLocation()
+
+    const [subsections, setSubsections] = useState([]);
+    const [countries, setCountries] = useState([]);
+
+    useEffect(() => {
+      getSections().then(res => setCountries(res.countries));
+      getSubsections().then(res => setSubsections(res));
+    }, []);
+
+    useEffect(() => {
+        console.log(countries, subsections)
+    }, [countries, subsections]);
   
-    useEffect(()=>{setIsOpen(false)},[pathname])
-
-    const handleDropdownArmenia = () => {
-        setDropdownArmenia(!dropdownArmenia)
-    }
-
-    const handleDropdownRegion = () => {
-        setDropdownRegion(!dropdownRegion)
-    }
+    useEffect(()=> {
+        setIsOpen(false);
+        setDropdownArmenia(false);
+        setDropdownRegion(false);
+    },[pathname])
 
     const handleTop = (id) => {
         document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -39,55 +49,32 @@ const NavBar = () => {
         <>
             <nav>
                 <div>
-                    <NavLink to="/"><img className='logo' src="/img/Hetaxuyz LOGO.png" alt="Հետախույզ լրատվական լոգո" /></NavLink>
+                    <NavLink to="/"><img className='logo' src="/img/Hetaxuyz%20LOGO.svg" alt="Հետախույզ լրատվական լոգո" /></NavLink>
                 </div>
 
                 <ul>
-                    <li onMouseEnter={handleDropdownArmenia} onMouseLeave={handleDropdownArmenia}>
+                    <li onMouseEnter={() => { setDropdownArmenia(true); setDropdownRegion(false)}}>
                         <NavLink to='armenia'>Հայաստան</NavLink>
-                        {dropdownArmenia && <div className="dropdown_menu">
-                            <div></div>
-                            <ul>
-                                <li><Link onClick={() => handleTop("politics")}
-                                    to={{pathname: '/armenia', hash: '#politics'}}>Քաղաքական</Link></li>
-                                <li><Link onClick={() => handleTop('legal')}
-                                    to={{pathname: '/armenia', hash: '#legal'}}>Իրավական</Link></li>
-                                <li><Link onClick={() => handleTop('military')}
-                                    to={{pathname: '/armenia', hash: '#military'}}>Ռազմական</Link></li>
-                                <li><Link onClick={() => handleTop('society')}
-                                    to={{pathname: '/armenia', hash: '#society'}}>Հասարակություն</Link></li>
-                            </ul>
-                        </div>}
+                        <NavBarDropdowns isOpen={dropdownArmenia} handleTop={handleTop} options={subsections} pathname='/armenia' onClose={() => setDropdownArmenia(false)}/>
                     </li>
 
-                    <li onMouseEnter={handleDropdownRegion} onMouseLeave={handleDropdownRegion}>
+                    <li onMouseEnter={() => {setDropdownRegion(true); setDropdownArmenia(false)}}>
                         <NavLink to="region">Տարածաշրջան</NavLink>
-                        {dropdownRegion && <div className="dropdown_menu">
-                            <div></div>
-                            <ul>
-                                <li><Link onClick={() => handleTop("turkey")}
-                                    to={{pathname: '/region', hash: '#turkey'}}>Թուրքիա</Link></li>
-                                <li><Link onClick={() => handleTop('georgia')}
-                                    to={{pathname: '/region', hash: '#georgia'}}>Վրաստան</Link></li>
-                                <li><Link onClick={() => handleTop('iran')}
-                                    to={{pathname: '/region', hash: '#iran'}}>Իրան</Link></li>
-                                <li><Link onClick={() => handleTop('azerbaijan')}
-                                    to={{pathname: '/region', hash: '#azerbaijan'}}>Ադրբեջան</Link></li>
-                            </ul>
-                        </div>}
+                        <NavBarDropdowns isOpen={dropdownRegion} handleTop={handleTop} options={countries} pathname='/region' onClose={() => setDropdownRegion(false)}/>
                     </li>
 
                     <li><NavLink to="international">Միջազգային</NavLink></li>
+                    <li><NavLink to="international">Տեսադարան</NavLink></li>
                     <li><NavLink to="live">Ուղիղ եթեր</NavLink></li>
                     <li className='burger_menu'>
                         {isOpen ?
-                            <img onClick={() => setIsOpen(false)} src="/img/menu-hamburger-active.png" alt="Մենյու"/> :
-                            <img onClick={() => setIsOpen(true)} src="/img/menu-hamburger.png" alt="Մենյու"/>}
+                            <img onClick={() => setIsOpen(false)} src="/img/menu-hamburger-active.svg" alt="Մենյու"/> :
+                            <img onClick={() => setIsOpen(true)} src="/img/menu-hamburger.svg" alt="Մենյու"/>}
                     </li>
-                    <li><NavLink to="search"><img src={pathname == "/search" ? '/img/Vector.png' : '/img/Vector1.png'}
-                        alt='Որոնել'/></NavLink></li>
+                    <li><NavLink to="search"><img className={pathname === "/search" ? 'search_icon_active' : ''} src='/img/search.svg'
+                                                  alt='Որոնել'/></NavLink></li>
                     <li onMouseEnter={openCalendar}>
-                        <img src='/img/calendar.svg'/>
+                        <img src='/img/calendar.svg' alt='Օրացույց'/>
                         {calendarIsOpen && <Calendar closeModal={closeCalendar}/>}
                     </li>
                 </ul>
@@ -99,7 +86,6 @@ const NavBar = () => {
                     <li><NavLink to="international">Միջազգային</NavLink></li>
                     <li><NavLink to="live">Ուղիղ եթեր</NavLink></li>
                 </ul>
-                <hr />
                 <ExchangeRates/>
             </div>
         </>  
