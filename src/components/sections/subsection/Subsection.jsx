@@ -43,7 +43,7 @@ const Subsection = ({title}) => {
             
               <div>
                   {data.slice(contentBeginning, contentBeginning+6).map((data, key) =>
-                      <Link key={key} to={"/news/"+ data.id}><AsideSlice data={data}/></Link>
+                      <Link key={key} to={"/news/"+ data.id}><AsideSlice key={key} data={data}/></Link>
                   )}
               
                   <div className="flex_container">

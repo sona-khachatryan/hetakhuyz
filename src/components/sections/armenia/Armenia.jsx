@@ -1,9 +1,7 @@
 import "./armenia.style.scss"
 import AllNews from "../../homepage/allnews/AllNews"
 import { useState,useEffect } from "react"
-import axios from "axios"
 import { Link } from "react-router-dom"
-import { address } from "../../../repetitiveVariables/variables"
 import ArticleSubsection from "../article/ArticleSubsection"
 import {getNewsBySectionId, getSections, getSubsections} from "../../../api/fetchData.js";
 
@@ -13,7 +11,6 @@ const Armenia = () => {
     const [dataPolitics,setDataPolitics] = useState([]);
     const [dataLegal,setDataLegal] = useState([]);
     const [dataSociety,setDataSociety] = useState([]);
-    const [subsections, setSubsections] = useState();
 
 
     useEffect(()=>{
