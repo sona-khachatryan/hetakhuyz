@@ -37,6 +37,10 @@ function CalendarNewsFeed(props) {
         console.log(calendarFeed)
     }, [calendarFeed]);
 
+    useEffect(()=>{
+        containerRef.current.scrollIntoView({behavior:"smooth", block: "start"})
+    },[contentBeginning])
+
     return (
         <div ref={containerRef} className='calendar_feed container'>
             <div className='calendar_feed__top'>
