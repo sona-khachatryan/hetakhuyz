@@ -53,76 +53,8 @@
   gap: 20px;
 }
 
-.calendar_feed__news-card {
-  min-height: 193px;
-  //border: 1px solid hotpink;
-  display: flex;
-  gap: 10px;
 
-  img {
-    width: 300px;
-    height: 193px;
-    border-radius: 6px;
-    object-fit: cover;
-  }
-}
-
-.calendar_feed__news-card__text {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 5px;
-}
-
-.calendar_feed__news-card__date {
-  font-family: 'DejavuSans400';
-  font-size: 12px;
-  text-align: left;
-  color: #26262699;
-}
-
-.calendar_feed__news-card__title {
-  font-family: ArmHmksBebasNeue;
-  font-size: 32px;
-  font-weight: 400;
-  text-align: left;
-  color: #1E2022;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.calendar_feed__news-card__description {
-  font-family: DejavuSans400;
-  font-size: 20px;
-  text-align: left;
-  color: #52616B;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-@media (max-width: 1280px) {
-  .calendar_feed__news-card__title {
-    font-size: 26px;
-  }
-
-  .calendar_feed__news-card__description {
-    font-size: 18px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .calendar_feed__news-card__title {
-    font-size: 22px;
-  }
-
-  .calendar_feed__news-card__description {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 768px) {
-
-}
+@media (max-width: 768px) {}
 
 @media (max-width: 640px) {
 
@@ -132,18 +64,6 @@
       font-size: 16px;
       color: #2B2A4C;
     }
-  }
-
-  .calendar_feed__news-card {
-    min-height: 193px;
-
-    img {
-      width: 144px;
-      height: 92px;
-    }
-  }
-  .calendar_feed__news-card__description {
-    font-size: 12px;
   }
 }
 

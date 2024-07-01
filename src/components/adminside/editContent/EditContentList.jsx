@@ -1,8 +1,7 @@
 import './editContent.style.scss';
-import React, {useContext, useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import SingleNewsCard from "../../singleNewsCard/SingleNewsCard.jsx";
 import Pagination from "../../pagination/Pagination.jsx";
-// import '../../calendar/calendarNewsFeed/calendarNewsFeed.style.scss';
 import './editContent.style.scss';
 import {SelectedValueContext} from "../adminSideContent/AdminSideContent.jsx";
 
