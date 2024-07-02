@@ -30,7 +30,7 @@ function EditContentList({newsList}) {
                                 <SingleNewsCard key={index} news={news} index={index} path={selectedNewsType.title==='Ուղիղ եթեր' ? `/admin/edit/live/${news.id}` : `/admin/edit/${news.id}`}/>
                         )}
                             <Pagination totalElements={newsList?.length} contentBeginning={contentBeginning}
-                                    setContentBeginning={setContentBegining}/>
+                                    setContentBeginning={setContentBegining} elementsPerPage={6}/>
                         </div>
                     :
                         <p className='edit_content_list__no-result'>Արդյունք չի գտնվել</p>

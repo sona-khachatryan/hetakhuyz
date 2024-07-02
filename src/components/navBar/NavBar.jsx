@@ -64,7 +64,7 @@ const NavBar = () => {
                     </li>
 
                     <li><NavLink to="international">Միջազգային</NavLink></li>
-                    <li><NavLink to="international">Տեսադարան</NavLink></li>
+                    <li><NavLink to="videos">Տեսադարան</NavLink></li>
                     <li><NavLink to="live">Ուղիղ եթեր</NavLink></li>
                     <li className='burger_menu'>
                         {isOpen ?
@@ -84,6 +84,7 @@ const NavBar = () => {
                     <li><NavLink to='armenia'>Հայաստան</NavLink></li>
                     <li><NavLink to="region">Տարածաշրջան</NavLink></li>
                     <li><NavLink to="international">Միջազգային</NavLink></li>
+                    <li><NavLink to="videos">Տեսադարան</NavLink></li>
                     <li><NavLink to="live">Ուղիղ եթեր</NavLink></li>
                 </ul>
                 <ExchangeRates/>

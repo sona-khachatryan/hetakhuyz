@@ -5,9 +5,9 @@
 .watch_clip{
     margin-top: 40px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 30px;
 }
 
 @media screen and (max-width:1190px) {
