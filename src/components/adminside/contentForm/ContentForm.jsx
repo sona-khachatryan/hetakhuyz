@@ -60,7 +60,7 @@ function ContentForm({currentNews}) {
                 setArticleAuthorInputValue(currentNews?.newsContent?.author || '');
                 setPhotoAuthorInputValue(currentNews?.newsContent?.file?.author || '');
                 setPhotoInputValue(currentNews?.img || '');
-                setVideoInputValue(currentNews?.newsContent?.file?.url.includes('yout') ? '' : currentNews?.newsContent?.file?.url);
+                setVideoInputValue(currentNews?.newsContent?.file?.url.includes('www') ? '' : currentNews?.newsContent?.file?.url);
                 setNewsTextValue(currentNews?.newsContent?.description || '');
                 setVideoLinkInputValue(!currentNews?.newsContent?.file?.isImage ? currentNews?.newsContent?.file?.url : '');
             }

@@ -76,7 +76,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 90%;
+    width: 60%;
     h2{
         text-align: center;
         font-family: "ArmHmksBebasNeue";
@@ -88,12 +88,16 @@
         padding-inline: 10px;
 
     }
-    img,video{
+    img ,video, iframe{
         margin: 40px 0 7.5px;
-        width: 100%;
+        min-width: 80%;
+        max-width: 90%;
         height: auto;
         max-height: 441px;
         object-fit: contain;
+    }
+    iframe {
+        min-height: 400px;
     }
     h3{
         font-family: "DejavuSans400";
@@ -143,10 +147,11 @@
         letter-spacing: 0.01em;
 
     }
-    img,video{
+    img,video,iframe {
         margin: 40px 0;
         width: 100%;
         max-height: 606px;
+        object-fit: contain;
     }
     ul{
         list-style-type: square;
@@ -238,6 +243,13 @@
     }
 }
 
+@media screen and (max-width:1280px) {
+    .single_page_title {
+        iframe, video {
+            min-height: 340px;
+        }
+    }
+}
 
 @media screen and (max-width:1024px) {
     .single_page_container{
@@ -266,6 +278,15 @@
     .single_page_container{
         padding: 40px 60px;
     }
+    .single_page_title{
+        //h2{
+        //    font-size: 24px;
+        //}
+        iframe, video{
+            min-height: 320px;
+        }
+    }
+
     .single_page_about_bottom{
         padding-left: 0;
         h4{
@@ -276,6 +297,14 @@
             img{
                 width: 24px;
             }
+        }
+    }
+}
+
+@media screen and (max-width:640px) {
+    .single_page_title {
+        iframe, video {
+            min-height: 250px;
         }
     }
 }
@@ -297,6 +326,9 @@
             font-size: 16px;
             margin-left: 16px;
         }
+        iframe, video {
+            min-height: 200px;
+        }
     }
     .single_page_about{
         div:not(.html_content){
@@ -306,6 +338,14 @@
         }
         h3,h2{
             font-size: 22px;
+        }
+    }
+}
+
+@media screen and (max-width:390px) {
+    .single_page_title {
+        iframe, video {
+            min-height: 180px;
         }
     }
 }

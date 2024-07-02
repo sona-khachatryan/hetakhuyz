@@ -19,15 +19,15 @@ const Watch = () => {
     },[])
     
   return (
-    <section className="watch_container">
-      <h2>Դիտել</h2>
-        <div className="watch_clip">
-          {Array.isArray(dataWatch) && dataWatch.map((data,key)=>{
+      <section className="watch_container">
+          <h2>Դիտել</h2>
+          <div className="watch_clip">
+              {Array.isArray(dataWatch) && dataWatch.map((data,key)=>{
             if(key>=2)return
-            return <Link key={key} to={"videos/"+data.id}><WatchClip data={data && data}/></Link>    
+            return <Link key={key} to={`/news/${data?.id}`}><WatchClip data={data && data}/></Link>    
             })}            
-        </div>    
-    </section>
+          </div>    
+      </section>
   )
 }
 

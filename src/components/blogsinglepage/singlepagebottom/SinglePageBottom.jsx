@@ -1,7 +1,7 @@
 import "./singlepagebottom.style.scss"
 import SearchSlice from "../../search/searchslice/SearchSlice"
 import ManyViewsSlice from "./manyviewsslice/ManyViewsSlice"
-import {  NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 const SinglePageBottom = ({mostViewedNews,relatesNews}) => {
   return (
@@ -10,7 +10,7 @@ const SinglePageBottom = ({mostViewedNews,relatesNews}) => {
               <h3>Դուք կհավանեք</h3>
               <div>
                   {relatesNews.map((data,key)=>{
-                 return <NavLink key={key} to={(data.newsContent?.file.isImage?"/news/":"/videos/")+data.id}> <SearchSlice  data={data && data}/></NavLink>
+                 return <NavLink key={key} to={`/news/${data?.id}`}><SearchSlice  data={data && data}/></NavLink>
         })
         }
               </div>
@@ -20,7 +20,7 @@ const SinglePageBottom = ({mostViewedNews,relatesNews}) => {
               <h3>Շատ դիտվող</h3>
               <div>
                   {mostViewedNews.map((data,key)=>{
-                    return <NavLink key={key} to={(data.newsContent?.file.isImage?"/news/":"/videos/")+data.id}><ManyViewsSlice data={data && data} count={key+1}/></NavLink>
+                    return <NavLink key={key} to={`/news/${data?.id}`}><ManyViewsSlice data={data && data} count={key+1}/></NavLink>
                 })}
               </div>
           </div>
