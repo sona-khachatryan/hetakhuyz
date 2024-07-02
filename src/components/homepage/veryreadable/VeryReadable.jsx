@@ -23,7 +23,7 @@ const VeryReadable = () => {
   return (
     <section className='very_readable_container'>
       <div className='very_readables'>
-        <h2>Շատ կարդացվող</h2>
+        <h2>Շատ կարդացված</h2>
           <div className='very_readable_left'>
             {Array.isArray(dataMostWiew) && dataMostWiew.map((data,key)=>{
               if(key>=2)return

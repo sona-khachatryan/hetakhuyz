@@ -14,9 +14,9 @@ function SingleNewsCard({news, index, path}) {
                     {news?.title ? <p className='single_news-card__title'>
                         {news?.title}
                     </p> : ''}
-                    {news?.description ? <p className='single_news-card__description'>
-                        {news?.description}
-                    </p> : ''}
+                    {/*{news?.description ? <p className='single_news-card__description'>*/}
+                    {/*    {news?.description}*/}
+                    {/*</p> : ''}*/}
                 </div>
             </div>
         </Link>
