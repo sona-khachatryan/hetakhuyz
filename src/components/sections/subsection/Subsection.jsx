@@ -47,7 +47,7 @@ const Subsection = ({title}) => {
                   )}
               
                   <div className="flex_container">
-                      <Pagination totalElements={data?.length} contentBeginning={contentBeginning} setContentBeginning={setContentBegining}/>
+                      <Pagination totalElements={data?.length} contentBeginning={contentBeginning} setContentBeginning={setContentBegining} elementsPerPage={6}/>
                   </div>
               </div>
           </div>

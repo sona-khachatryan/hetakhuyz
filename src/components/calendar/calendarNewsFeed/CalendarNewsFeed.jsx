@@ -59,7 +59,7 @@ function CalendarNewsFeed(props) {
                                 <SingleNewsCard key={index} news={news} index={index} path={`/news/${news?.id}`}/>
                             )}
                             <Pagination totalElements={calendarFeed?.length} contentBeginning={contentBeginning}
-                                        setContentBeginning={setContentBegining}/>
+                                        setContentBeginning={setContentBegining} elementsPerPage={6}/>
                         </div>
                     :
                         <p className='calendar_feed__no-result'>Արդյունք չի գտնվել</p>

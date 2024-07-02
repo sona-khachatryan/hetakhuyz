@@ -12,17 +12,15 @@ import Subsection from './components/sections/subsection/Subsection'
 import SinglePage from './components/blogsinglepage/SinglePage'
 import Search from './components/search/Search'
 import LiveStream from './components/livestream/LiveStream'
-import SinglePageVideo from './components/blogsinglepage/singlepagevideo/SinglePageVideo'
 import International from './components/sections/international/International'
-import axios from 'axios'
 import CalendarNewsFeed from "./components/calendar/calendarNewsFeed/CalendarNewsFeed.jsx";
 import AdminSide from "./components/adminside/AdminSide.jsx";
 import AddNewContent from "./components/adminside/addNewContent/AddNewContent.jsx";
 import EditContentMain from "./components/adminside/editContent/EditContentMain.jsx";
 import SingleNewsInEditMode from "./components/adminside/editContent/singleNewsInEditMode/SingleNewsInEditMode.jsx";
-import EditSingleNewsContents
-    from "./components/adminside/editContent/editSingleNewsContents/EditSingleNewsContents.jsx";
+import EditSingleNewsContents from "./components/adminside/editContent/editSingleNewsContents/EditSingleNewsContents.jsx";
 import EditLive from "./components/adminside/editContent/liveeditcontent/EditLive.jsx";
+import Videos from "./components/videos/Videos.jsx";
 export const CalendarDateContext = createContext([]);
 
 
@@ -44,7 +42,6 @@ const App = () => {
                 <Routes >
                     <Route index element={<Main/>}/>
                     <Route path='news/:id' element={<SinglePage/>}/>
-                    <Route path='videos/:id' element={<SinglePageVideo/>}/>
 
                     <Route path='armenia' element = {<Armenia/>}/>
                     <Route path='armenia/politics' element = {<Subsection title="Քաղաքական"/>}/>
@@ -64,6 +61,7 @@ const App = () => {
                     <Route path='live/:id' element = {<LiveStream/>}/>
                     <Route path='search' element = {<Search/>}/>
                     <Route path='calendar' element = {<CalendarNewsFeed/>}/>
+                    <Route path='videos' element={<Videos/>}/>
 
                     <Route path='admin' element = {<AdminSide/>}>
                         <Route path='/admin/add' element = {<AddNewContent/>} />

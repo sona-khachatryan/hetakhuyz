@@ -2,9 +2,8 @@ import {useState} from 'react';
 import './pagination.style.scss';
 
 // eslint-disable-next-line react/prop-types
-function Pagination({totalElements,contentBeginning,setContentBeginning}) {
+function Pagination({totalElements,contentBeginning,setContentBeginning, elementsPerPage}) {
 
-    const elementsPerPage = 6;
     const maxPagesToShow = 4;
     const totalPages = Math.ceil(totalElements / elementsPerPage);
 
@@ -25,22 +24,22 @@ function Pagination({totalElements,contentBeginning,setContentBeginning}) {
 
     const handlePageClick = (page) => {
         setCurrentPage(page);
-        setContentBeginning((page*6)-6)
+        setContentBeginning((+page * +elementsPerPage)- +elementsPerPage)
     };
 
     const handleNext = () => {
         setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-        setContentBeginning(contentBeginning + 6);
+        setContentBeginning(contentBeginning + +elementsPerPage);
     };
 
     const handlePrev = () => {
         setCurrentPage((prev) => Math.max(prev - 1, 1));
-        setContentBeginning(contentBeginning - 6);
+        setContentBeginning(contentBeginning - +elementsPerPage);
     };
 
     return (
         <>
-            {totalElements > 6 ?
+            {totalElements > +elementsPerPage ?
                 <div className="paginate_ctn">
                     <div className={"arrow " + (currentPage === 1 ? "" : "arrow_active")} onClick={currentPage === 1 ? null : handlePrev}>
                         ←
@@ -49,7 +48,6 @@ function Pagination({totalElements,contentBeginning,setContentBeginning}) {
                         <div
                             key={page}
                             onClick={() => handlePageClick(page)}
-                            // style={{fontWeight: page === currentPage ? 'bold' : 'normal'}}
                             className={"round_effect " + (page === currentPage ? "paginate_active" : "")}
                         >
                             {page}
