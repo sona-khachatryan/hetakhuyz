@@ -46,14 +46,13 @@ const Search = () => {
             {searchData.length === 0 ? search && <h2>Արդյունք չի գտնվել</h2> : searchData &&
             <>
                 {searchData.slice(contentBeginning, contentBeginning+6).map((data, key) =>
-                    // <Link key={key} to={(data.newsContent?.file.isImage? "/news/" : "/videos/") + data.id}>
                     <Link key={key} to={`/news/${data?.id}`}>
                         <SearchSlice data={data}/>
                     </Link>
                 )}
 
                 <div className="flex_container search_paginate_container">
-                    <Pagination totalElements={searchData?.length} contentBeginning={contentBeginning} setContentBeginning={setContentBegining}/>
+                    <Pagination totalElements={searchData?.length} contentBeginning={contentBeginning} setContentBeginning={setContentBegining} elementsPerPage={6}/>
                 </div>
             </>
             }

@@ -1,7 +1,8 @@
 .watch_clip_container{
-    width: 590px;
+    width: 550px;
+    height: 460px;
     position: relative;
-    div{
+    span{
         position: absolute;
         top: 22px;
         left: 22px;
@@ -23,15 +24,23 @@
             vertical-align: middle;
         }
     }
-    >img{
+
+    .image_container {
         width: inherit;
-        height: 378px;
-        border-radius: 6px;
-        cursor: pointer;
-    }
-    >img:hover{
-        background-color: #2B2A4C66;
-        filter: brightness(40%)
+        height: auto;
+        min-height: 70px;
+        max-height: 378px;
+        img{
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+            cursor: pointer;
+            object-fit: cover;
+        }
+        img:hover{
+            background-color: #2B2A4C66;
+            filter: brightness(40%)
+        }
     }
     h3{
         margin-top: 20px;
@@ -39,7 +48,6 @@
         font-family: "ArmHmksBebasNeue";
         font-size: 32px;
         font-weight: 400;
-        line-height: 131.25%;
         letter-spacing: 0.32px;
         text-transform: uppercase;
         padding-inline: 1px;
@@ -52,55 +60,70 @@
     }
 }
 
+.watch_clip_container:hover {
+    h3 {
+        color: #981110;
+    }
 
-@media screen and (max-width:1430px) {
-    .watch_clip_container{
-        width: 550px;
+    span {
+        background-color: #981110;
     }
 }
 
-
-@media screen and (max-width:1390px) {
+@media screen and (max-width:1440px) {
     .watch_clip_container{
-        width: 510px;
+        width: 495px;
     }
 }
 
-@media screen and (max-width:1390px) {
+@media screen and (max-width:1220px) {
     .watch_clip_container{
-        width: 510px;
+        width: 430px;
+        height: 410px;
     }
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:1024px) {
     .watch_clip_container{
-        width: 328px;
-        >img{
-            height: 210px;
-        }
-        >div{
-            padding:5px 10px;
+        width: 350px;
+        height: 340px;
+        >span{
+            padding:10px 10px;
             top:10px;
             left: 10px;
             img{
-                width: 24px;
+                width: 20px;
             }
             p{
                 font-size: 16px;
             }
         }
         h3{
-            font-size: 20px;
+            font-size: 26px;
+        }
+    }
+}
+
+@media screen and (max-width:640px) {
+    .watch_clip_container{
+        width: 328px;
+        height: 310px;
+        .image_container {
+            height: 210px;
+        }
+        h3{
+            font-size: 22px;
         }
     }
 }
 
 
-@media screen and (max-width:345px) {
+@media screen and (max-width:390px) {
     .watch_clip_container{
         width: 300px;
+        height: 300px;
         h3{
-            font-size: 16px;
+            font-size: 20px;
         }
     }
 }

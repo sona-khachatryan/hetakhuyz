@@ -20,7 +20,7 @@ const Watch = () => {
     
   return (
       <section className="watch_container">
-          <h2>Դիտել</h2>
+          <h2>Տեսադարան</h2>
           <div className="watch_clip">
               {Array.isArray(dataWatch) && dataWatch.map((data,key)=>{
             if(key>=2)return
