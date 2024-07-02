@@ -1,10 +1,14 @@
 .live_stream_container{
     padding: 90px 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     iframe{
-        width: 100%;
-        height: 601px;
+        width: 70%;
+        height: 440px;
     }
     >div:first-of-type{
+        width: 70%;
         margin-top: 32px;
         display: flex;
         justify-content: space-between;
@@ -53,6 +57,7 @@ button:hover{
 }
 
 .live_streams_additional,.many_views_container{
+    width: 100%;
     margin-top: 90px;
     
     h2{
@@ -71,23 +76,20 @@ button:hover{
         padding-top: 3px;
         border-radius: 5px;
         height: 3px;
-        background:linear-gradient(90deg, #B31312 -2.38%, rgba(179, 19, 18, 0) 101.19%) ;   
-
-        
+        background:linear-gradient(90deg, #B31312 -2.38%, rgba(179, 19, 18, 0) 101.19%) ;
         
     }
     >div{
         margin-top: 30px;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 40px 19px;
     }
     .many_views_btn{
         display: none;
     }
 }
-
 
 @media screen and (max-width:1278px) {
     .many_views_container>.many_views_btn{
@@ -101,10 +103,20 @@ button:hover{
     }
 }
 
-@media screen and (max-width:1032px) {
+@media screen and (max-width:1024px) {
     .aside_btn{
         display: block;
     }
+    .live_stream_container {
+        iframe{
+            width: 80%;
+            height: 400px;
+        }
+        >div:first-of-type {
+            width: 80%;
+        }
+    }
+
 }
 
 @media screen and (max-width:920px) {
@@ -148,12 +160,14 @@ button:hover{
 
 }
 
-@media screen and (max-width:620px) {
+@media screen and (max-width:640px) {
     .live_stream_container{
         >div:first-of-type{
-            ul{
-               margin: 0 auto;
-            }
+            width:100%;
+        }
+        iframe {
+            height: 250px;
+            width: 100%;
         }
     }  
     .live_streams_additional,.many_views_container{
@@ -182,7 +196,11 @@ button:hover{
     .live_stream_container{
         padding-inline: 10px;
         iframe{
-            height: 233px;
+            width: 90%;
+            height: 200px;
+        }
+        >div:first-of-type{
+            width: 90%;
         }
     }  
 }
