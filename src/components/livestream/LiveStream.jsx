@@ -41,25 +41,32 @@ const LiveStream = () => {
   
   return (
       <main className="live_stream_container">
-          {
-        dataLives && <iframe src={dataLives && dataLives[id || 0]?.url} ></iframe>
-      }
+          {dataLives && <iframe src={dataLives && dataLives[id || 0]?.url} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                             referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>}
           <div>
-              <h3>24/7 ուղիղ եթերներ Լոռեմ կայքից</h3>
+              <h3>{dataLives[id || 0]?.title}</h3>
               <ul>
-                  <li><img src="./img/Group.png" /></li>
-                  <li><img src="./img/Group1.png" /></li>
-                  <li><img src="./img/Group2.png" /></li>
-                  <li><img src="./img/Group3.png" /></li>
+                  <li>
+                      <img src="/img/facebook.svg" alt="Facebook"/>
+                  </li>
+                  <li>
+                      <img src="/img/insta.svg" alt="Instagram"/>
+                  </li>
+                  <li>
+                      <img src="/img/twitter.svg" alt="Twitter"/>
+                  </li>
+                  <li>
+                      <img src="/img/link.svg" alt="Link"/>
+                  </li>
               </ul>
           </div>
           <div className="live_streams_additional">
               <h2>Լրացուցիչ ուղիղ եթերներ</h2>
               <div>
-                  {Array.isArray(dataLives) && dataLives.map(({url,title,id},key)=>{
-                    if(quantity<key) return
-                    return <NavLink key={key} to={"/live/"+id}><LiveStreamSlice url={url} title={title} /></NavLink>
-                })}
+                  {Array.isArray(dataLives) && dataLives.map(({url, title, id}, key) => {
+                      if (quantity < key) return
+                      return <NavLink key={key} to={"/live/" + id}><LiveStreamSlice url={url} title={title}/></NavLink>
+                  })}
               </div>
           </div>
           <div className="aside_btn">
