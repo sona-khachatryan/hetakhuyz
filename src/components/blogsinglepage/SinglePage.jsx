@@ -75,7 +75,6 @@ const SinglePage = () => {
 
               </div>
               <div className="single_page_about_bottom">
-                  {/*<h4>Հեղ․՝ հեղինակ</h4>*/}
                   <h4>{dataId && dataId?.newsContent?.author ? `Հեղ․՝ ${dataId?.newsContent?.author}` : ''}</h4>
                   <ul>
                       <li>
