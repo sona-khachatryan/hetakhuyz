@@ -75,11 +75,14 @@ const SingleNewsInEditMode = () => {
                 <h2>{dataId?.title}</h2>
                 {dataId && !dataId?.newsContent?.file?.isImage
                     ?
-                  (dataId?.newsContent?.file?.url?.includes('yout')
-                        ?
-                            <iframe src={dataId?.newsContent?.file?.url} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin"></iframe>
-                        :
-                            <iframe src={address + "/" + dataId?.newsContent?.file?.url}></iframe>)
+                       (dataId?.newsContent?.file?.url?.includes('www')
+                           ?
+                               <iframe src={dataId?.newsContent?.file?.url}
+                                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                           referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                               :
+                               <video controls src={address + "/" + dataId?.newsContent?.file?.url}></video>
+                       )
                     :
                     dataId && <img src={`${address}/${dataId?.img}`} alt="Լրատվական Նկար"/>}
                 {dataId?.newsContent?.file?.author ? <h3>{dataId?.newsContent?.file?.isImage ? 'Նկարի' : 'Տեսանյութի'} հեղինակ՝ {dataId?.newsContent?.file?.author}</h3> : ''}

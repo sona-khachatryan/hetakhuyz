@@ -40,44 +40,44 @@ const LiveStream = () => {
       
   
   return (
-    <main className="live_stream_container">
-      {
+      <main className="live_stream_container">
+          {
         dataLives && <iframe src={dataLives && dataLives[id || 0]?.url} ></iframe>
       }
-        <div>
-            <h3>24/7 ուղիղ եթերներ Լոռեմ կայքից</h3>
-            <ul>
-                <li><img src="./img/Group.png" /></li>
-                <li><img src="./img/Group1.png" /></li>
-                <li><img src="./img/Group2.png" /></li>
-                <li><img src="./img/Group3.png" /></li>
-            </ul>
-        </div>
-        <div className="live_streams_additional">
-            <h2>Լրացուցիչ ուղիղ եթերներ</h2>
-            <div>
-                {Array.isArray(dataLives) && dataLives.map(({url,title,id},key)=>{
+          <div>
+              <h3>24/7 ուղիղ եթերներ Լոռեմ կայքից</h3>
+              <ul>
+                  <li><img src="./img/Group.png" /></li>
+                  <li><img src="./img/Group1.png" /></li>
+                  <li><img src="./img/Group2.png" /></li>
+                  <li><img src="./img/Group3.png" /></li>
+              </ul>
+          </div>
+          <div className="live_streams_additional">
+              <h2>Լրացուցիչ ուղիղ եթերներ</h2>
+              <div>
+                  {Array.isArray(dataLives) && dataLives.map(({url,title,id},key)=>{
                     if(quantity<key) return
                     return <NavLink key={key} to={"/live/"+id}><LiveStreamSlice url={url} title={title} /></NavLink>
                 })}
-            </div>
-        </div>
-            <div className="aside_btn">
-          <button  onClick={()=>{setQuantity(quantity+3)}}>Տեսնել բոլորը</button>    
-        </div> 
-        <div className="many_views_container">
-            <h2>Շատ դիտվածներ</h2>
-            <div>
-               {Array.isArray(dataWatch) && dataWatch.map((data,key)=>{
+              </div>
+          </div>
+          <div className="aside_btn">
+              <button  onClick={()=>{setQuantity(quantity+3)}}>Տեսնել բոլորը</button>    
+          </div> 
+          <div className="many_views_container">
+              <h2>Շատ դիտվածներ</h2>
+              <div>
+                  {Array.isArray(dataWatch) && dataWatch.map((data,key)=>{
                     if(manyViewsQuantity<key)return
-                return <NavLink to={'/videos/'+data.id} key={key}><WatchClip  data={data}/></NavLink>
+                return <NavLink to={`/news/${data?.id}`} key={key}><WatchClip  data={data}/></NavLink>
                })}
-            </div>
-            <div className="aside_btn many_views_btn" >
-          <button  onClick={()=>{setManyViewsQuantity(manyViewsQuantity+3)}}>Տեսնել բոլորը</button>    
-        </div> 
-        </div>
-    </main>
+              </div>
+              <div className="aside_btn many_views_btn" >
+                  <button  onClick={()=>{setManyViewsQuantity(manyViewsQuantity+3)}}>Տեսնել բոլորը</button>    
+              </div> 
+          </div>
+      </main>
   )
 }
 
