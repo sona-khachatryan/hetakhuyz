@@ -57,12 +57,11 @@
     .home_page_top_section {
         width: 100%;
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
 
     .home_page_daily-and-mostly-read {
         width: 100%;
-        border: 1px solid orange;
     }
 }
 
