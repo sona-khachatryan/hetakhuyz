@@ -16,6 +16,15 @@
     }
 }
 
+.home_page_top_section {
+    width: 100%;
+    display: flex;
+}
+
+.home_page_daily-and-mostly-read {
+    width: 70%;
+}
+
 @media screen and (max-width:1280px) {
     .home_page{
         margin-inline: 80px;
@@ -45,8 +54,18 @@
         }
     }
 
-   
+    .home_page_top_section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .home_page_daily-and-mostly-read {
+        width: 100%;
+        border: 1px solid orange;
+    }
 }
+
 @media screen and (max-width:425px) {
     .home_page{
         margin-inline: 10px;
