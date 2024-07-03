@@ -1,5 +1,24 @@
 .watch_container{
     margin-top: 90px;
+    width: 100%;
+    div {
+        h2 {
+            font-family: BraindYerevan;
+            font-size: 30px;
+            font-weight: 400;
+            line-height: 50px;
+            text-align: left;
+            color: #1E2022;
+        }
+
+        hr {
+            width: 40px;
+            height: 0;
+            border-bottom: 3px solid;
+            border-image-source: linear-gradient(90deg, #B31312 -2.38%, rgba(179, 19, 18, 0) 101.19%);
+            border-image-slice: 1;
+        }
+    }
 }
 
 .watch_clip{
@@ -7,32 +26,17 @@
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 20px;
 }
 
-@media screen and (max-width:1190px) {
-    .watch_container{
-        width: 500px;
-        margin-inline:auto;
-    }
+@media screen and (max-width:1080px) {
     .watch_clip{
-        gap: 24px;
+        gap: 10px;
     }
 }
 
 @media screen and (max-width:768px) {
     .watch_container{
         margin-top: 40px;
-    }
-}
-
-@media screen and (max-width:600px) {
-    .watch_container{
-        width: 328px;
-    }
-}
-@media screen and (max-width:425px) {
-    .watch_container{
-        width: 300px;
     }
 }
