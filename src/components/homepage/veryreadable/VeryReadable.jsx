@@ -21,22 +21,25 @@ const VeryReadable = () => {
   },[])
 
   return (
-    <section className='very_readable_container'>
-      <div className='very_readables'>
-        <h2>Շատ կարդացված</h2>
-          <div className='very_readable_left'>
-            {Array.isArray(dataMostWiew) && dataMostWiew.map((data,key)=>{
-              if(key>=2)return
-              return <Link key={key} to={"/news/"+data.id}><VeryReadableNews data={data && data}/></Link>
-            })}
+      <section className='very_readable_container'>
+          <div className='very_readables'>
+              <div>
+                  <h2>Շատ կարդացված</h2>
+                  <hr/>
+              </div>
+              <div className='very_readable_left'>
+                  {Array.isArray(dataMostWiew) && dataMostWiew.map((data, key) => {
+                      if (key >= 3) return
+                      return <Link key={key} to={"/news/" + data.id}><VeryReadableNews data={data && data}/></Link>
+                  })}
+              </div>
           </div>
-      </div>
-      
-      <div className='very_readable_right'>
-       {dataMostWiew && dataMostWiew[2] && <Link to={'/news/'+dataMostWiew[2]?.id}>
-        <VeryReadableNewsRight data = {dataMostWiew[2]}/></Link>}
-      </div>
-    </section>
+
+          <div className='very_readable_right'>
+              {dataMostWiew && dataMostWiew[2] && <Link to={'/news/'+ dataMostWiew[2]?.id}>
+                  <VeryReadableNewsRight data = {dataMostWiew[2]}/></Link>}
+          </div>
+      </section>
   )
 }
 

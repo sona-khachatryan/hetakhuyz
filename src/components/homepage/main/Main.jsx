@@ -6,6 +6,7 @@ import AllNews from '../allnews/AllNews'
 import axios from 'axios'
 import { useEffect,useState } from 'react'
 import { address } from '../../../repetitiveVariables/variables'
+import HourlyNewsFeed from "../hourlyNewsFeed/HourlyNewsFeed.jsx";
 
 
 const Main = () => {
@@ -26,12 +27,17 @@ const Main = () => {
   },[])
  
   return (
-    <main className='home_page'>
-        <TodayNews/>
-        <VeryReadable/>
-        <Watch/>
-        <AllNews title={"Բոլոր նորությունները"} data={dataAllNews && dataAllNews}/>
-    </main>
+      <main className='home_page'>
+          <div className='home_page_top_section'>
+              <HourlyNewsFeed/>
+              <div className='home_page_daily-and-mostly-read'>
+                  <TodayNews/>
+                  <VeryReadable/>
+              </div>
+          </div>
+          <Watch/>
+          <AllNews title={"Բոլոր նորությունները"} data={dataAllNews && dataAllNews}/>
+      </main>
   )
 }
 

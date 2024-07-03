@@ -1,19 +1,14 @@
 .home_page{
     margin-inline: 120px;
-    h2{
-        font-family: "BraindYerevan";
-        font-size: 30px;
-    }
-    
-    h2::after {
-        content: "";
-        display: block;
-        width: 42px;
-        margin-top: 5px;
-        padding-top: 3px;
-        border-radius: 5px;
-        background:linear-gradient(to left, rgba(255, 241, 241, 0) 0%,rgba(179, 19, 18, 0.80) 71%) ;   
-    }
+}
+
+.home_page_top_section {
+    width: 100%;
+    display: flex;
+}
+
+.home_page_daily-and-mostly-read {
+    width: 70%;
 }
 
 @media screen and (max-width:1280px) {
@@ -39,14 +34,18 @@
 }
 
 @media screen and (max-width:768px) {
-    .home_page{
-        h2{
-            font-size: 24px;
-        }
+
+    .home_page_top_section {
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
     }
 
-   
+    .home_page_daily-and-mostly-read {
+        width: 100%;
+    }
 }
+
 @media screen and (max-width:425px) {
     .home_page{
         margin-inline: 10px;
