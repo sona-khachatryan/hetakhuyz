@@ -10,7 +10,7 @@ function HourlyNewsFeed(props) {
         (async () => {
             try {
                 const allNews = await getAllNews();
-                setNews(allNews.filter(news => news?.newsContent?.file?.isImage).slice(0,6));
+                setNews(allNews.filter(news => news?.newsContent?.file?.isImage).slice(0,8));
             } catch (error) {
                 console.log(error)
             }

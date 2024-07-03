@@ -35,7 +35,6 @@ const Footer = () => {
 
         </div>
         <hr />
-        <h4>© Tesvan llc</h4>
     </footer>
   )
 }
