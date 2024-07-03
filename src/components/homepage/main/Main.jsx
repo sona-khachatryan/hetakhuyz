@@ -35,8 +35,10 @@ const Main = () => {
                   <VeryReadable/>
               </div>
           </div>
-          <Watch/>
-          <AllNews title={"Բոլոր նորությունները"} data={dataAllNews && dataAllNews}/>
+          <div className='home_page_bottom_section'>
+              <Watch/>
+              <AllNews title={"Բոլոր նորությունները"} data={dataAllNews && dataAllNews}/>
+          </div>
       </main>
   )
 }

@@ -6,7 +6,11 @@
     width: 100%;
     display: flex;
 }
-
+.home_page_bottom_section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
 .home_page_daily-and-mostly-read {
     width: 70%;
 }
