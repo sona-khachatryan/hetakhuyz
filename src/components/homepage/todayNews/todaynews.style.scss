@@ -1,6 +1,7 @@
 .today_news_top{
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     margin: 42px 0 40px;
     position: relative;
 
@@ -8,13 +9,26 @@
         font-family: "DejavuSansExtraLight";
         font-size: 24px;
     }
+
+    div {
+        h3 {
+            font-family: BraindYerevan;
+            font-size: 30px;
+            font-weight: 400;
+            line-height: 50px;
+            text-align: left;
+            color: #1E2022;
+        }
+
+        hr {
+            width: 40px;
+            height: 0;
+            border-bottom: 3px solid;
+            border-image-source: linear-gradient(90deg, #B31312 -2.38%, rgba(179, 19, 18, 0) 101.19%);
+            border-image-slice: 1;
+        }
+    }
 }
-
-
-
-
-
-
 
 @media screen and (max-width:1280px) {
     .today_news_container{
