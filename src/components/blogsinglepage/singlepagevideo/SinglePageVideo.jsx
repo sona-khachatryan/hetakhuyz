@@ -30,7 +30,7 @@ const SinglePageVideo = () => {
   return (
     <>
     <main className="video_single_page_container">
-      {dataId && dataId.newsContent.file.url.includes("www")? <iframe src={dataId?.newsContent.file.url} ></iframe>: 
+      {dataId && dataId.newsContent.file.url.includes("http")? <iframe src={dataId?.newsContent.file.url} ></iframe>:
       <video controls src={address+"/"+dataId?.newsContent.file.url}>
       </video>
       }

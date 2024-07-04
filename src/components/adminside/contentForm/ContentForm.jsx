@@ -6,6 +6,16 @@ import axios from "../interceptor.js";
 import {address} from "../../../repetitiveVariables/variables.js";
 import {useLocation, useNavigate} from "react-router-dom";
 
+const convertYoutubeLink = (link) => {
+    if(link.includes('watch')) {
+        return link.replace('watch?v=', 'embed/')
+    } else if (link.includes('youtu.be')) {
+        const id = link.split('?si')[0].split('.be/')[1];
+        return `https://www.youtube.com/embed/${id}`
+    } else {
+        return link;
+    }
+}
 function ContentForm({currentNews}) {
     const {pathname} = useLocation();
     const navigate = useNavigate();
@@ -60,7 +70,7 @@ function ContentForm({currentNews}) {
                 setArticleAuthorInputValue(currentNews?.newsContent?.author || '');
                 setPhotoAuthorInputValue(currentNews?.newsContent?.file?.author || '');
                 setPhotoInputValue(currentNews?.img || '');
-                setVideoInputValue(currentNews?.newsContent?.file?.url.includes('www') ? '' : currentNews?.newsContent?.file?.url);
+                setVideoInputValue(currentNews?.newsContent?.file?.url.includes('http') ? '' : currentNews?.newsContent?.file?.url);
                 setNewsTextValue(currentNews?.newsContent?.description || '');
                 setVideoLinkInputValue(!currentNews?.newsContent?.file?.isImage ? currentNews?.newsContent?.file?.url : '');
             }
@@ -129,7 +139,7 @@ function ContentForm({currentNews}) {
                     formData.append('middleImage', photoInputValue);
                 }
             } else if (selectedNewsType.title === 'Տեսանյութ') {
-                formData.append('url', videoLinkInputValue);
+                formData.append('url', convertYoutubeLink(videoLinkInputValue));
                 if(videoInputValue && typeof videoInputValue !== 'string') {
                     formData.append('fileContent', videoInputValue);
                     formData.append('middleImage', videoInputValue);
