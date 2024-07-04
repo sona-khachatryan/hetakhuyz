@@ -70,7 +70,7 @@
 }
 
 .hourly_newsCard_title {
-  font-family: ArmHmksBebasNeue;
+  font-family: BraindYerevan;
   font-size: 26px;
   font-weight: 400;
   line-height: 40px;
@@ -82,11 +82,14 @@
   text-overflow: ellipsis;
 }
 
+@media screen and (max-width:1080px) {
+  .hourly_newsCard_title {
+    font-size: 22px;
+  }
+}
+
 @media screen and (max-width:768px) {
   .hourly_news_feed_container {
     width: 100%;
-  }
-  .hourly_newsCard_title {
-    font-size: 22px;
   }
 }

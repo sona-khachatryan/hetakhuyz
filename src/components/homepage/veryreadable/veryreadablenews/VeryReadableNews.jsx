@@ -9,7 +9,7 @@ const VeryReadableNews = ({data:{createdAt,title = "",description = "",img}}) =>
           <div className='readable_news_data'>
               <span>{handleDate(createdAt)}</span>
               <h3>{title}</h3>
-              <p>{description}</p>
+              {/*<p>{description}</p>*/}
           </div>
       </div>
   )
