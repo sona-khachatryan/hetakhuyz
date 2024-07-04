@@ -50,9 +50,6 @@ const LiveStream = () => {
                       <img src="/img/facebook.svg" alt="Facebook"/>
                   </li>
                   <li>
-                      <img src="/img/insta.svg" alt="Instagram"/>
-                  </li>
-                  <li>
                       <img src="/img/twitter.svg" alt="Twitter"/>
                   </li>
                   <li>
