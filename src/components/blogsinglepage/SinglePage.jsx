@@ -61,7 +61,7 @@ const SinglePage = () => {
 
                   {dataId && !dataId?.newsContent?.file?.isImage
                       ?
-                      (dataId?.newsContent?.file?.url?.includes('www')
+                      (dataId?.newsContent?.file?.url?.includes('http')
                               ?
                                   <iframe src={dataId?.newsContent?.file?.url} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                               :
