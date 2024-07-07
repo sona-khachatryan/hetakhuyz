@@ -1,32 +1,56 @@
-import { useState , useEffect } from "react"
-import "./singlepage.style.scss"
-import SinglePageBottom from "./singlepagebottom/SinglePageBottom"
-import {useParams } from "react-router-dom"
-import axios from "axios"
-import { address,handleDate, scrollTop } from "../../repetitiveVariables/variables"
+import { useState , useEffect } from "react";
+import {useParams } from "react-router-dom";
+import axios from "axios";
+import { Helmet } from 'react-helmet';
+import SinglePageBottom from "./singlepagebottom/SinglePageBottom";
+import { address, handleDate, scrollTop } from "../../repetitiveVariables/variables"
+import "./singlepage.style.scss";
+import MetaDecorator from "../metaDecorator/MetaDecorator.jsx";
 
 const SinglePage = () => {
-  const [dataId,setDataId] = useState()
-  const [mostViewedNews,setMostViewedNews] = useState("")
-  const [relatesNews,setRelatesNews] = useState("")
-  const {id} = useParams()
+  const [dataId,setDataId] = useState();
+  const [mostViewedNews,setMostViewedNews] = useState("");
+  const [relatesNews,setRelatesNews] = useState("");
+  const {id} = useParams();
+
+  const [facebookShareLink, setFacebookShareLink] = useState();
+  const [twitterShareLink, setTwitterShareLink] = useState();
+  const [shareLink, setShareLink] = useState();
+  const [linkCopied, setLinkCopied] = useState(false);
+
 
   useEffect(()=>{
     (async () => {
       try {
-        const {data} = await axios.get(`${address}/news/getOne/${id}`)
-        const {data:{mostViewedNews,relatesNews}} = await axios.get(`${address}/news/getMostViewedAndRelates/${data.categoryId?data.categoryId:1}`)
-        setMostViewedNews(mostViewedNews)
-        setRelatesNews(relatesNews)
-        setDataId(data)
+        const {data} = await axios.get(`${address}/news/getOne/${id}`);
+        const {data:{mostViewedNews,relatesNews}} = await axios.get(`${address}/news/getMostViewedAndRelates/${data.categoryId?data.categoryId:1}`);
+        setMostViewedNews(mostViewedNews);
+        setRelatesNews(relatesNews);
+        setDataId(data);
+        setShareLink(`https://hetakhuyz.am/news/${id}`);
+        setFacebookShareLink(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://hetakhuyz.am/news/${id}`)}`);
+        setTwitterShareLink(`https://twitter.com/intent/tweet?url=${encodeURIComponent(`https://hetakhuyz.am/news/${id}`)}&text=${encodeURIComponent(data?.title)}`);
       } catch (error) {
         console.log(error)
       }
     })()
     scrollTop()
-  },[id])
+  },[id]);
+
+    const handleCopyLink = () => {
+        navigator.clipboard.writeText(shareLink).then(() => {
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    }
+
   return (
       <>
+          {dataId ?
+              <MetaDecorator title={dataId?.title} imageUrl={dataId?.img}/>
+              :
+              ''
+          }
           <main className="single_page_container">
               <div className="single_page_section">
                   {
@@ -88,16 +112,17 @@ const SinglePage = () => {
                   <h4>{dataId && dataId?.newsContent?.author ? `Հեղ․՝ ${dataId?.newsContent?.author}` : ''}</h4>
                   <ul>
                       <li>
-                          <img src="/img/facebook.svg" alt="Facebook"/>
+                          <a href={facebookShareLink} target="_blank" rel="noopener noreferrer">
+                              <img src="/img/facebook.svg" alt="Facebook"/>
+                          </a>
                       </li>
                       <li>
-                          <img src="/img/insta.svg" alt="Instagram"/>
+                          <a href={twitterShareLink} target="_blank" rel="noopener noreferrer">
+                              <img src="/img/twitter.svg" alt="Twitter"/>
+                          </a>
                       </li>
-                      <li>
-                          <img src="/img/twitter.svg" alt="Twitter"/>
-                      </li>
-                      <li>
-                          <img src="/img/link.svg" alt="Link"/>
+                      <li onClick={handleCopyLink} onMouseDown={() => setLinkCopied(true)}  onMouseUp={() => setLinkCopied(false)}>
+                          <img src="/img/link.svg" alt="Link" className={linkCopied ? 'linkCopied' : ''}/>
                       </li>
                   </ul>
               </div>

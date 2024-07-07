@@ -14,8 +14,8 @@
     justify-content: space-between;
     align-items: center;
     h4{
-        font-family:" DejavuSans";
-        font-size: 22px;
+        font-family:"DejavuSans400";
+        font-size: 20px;
         font-style: italic;
         font-weight: 400;
         line-height: 48px;
@@ -25,7 +25,15 @@
         list-style-type: none;
         display: inherit;
         gap: 20px;
+
+        li {
+            cursor: pointer;
+        }
     }
+}
+
+.linkCopied {
+    filter: grayscale(100%) brightness(3.6) invert(1) contrast(1.2) sepia(1) saturate(10000%) hue-rotate(360deg) brightness(65%);
 }
 
 .international_title_single_page::after {
