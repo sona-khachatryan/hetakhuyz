@@ -1,9 +1,11 @@
-import { useState , useEffect } from "react"
-import "./singlepage.style.scss"
-import SinglePageBottom from "./singlepagebottom/SinglePageBottom"
-import {useParams } from "react-router-dom"
-import axios from "axios"
-import { address,handleDate, scrollTop } from "../../repetitiveVariables/variables"
+import { useState , useEffect } from "react";
+import {useParams } from "react-router-dom";
+import axios from "axios";
+import { Helmet } from 'react-helmet';
+import SinglePageBottom from "./singlepagebottom/SinglePageBottom";
+import { address, handleDate, scrollTop } from "../../repetitiveVariables/variables"
+import "./singlepage.style.scss";
+import MetaDecorator from "../metaDecorator/MetaDecorator.jsx";
 
 const SinglePage = () => {
   const [dataId,setDataId] = useState();
@@ -33,7 +35,7 @@ const SinglePage = () => {
       }
     })()
     scrollTop()
-  },[id])
+  },[id]);
 
     const handleCopyLink = () => {
         navigator.clipboard.writeText(shareLink).then(() => {
@@ -44,6 +46,11 @@ const SinglePage = () => {
 
   return (
       <>
+          {dataId ?
+              <MetaDecorator title={dataId?.title} imageUrl={dataId?.img}/>
+              :
+              ''
+          }
           <main className="single_page_container">
               <div className="single_page_section">
                   {
