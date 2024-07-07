@@ -14,6 +14,7 @@ const SinglePage = () => {
   const [facebookShareLink, setFacebookShareLink] = useState();
   const [twitterShareLink, setTwitterShareLink] = useState();
   const [shareLink, setShareLink] = useState();
+  const [linkCopied, setLinkCopied] = useState(false);
 
 
   useEffect(()=>{
@@ -33,6 +34,14 @@ const SinglePage = () => {
     })()
     scrollTop()
   },[id])
+
+    const handleCopyLink = () => {
+        navigator.clipboard.writeText(shareLink).then(() => {
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    }
+
   return (
       <>
           <main className="single_page_container">
@@ -105,8 +114,8 @@ const SinglePage = () => {
                               <img src="/img/twitter.svg" alt="Twitter"/>
                           </a>
                       </li>
-                      <li>
-                          <img src="/img/link.svg" alt="Link"/>
+                      <li onClick={handleCopyLink} onMouseDown={() => setLinkCopied(true)}  onMouseUp={() => setLinkCopied(false)}>
+                          <img src="/img/link.svg" alt="Link" className={linkCopied ? 'linkCopied' : ''}/>
                       </li>
                   </ul>
               </div>

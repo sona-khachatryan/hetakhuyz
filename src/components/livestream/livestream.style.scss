@@ -28,8 +28,7 @@
             list-style-type: none;
             gap: 20px;
             li>img{
-                width: 48px;
-                height: 47px;
+                cursor: pointer;
             }
 
         }
@@ -130,8 +129,8 @@ button:hover{
                 gap: 16px;
                 li{
                     img{
-                        width: 27px;
-                        height: 27px;    
+                        //width: 27px;
+                        //height: 27px;
                     }
                 }
             }
@@ -155,6 +154,12 @@ button:hover{
         }
         >div{
             gap: 24px;
+        }
+    }
+    ul{
+        gap: 16px;
+        img{
+            width: 24px;
         }
     }
 
