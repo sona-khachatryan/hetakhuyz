@@ -1,25 +1,42 @@
 import './hourlyNewsFeed.style.scss';
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {getAllNews} from "../../../api/fetchData.js";
 import {Link} from "react-router-dom";
 
 function HourlyNewsFeed(props) {
-    const [news, setNews] = useState([]);
+    const [allNews, setAllNews] = useState([]);
+    const [newsToShow, setNewsToShow] = useState([]);
 
     useEffect(()=>{
         (async () => {
             try {
                 const allNews = await getAllNews();
-                setNews(allNews.filter(news => news?.newsContent?.file?.isImage).slice(0,8));
+                setAllNews(allNews);
+                setNewsToShow(allNews);
             } catch (error) {
                 console.log(error)
             }
         })()
     },[])
 
+
     useEffect(() => {
-        console.log(news)
-    }, [news]);
+        const handleResize = () => {
+            if(window.innerWidth <= 768){
+                setNewsToShow(allNews.slice(0,10))
+            } else {
+                setNewsToShow(allNews)
+            }
+        };
+
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    },[allNews]);
 
     return (
         <div className='hourly_news_feed_container'>
@@ -28,9 +45,9 @@ function HourlyNewsFeed(props) {
                 <hr/>
             </div>
             <div className='hourly_news_feed'>
-                {news?.length ?
+                {newsToShow?.length ?
                     <>
-                        {news.map(singleNews =>
+                        {newsToShow.map(singleNews =>
                             <Link key={singleNews.id} to={`/news/${singleNews?.id}`}>
                                 <div className='hourly_newsCard'>
                                     <div  className='hourly_newsCard_createdAt'>

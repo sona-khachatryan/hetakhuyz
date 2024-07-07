@@ -45,14 +45,24 @@ const LiveStream = () => {
         });
     }
 
-    useEffect(()=>{
-    if(window.innerWidth>1032 && window.innerWidth<=1278 ){
-        setManyViewsQuantity(2)
-        }
-        if(window.innerWidth<=1032){
-          setQuantity(2)
-        }
-      },[])
+    useEffect(() => {
+        const handleResize = () => {
+            if(window.innerWidth>1032 && window.innerWidth<=1278 ){
+                setManyViewsQuantity(2)
+            }
+            if(window.innerWidth<=1032){
+                setQuantity(2)
+            }
+        };
+
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    },[]);
       
   
   return (
