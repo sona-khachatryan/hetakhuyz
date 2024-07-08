@@ -1,29 +1,60 @@
 import './selectMainNews.style.scss';
 import React, {useEffect, useState} from 'react';
-import {handleDate} from "../../../repetitiveVariables/variables.js";
+import {address, handleDate} from "../../../repetitiveVariables/variables.js";
 import {getAllNews} from "../../../api/fetchData.js";
+import axios from "../interceptor.js";
+import Alert from "../../alert/Alert.jsx";
 
 function SelectMainNews(props) {
     
     const [allNews, setAllNews] = useState([]);
     const [selectedNews, setSelectedNews] = useState([]);
+    const [alert, setAlert] = useState('');
 
     useEffect(()=>{
         (async () => {
             try {
                 const allNews = await getAllNews();
                 setAllNews(allNews);
+                const {data} = await axios.get(`${address}/news/getToday`);
+                setSelectedNews(data.map(news => news.id));
             } catch (error) {
                 console.log(error)
             }
         })()
     },[]);
 
+    useEffect(() => {
+        console.log(allNews, selectedNews)
+    }, [allNews, selectedNews]);
+
     const handleCardClick = (newsId) => {
         if(selectedNews.includes(newsId)) {
             setSelectedNews(selectedNews.filter(id => +id !== +newsId))
         } else {
-            setSelectedNews([...selectedNews, newsId])
+            if(selectedNews.length < 4) {
+                setSelectedNews([...selectedNews, newsId])
+            } else {
+                setAlert('Գլխավոր լուրերի առավելագույն քանակը լրացել է: Չեղարկեք ընտրություններից մեկը, նոր լուր ավելացնելու համար:');
+            }
+        }
+    }
+
+    const handleSubmit = async () => {
+        try {
+            await axios.put(`${address}/news/slider?id1=${selectedNews[0]}&id2=${selectedNews[1]}&id3=${selectedNews[2]}&id4=${selectedNews[3]}`);
+            console.log('main news updated')
+            setAlert('Գլխավոր լուրերի ցանկը թարմացվել է:')
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+    const closeAlert = (e) => {
+        e.stopPropagation()
+        if(e.target.id === 'alert_container' || e.target.id === 'close_btn') {
+            setAlert('');
         }
     }
     
@@ -52,9 +83,10 @@ function SelectMainNews(props) {
                             </div>
                        )}
                     </div>
-                    <button>Հաստատել</button>
+                    <button onClick={handleSubmit}>Հաստատել</button>
                 </div>
             </div>
+            {alert ? <Alert onClose={closeAlert} alert={alert}/> : ''}
         </div>
     );
 }
