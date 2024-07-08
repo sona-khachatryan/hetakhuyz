@@ -40,7 +40,7 @@ export default function Slider() {
         swiperRef.current = swiper
       }}>
         
-              {Array.isArray(dataToday) && dataToday.map(({id,title,description,img,country},key)=>{
+              {Array.isArray(dataToday) && dataToday.map(({id,title,img,country},key)=>{
           if(key >= 4) return
            return <SwiperSlide key={key}>
                <Link to={"/news/"+id}>

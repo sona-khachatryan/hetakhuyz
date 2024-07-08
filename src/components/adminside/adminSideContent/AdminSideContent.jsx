@@ -16,6 +16,8 @@ function AdminSideContent(props) {
             setActiveHeading('add');
         } else if (pathname.includes('edit')) {
             setActiveHeading('edit');
+        } else if (pathname.includes('select')) {
+            setActiveHeading('select');
         }
     }, [pathname]);
     
@@ -34,15 +36,24 @@ function AdminSideContent(props) {
                             Ավելացնել
                         </p>
                     </Link>
+                    <Link to='/admin/select'>
+                        <p className={activeHeading === 'select' ? 'asc_activeHeading' : ''}>
+                            Օրվա լուրեր
+                        </p>
+                    </Link>
                 </div>
                 <div className='asc-content'>
-                    {pathname.includes('add') || pathname.includes('edit') ? 
+                    {pathname.includes('add') || pathname.includes('edit') || pathname.includes('select') ?
                         <div className='asc_long-heading'>
                             {pathname.includes('add')
                             ?
                             'Ավելացնել նոր նյութ'
                             :
-                            'Խմբագրել նյութը'
+                                pathname.includes('edit')
+                                    ?
+                                    'Խմբագրել նյութը'
+                                    :
+                                    'Ընտրել գլխավոր լուրերը'
                         }
                         </div> 
                         : ''}
