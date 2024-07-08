@@ -82,7 +82,7 @@ function ContentForm({currentNews}) {
         const formData = new FormData();
         if(selectedNewsType.title === 'Ուղիղ եթեր') {
             formData.append('title', titleInputValue);
-            formData.append('url', liveLinkInputValue);
+            formData.append('url', convertYoutubeLink(liveLinkInputValue));
 
             try {
               if(pathname.includes('add')) {
