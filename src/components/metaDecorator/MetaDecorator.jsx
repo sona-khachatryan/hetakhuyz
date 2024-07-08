@@ -13,7 +13,7 @@ const MetaDecorator = ({ title, imageUrl }) => (
                 <meta property="twitter:description" content={title}/>
                 <meta property="og:url" content={ 'https://hetakhuyz.am' + window.location.pathname + window.location.search}/>
                 <meta property="og:image" content={`${address}/${imageUrl}`}/>
-                <meta name="twitter:card" content={`${address}/${imageUrl}`}/>
+                <meta name="twitter:card" content='summary_large_image'/>
                 <meta property="twitter:image" content={`${address}/${imageUrl}`}/>
             </Helmet>
            :
