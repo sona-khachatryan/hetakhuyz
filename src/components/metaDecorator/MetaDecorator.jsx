@@ -5,7 +5,7 @@ const MetaDecorator = ({ title, imageUrl }) => (
     <>
         {imageUrl ?
             <Helmet>
-                <title>{title}</title>
+                <title>{'Հետախույզ լրատվական'}</title>
                 <meta property="og:title" content='Հետախույզ լրատվական'/>
                 <meta name="description" content={title}/>
                 <meta property="og:description" content={title}/>
