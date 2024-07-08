@@ -30,7 +30,21 @@ const NavBar = () => {
         setIsOpen(false);
         setDropdownArmenia(false);
         setDropdownRegion(false);
-    },[pathname])
+    },[pathname]);
+
+    useEffect(() => {
+        if (calendarIsOpen) {
+            const handleScroll = () => {
+                closeCalendar();
+            };
+
+            window.addEventListener('scroll', handleScroll);
+
+            return () => {
+                window.removeEventListener('scroll', handleScroll);
+            };
+        }
+    }, [calendarIsOpen]);
 
     const handleTop = (id) => {
         document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
